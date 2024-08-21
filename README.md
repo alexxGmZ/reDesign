@@ -4,5 +4,6 @@ A rewrite of the HTML Canvas Graphics creator from the [MenuMaApp Manage](https:
 application.
 
 Dependencies:
+* Electron
 * Bootstrap
 * Node.js v20.16.0
