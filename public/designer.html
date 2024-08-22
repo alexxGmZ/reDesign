@@ -10,7 +10,49 @@
 </head>
 
 <body>
-   <p class="fs-1">Designer</p>
+   <!-- navbar -->
+   <div class="navbar fixed-top border border-bottom bg-body-tertiary z-3">
+      <div class="d-flex flex-row">
+         <button onclick="dialog_open('create_canvas_dialog')" title="Create new design"
+            class="btn btn-outline-primary border me-1">
+            <img src="assets/svg/create-note-svgrepo-com.svg" width="20px">
+         </button>
+         <input type="file" id="input_canvas_json" class="d-none" accept=".json">
+         <button onclick="load_canvas_from_json()" title="Open an existing design"
+            class="btn btn-outline-primary border me-1">
+            <img src="assets/svg/open-folder-svgrepo-com.svg" width="20px">
+         </button>
+
+         <button onclick="save_canvas_to_json()" title="Save design" class="btn btn-outline-primary border me-1">
+            <img src="assets/svg/save-svgrepo-com.svg" width="20px">
+         </button>
+         <button onclick="save_canvas_to_jpeg()" title="Export design to JPEG format"
+            class="btn btn-outline-primary border me-1">
+            <img src="assets/svg/file-jpg-svgrepo-com.svg" width="20px">
+         </button>
+         <button onclick="save_canvas_to_png()" title="Export design to PNG format"
+            class="btn btn-outline-primary border me-1">
+            <img src="assets/svg/file-png-svgrepo-com.svg" width="20px">
+         </button>
+         <input id="canvas_import_image" type="file" class="d-none" accept="image/*">
+         <button onclick="import_image()" title="Import image to canvas" class="btn btn-outline-primary border me-5">
+            <img src="./assets/svg/download-svgrepo-com.svg" width="20px">
+         </button>
+
+         <button onclick="copy_selected_objects()" title="Copy selected object/s"
+            class="btn btn-outline-primary border me-1">
+            <img src="assets/svg/copy-svgrepo-com.svg" width="20px">
+         </button>
+         <button onclick="cut_selected_objects()" title="Cut selected object/s"
+            class="btn btn-outline-primary border me-1">
+            <img src="assets/svg/cut-svgrepo-com.svg" width="20px">
+         </button>
+         <button onclick="paste_copied_objects()" title="Paste copied/cutted object/s"
+            class="btn btn-outline-primary border me-1">
+            <img src="assets/svg/paste-svgrepo-com.svg" width="20px">
+         </button>
+      </div>
+   </div>
 </body>
 
 </html>
