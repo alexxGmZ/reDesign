@@ -1,9 +1,13 @@
-# MenuMaApp: Designer
+# Designer
 
-A rewrite of the HTML Canvas Graphics creator from the [MenuMaApp Manage](https://github.com/alexxGmZ/MenuMaApp/tree/main/Manage)
-application.
+A rewrite of the HTML Canvas Graphics creator called **Designer** from the [MenuMaApp Manage](https://github.com/alexxGmZ/MenuMaApp/tree/main/Manage)
+application. The goal is to make the feature a standalone Electron application.
 
-Dependencies:
+The application was inspired by the simplicity of [Inkscape](https://inkscape.org/).
+
+<br>
+
+**Dependencies:**
 * Electron
 * Bootstrap
 * Node.js v20.16.0
