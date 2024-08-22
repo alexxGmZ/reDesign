@@ -9,5 +9,6 @@ The application was inspired by the simplicity of [Inkscape](https://inkscape.or
 
 **Dependencies:**
 * Electron
+* [Fabric.js](http://fabricjs.com/)
 * Bootstrap
 * Node.js v20.16.0
