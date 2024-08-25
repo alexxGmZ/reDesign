@@ -13,7 +13,7 @@
    <!-- navbar -->
    <div class="navbar fixed-top border border-bottom bg-body-tertiary z-3">
       <div class="d-flex flex-row">
-         <button id="tpBarCreateBtn" title="Create new design" class="btn btn-outline-primary border ms-2 me-1">
+         <button id="openCreateCanvasDialog" title="Create new design" class="btn btn-outline-primary border ms-2 me-1">
             <img src="assets/svg/create-note-svgrepo-com.svg" width="20px">
          </button>
          <input type="file" id="input_canvas_json" class="d-none" accept=".json">
@@ -71,6 +71,58 @@
          <img src="assets/svg/line-tool-svgrepo-com.svg" width="20px" alt="">
       </button>
    </div>
+
+   <!-- create canvas dialog -->
+   <dialog id="createCanvasDialog" class="d-none border border-2 rounded-3" style="width: 700px">
+      <h1 class="text-center">Generate Canvas</h1>
+      <br>
+      <div class="row">
+         <div class="col">
+            <div class="mb-2">
+               <h2 class="fw-bold">Background Color:</h2>
+               <label for="rgb_r">Red:</label>
+               <input id="rgb_r" type="number" min="0" max="255" value="255" class="border rounded-3"
+                  style="width: 60px">
+               <br>
+               <label for="rgb_g">Green:</label>
+               <input id="rgb_g" type="number" min="0" max="255" value="255" class="border rounded-3"
+                  style="width: 60px">
+               <br>
+               <label for="rgb_b">Blue:</label>
+               <input id="rgb_b" type="number" min="0" max="255" value="255" class="border rounded-3"
+                  style="width: 60px">
+               <br>
+            </div>
+            <div id="canvas_color_picker">
+            </div>
+         </div>
+         <div class="col">
+            <h2 class="fw-bold">Canvas Resolution:</h2>
+            <div class="d-flex">
+               <label for="custom_canvas_height">Height:</label>
+               <input type="text" id="custom_canvas_height" class="border rounded-3" style="width: 70px">
+               <span>px</span>
+            </div>
+            <div class="d-flex">
+               <label for="custom_canvas_width">Width:</label>
+               <input type="text" id="custom_canvas_width" class="border rounded-3" style="width: 70px">
+               <span>px</span>
+            </div>
+         </div>
+      </div>
+      <br>
+
+      <div class="text-center">
+         <button class="btn btn-primary rounded-pill me-3">
+            Create
+         </button>
+         <button id="closeCreateCanvasDialog" class="btn btn-outline-secondary rounded-pill">
+            Close
+         </button>
+      </div>
+   </dialog>
+
+   <script src="./js/topbar/createCanvas.js"></script>
 </body>
 
 </html>
