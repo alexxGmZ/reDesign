@@ -13,8 +13,7 @@
    <!-- navbar -->
    <div class="navbar fixed-top border border-bottom bg-body-tertiary z-3">
       <div class="d-flex flex-row">
-         <button onclick="dialog_open('create_canvas_dialog')" title="Create new design"
-            class="btn btn-outline-primary border ms-2 me-1">
+         <button id="tpBarCreateBtn" title="Create new design" class="btn btn-outline-primary border ms-2 me-1">
             <img src="assets/svg/create-note-svgrepo-com.svg" width="20px">
          </button>
          <input type="file" id="input_canvas_json" class="d-none" accept=".json">
@@ -55,23 +54,23 @@
    </div>
 
    <!-- sidebar tools -->
-	<div class="d-flex position-fixed flex-column h-100 bg-body-tertiary border-end border-2 z-2">
-		<button onclick="generate_rectangle()" title="Generate rectangle"
-			class="btn btn-outline-primary mx-1 mb-1 rounded-pill" style="margin-top: 100px">
-			<img src="assets/svg/rectangle-tool-svgrepo-com.svg" width="20px" alt="">
-		</button>
-		<button onclick="generate_circle()" title="Generate circle"
-			class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
-			<img src="assets/svg/circle-tool-svgrepo-com.svg" width="20px" alt="">
-		</button>
-		<button onclick="generate_text()" title="Generate a text box"
-			class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
-			<img src="assets/svg/text-tool-svgrepo-com.svg" width="20px" alt="">
-		</button>
-		<button onclick="generate_line()" title="Generate a line" class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
-			<img src="assets/svg/line-tool-svgrepo-com.svg" width="20px" alt="">
-		</button>
-	</div>
+   <div class="d-flex position-fixed flex-column h-100 bg-body-tertiary border-end border-2 z-2">
+      <button onclick="generate_rectangle()" title="Generate rectangle"
+         class="btn btn-outline-primary mx-1 mb-1 rounded-pill" style="margin-top: 100px">
+         <img src="assets/svg/rectangle-tool-svgrepo-com.svg" width="20px" alt="">
+      </button>
+      <button onclick="generate_circle()" title="Generate circle"
+         class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
+         <img src="assets/svg/circle-tool-svgrepo-com.svg" width="20px" alt="">
+      </button>
+      <button onclick="generate_text()" title="Generate a text box"
+         class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
+         <img src="assets/svg/text-tool-svgrepo-com.svg" width="20px" alt="">
+      </button>
+      <button onclick="generate_line()" title="Generate a line" class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
+         <img src="assets/svg/line-tool-svgrepo-com.svg" width="20px" alt="">
+      </button>
+   </div>
 </body>
 
 </html>
