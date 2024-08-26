@@ -25,10 +25,10 @@ generateCanvasBtn.addEventListener("click", () => {
 function generateCanvas() {
    console.log("generateCanvas()");
 
-	const red = document.getElementById("rgbR").value;
-	const green = document.getElementById("rgbG").value;
-	const blue = document.getElementById("rgbB").value;
-	const canvasBgColor = `rgb(${red}, ${green}, ${blue})`;
+   const red = document.getElementById("rgbR").value;
+   const green = document.getElementById("rgbG").value;
+   const blue = document.getElementById("rgbB").value;
+   const canvasBgColor = `rgb(${red}, ${green}, ${blue})`;
 
    const canvasHeight = document.getElementById("canvasHeightInput").value.trim() || 0
    const canvasWidth = document.getElementById("canvasWidthInput").value.trim() || 0
@@ -39,21 +39,21 @@ function generateCanvas() {
 function generateCanvasArea(canvasHeight, canvasWidth, bgColor) {
    console.log(`generateCanvasArea(${canvasHeight}, ${canvasWidth}, ${bgColor})`);
 
-	const canvasElement = document.createElement("canvas");
-	canvasElement.id = "canvas";
-	canvasElement.className = "border border-2";
+   const canvasElement = document.createElement("canvas");
+   canvasElement.id = "canvas";
+   canvasElement.className = "border border-2";
 
-	const canvasPlaceholder = document.querySelector("#canvasArea");
-	canvasPlaceholder.innerHTML = "";
-	canvasPlaceholder.appendChild(canvasElement);
+   const canvasPlaceholder = document.querySelector("#canvasArea");
+   canvasPlaceholder.innerHTML = "";
+   canvasPlaceholder.appendChild(canvasElement);
 
-	canvas = new fabric.Canvas("canvas", {
-		backgroundColor: bgColor,
-		fireRightClick: true,
-		preserveObjectStacking: true,
-		height: canvasHeight,
-		width: canvasWidth
-	});
+   canvas = new fabric.Canvas("canvas", {
+      backgroundColor: bgColor,
+      fireRightClick: true,
+      preserveObjectStacking: true,
+      height: canvasHeight,
+      width: canvasWidth
+   });
 }
 
 /**
