@@ -4,11 +4,11 @@
  * @param {string} elementId - The ID of the dialog element to be opened.
  */
 function dialogOpen(elementId) {
-	console.log(`dialogOpen(${elementId})`);
-	const favDialog = document.getElementById(elementId);
-	favDialog.classList.add("active-dialog");
-	favDialog.classList.remove("d-none");
-	favDialog.showModal();
+   console.log(`dialogOpen(${elementId})`);
+   const favDialog = document.getElementById(elementId);
+   favDialog.classList.add("active-dialog");
+   favDialog.classList.remove("d-none");
+   favDialog.showModal();
 }
 
 /**
@@ -17,14 +17,14 @@ function dialogOpen(elementId) {
  * @param {string} elementId - The ID of the dialog element to be closed.
  */
 function dialogClose(elementId) {
-	console.log(`dialogClose(${elementId})`);
-	const favDialog = document.getElementById(elementId);
-	favDialog.classList.remove("active-dialog");
-	favDialog.classList.add("d-none");
-	favDialog.close();
+   console.log(`dialogClose(${elementId})`);
+   const favDialog = document.getElementById(elementId);
+   favDialog.classList.remove("active-dialog");
+   favDialog.classList.add("d-none");
+   favDialog.close();
 }
 
 module.exports = {
-	dialogOpen,
-	dialogClose
+   dialogOpen,
+   dialogClose
 }
