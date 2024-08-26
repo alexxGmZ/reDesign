@@ -1,33 +1,11 @@
-var fabric = require("fabric");
-var canvas;
-var iro = require("@jaames/iro");
-var { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
-var { displayPointerCoordinates } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
-
-const openCreateCanvasDialogBtn = document.getElementById("openCreateCanvasDialog");
-openCreateCanvasDialogBtn.addEventListener("click", () => {
-   dialogOpen("createCanvasDialog");
-   createCanvasColorPicker();
-});
-
-const closeCreateCanvasDialogBtn = document.getElementById("closeCreateCanvasDialog");
-closeCreateCanvasDialogBtn.addEventListener("click", () => {
-   dialogClose("createCanvasDialog");
-});
-
-const generateCanvasBtn = document.getElementById("generateCanvas");
-generateCanvasBtn.addEventListener("click", () => {
-   generateCanvas();
-   displayPointerCoordinates(canvas);
-   dialogClose("createCanvasDialog");
-});
-
 /**
- * Generates a canvas with the specified background color and dimensions.
- * Retrieves the RGB values and canvas dimensions from input fields and calls
- * the `generateCanvasArea` function to create the canvas.
+ * Generates a canvas with the specified dimensions and background color, and
+ * initializes it with the Fabric.js library.
+ *
+ * @param {Object} fabric - The Fabric.js library object used to create and manage the canvas.
+ * @param {Object} canvas - The Fabric.js canvas instance to be configured.
  */
-function generateCanvas() {
+function generateCanvas(fabric, canvas) {
    console.log("generateCanvas()");
 
    const red = document.getElementById("rgbR").value;
@@ -38,18 +16,20 @@ function generateCanvas() {
    const canvasHeight = document.getElementById("canvasHeightInput").value.trim() || 0
    const canvasWidth = document.getElementById("canvasWidthInput").value.trim() || 0
 
-   generateCanvasArea(canvasHeight, canvasWidth, canvasBgColor);
+   generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, canvasBgColor);
 }
 
 /**
- * Creates and configures a canvas element with the specified height, width, and
- * background color.
+ * Creates and configures a canvas element with the specified dimensions and background
+ * color, and initializes it using Fabric.js.
  *
+ * @param {Object} fabric - The Fabric.js library object used to create and manage the canvas.
+ * @param {Object} canvas - The Fabric.js canvas instance to be configured.
  * @param {number} canvasHeight - The height of the canvas in pixels.
  * @param {number} canvasWidth - The width of the canvas in pixels.
- * @param {string} bgColor - The background color of the canvas in RGB format.
+ * @param {string} bgColor - The background color of the canvas in RGB format (e.g., "rgb(255, 255, 255)").
  */
-function generateCanvasArea(canvasHeight, canvasWidth, bgColor) {
+function generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, bgColor) {
    console.log(`generateCanvasArea(${canvasHeight}, ${canvasWidth}, ${bgColor})`);
 
    const canvasElement = document.createElement("canvas");
@@ -72,11 +52,12 @@ function generateCanvasArea(canvasHeight, canvasWidth, bgColor) {
 }
 
 /**
- * Initializes a color picker using the iro.js library, allowing users to pick a color
- * and synchronize it with RGB input fields. The color picker updates when the input
- * fields are modified.
+ * Initializes a color picker for selecting and updating canvas colors, and synchronizes
+ * it with RGB input fields.
+ *
+ * @param {Object} iro - The Iro.js library object used to create the color picker.
  */
-function createCanvasColorPicker() {
+function createCanvasColorPicker(iro) {
    console.log("createCanvasColorPicker()");
 
    var color_picker = new iro.ColorPicker("#canvasColorPicker", {
@@ -134,6 +115,7 @@ function createCanvasColorPicker() {
 }
 
 module.exports = {
-   canvas,
-   generateCanvasArea
+   generateCanvas,
+   generateCanvasArea,
+   createCanvasColorPicker
 }
