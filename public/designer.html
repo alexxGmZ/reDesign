@@ -125,7 +125,61 @@
       </div>
    </dialog>
 
+   <!-- statusbar -->
+   <div class="fixed-bottom bg-body-tertiary p-1 border-top z-2">
+      <div class="row">
+         <div class="col d-flex flex-row">
+            <span class="fs-6 me-1">Canvas Resolution: </span>
+            <span id="canvas_resolution" class="fs-6 fw-bold me-2"></span>
+            <button id="openChangeCanvasResDialog" class="bg-white border border-2 rounded-pill me-3">
+               <img src="assets/svg/edit-2-svgrepo-com.svg" width="15px">
+            </button>
+
+            <label for="canvas_pointer_coordinates_x" class="me-1">x:</label>
+            <span id="canvas_pointer_coordinates_x" class="me-2 fw-bold"></span>
+            <label for="canvas_pointer_coordinates_y" class="me-1">y:</label>
+            <span id="canvas_pointer_coordinates_y" class="fw-bold"></span>
+         </div>
+         <div class="col d-flex justify-content-end">
+            <span id="scale_multiplier_text" class="me-1"></span>
+            <button id="canvas_scaler_minus" class="bg-white border border-2 rounded-pill me-1">
+               <img src="assets/svg/minus-circle-1442-svgrepo-com.svg" width="10px" alt="">
+            </button>
+            <input id="canvas_scale_range_input" type="range" value="1" min="0.3" max="2" step="0.1" class="me-1">
+            <button id="canvas_scaler_plus" class="bg-white border border-2 rounded-pill">
+               <img src="assets/svg/plus-circle-1441-svgrepo-com.svg" width="10px" alt="">
+            </button>
+         </div>
+      </div>
+   </div>
+
+   <!-- change canvas resolution dialog -->
+   <dialog id="changeCanvasResDialog" class="d-none border border-1 rounded-3">
+      <h3 class="mb-3 text-center">Change canvas Resolution</h3>
+      <div id="login_dialog_warn_banner" class="bg-warning-subtle rounded-3 text-center p-2 mb-3">
+         <img src="assets/svg/exclamation.svg" width="80px" class="">
+         <h5>Objects will not scale along with the canvas.</h5>
+      </div>
+      <div class="mb-4">
+         <div class="d-flex">
+            <label for="change_res_width" class="me-2">Width:</label>
+            <input id="change_res_width" type="number" class="border rounded-3">
+            <span>px</span>
+         </div>
+         <div class="d-flex">
+            <label for="change_res_height" class="me-2">Height:</label>
+            <input id="change_res_height" type="number" class="border rounded-3">
+            <span>px</span>
+         </div>
+      </div>
+      <center>
+         <button id="changeCanvasResolution" class="btn btn-primary rounded-pill">Change</button>
+         <button id="closeChangeResolutionDialog" class="btn btn-outline-secondary rounded-pill">Cancel</button>
+      </center>
+   </dialog>
+
    <script src="./js/topbar/createCanvas.js"></script>
+   <script src="./js/statusbar/changeCanvasResolution.js"></script>
 </body>
 
 </html>
