@@ -1,16 +1,24 @@
 {
-  "name": "menumaapp-designer",
-  "version": "1.0.0",
+  "name": "Designer",
+  "version": "0.1.0",
   "description": "A rewrite of the HTML Canvas Graphics creator from the MenuMaApp Manage application.",
   "main": "main.js",
+  "build": {
+    "appId": "com.alexxGmZ.Designer",
+    "linux": {
+      "target": "AppImage"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "alexxGmZ",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^32.0.1"
+    "electron": "^32.0.1",
+    "electron-builder": "^24.13.3"
   },
   "dependencies": {
     "@jaames/iro": "^5.5.2",
