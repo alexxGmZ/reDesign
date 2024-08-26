@@ -2,6 +2,7 @@ var fabric = require("fabric");
 var canvas;
 var iro = require("@jaames/iro");
 var { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
+var { displayPointerCoordinates } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
 
 const openCreateCanvasDialogBtn = document.getElementById("openCreateCanvasDialog");
 openCreateCanvasDialogBtn.addEventListener("click", () => {
@@ -17,6 +18,7 @@ closeCreateCanvasDialogBtn.addEventListener("click", () => {
 const generateCanvasBtn = document.getElementById("generateCanvas");
 generateCanvasBtn.addEventListener("click", () => {
    generateCanvas();
+   displayPointerCoordinates(canvas);
    dialogClose("createCanvasDialog");
 });
 
@@ -54,7 +56,7 @@ function generateCanvasArea(canvasHeight, canvasWidth, bgColor) {
    canvasElement.id = "canvas";
    canvasElement.className = "border border-2";
 
-	document.getElementById("displayCanvasResolution").textContent = `${canvasWidth}x${canvasHeight}`;
+   document.getElementById("displayCanvasResolution").textContent = `${canvasWidth}x${canvasHeight}`;
 
    const canvasPlaceholder = document.querySelector("#canvasArea");
    canvasPlaceholder.innerHTML = "";
