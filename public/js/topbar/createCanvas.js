@@ -1,5 +1,3 @@
-console.log(__dirname)
-
 const fabric = require("fabric");
 let canvas;
 const iro = require("@jaames/iro");
