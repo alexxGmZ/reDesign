@@ -22,56 +22,56 @@ closeCreateCanvasDialogBtn.addEventListener("click", () => {
 function createCanvasColorPicker() {
    console.log("createCanvasColorPicker()");
 
-	var color_picker = new iro.ColorPicker("#canvasColorPicker", {
-		// Set the size of the color picker
-		width: 250,
-		color: "rgb(255, 255, 255)",
-		layoutDirection: "horizontal",
-		borderWidth: 2,
-		borderColor: "#000000"
-	});
+   var color_picker = new iro.ColorPicker("#canvasColorPicker", {
+      // Set the size of the color picker
+      width: 250,
+      color: "rgb(255, 255, 255)",
+      layoutDirection: "horizontal",
+      borderWidth: 2,
+      borderColor: "#000000"
+   });
 
-	var red, green, blue;
+   var red, green, blue;
 
    // initial color picker values
-	color_picker.on('color:init', (color) => {
-		// Convert the initial color to RGB
-		red = color.rgb.r;
-		green = color.rgb.g;
-		blue = color.rgb.b;
-		document.getElementById("rgbR").value = red;
-		document.getElementById("rgbG").value = green;
-		document.getElementById("rgbB").value = blue;
-	});
+   color_picker.on('color:init', (color) => {
+      // Convert the initial color to RGB
+      red = color.rgb.r;
+      green = color.rgb.g;
+      blue = color.rgb.b;
+      document.getElementById("rgbR").value = red;
+      document.getElementById("rgbG").value = green;
+      document.getElementById("rgbB").value = blue;
+   });
 
    // when the color picker is used
-	color_picker.on('color:change', (color) => {
-		// Convert the initial color to RGB
-		red = color.rgb.r;
-		green = color.rgb.g;
-		blue = color.rgb.b;
-		document.getElementById("rgbR").value = red;
-		document.getElementById("rgbG").value = green;
-		document.getElementById("rgbB").value = blue;
-	});
+   color_picker.on('color:change', (color) => {
+      // Convert the initial color to RGB
+      red = color.rgb.r;
+      green = color.rgb.g;
+      blue = color.rgb.b;
+      document.getElementById("rgbR").value = red;
+      document.getElementById("rgbG").value = green;
+      document.getElementById("rgbB").value = blue;
+   });
 
-	function updateColorPicker() {
+   function updateColorPicker() {
       console.log("updateColorPicker()");
-		var newColor = `rgb(${red}, ${green}, ${blue})`;
-		color_picker.color.set(newColor);
-	}
+      var newColor = `rgb(${red}, ${green}, ${blue})`;
+      color_picker.color.set(newColor);
+   }
 
    // update the color picker when the input box is used
-	document.getElementById("rgbR").addEventListener("input", function() {
-		red = this.value;
-		updateColorPicker();
-	});
-	document.getElementById("rgbG").addEventListener("input", function() {
-		green = this.value;
-		updateColorPicker();
-	});
-	document.getElementById("rgbB").addEventListener("input", function() {
-		blue = this.value;
-		updateColorPicker();
-	});
+   document.getElementById("rgbR").addEventListener("input", function() {
+      red = this.value;
+      updateColorPicker();
+   });
+   document.getElementById("rgbG").addEventListener("input", function() {
+      green = this.value;
+      updateColorPicker();
+   });
+   document.getElementById("rgbB").addEventListener("input", function() {
+      blue = this.value;
+      updateColorPicker();
+   });
 }
