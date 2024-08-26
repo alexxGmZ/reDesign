@@ -1,7 +1,7 @@
-const fabric = require("fabric");
-let canvas;
-const iro = require("@jaames/iro");
-const { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
+var fabric = require("fabric");
+var canvas;
+var iro = require("@jaames/iro");
+var { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
 
 const openCreateCanvasDialogBtn = document.getElementById("openCreateCanvasDialog");
 openCreateCanvasDialogBtn.addEventListener("click", () => {
