@@ -54,6 +54,8 @@ function generateCanvasArea(canvasHeight, canvasWidth, bgColor) {
    canvasElement.id = "canvas";
    canvasElement.className = "border border-2";
 
+	document.getElementById("displayCanvasResolution").textContent = `${canvasWidth}x${canvasHeight}`;
+
    const canvasPlaceholder = document.querySelector("#canvasArea");
    canvasPlaceholder.innerHTML = "";
    canvasPlaceholder.appendChild(canvasElement);
