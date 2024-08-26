@@ -22,6 +22,11 @@ generateCanvasBtn.addEventListener("click", () => {
    dialogClose("createCanvasDialog");
 });
 
+/**
+ * Generates a canvas with the specified background color and dimensions.
+ * Retrieves the RGB values and canvas dimensions from input fields and calls
+ * the `generateCanvasArea` function to create the canvas.
+ */
 function generateCanvas() {
    console.log("generateCanvas()");
 
@@ -36,6 +41,14 @@ function generateCanvas() {
    generateCanvasArea(canvasHeight, canvasWidth, canvasBgColor);
 }
 
+/**
+ * Creates and configures a canvas element with the specified height, width, and
+ * background color.
+ *
+ * @param {number} canvasHeight - The height of the canvas in pixels.
+ * @param {number} canvasWidth - The width of the canvas in pixels.
+ * @param {string} bgColor - The background color of the canvas in RGB format.
+ */
 function generateCanvasArea(canvasHeight, canvasWidth, bgColor) {
    console.log(`generateCanvasArea(${canvasHeight}, ${canvasWidth}, ${bgColor})`);
 
