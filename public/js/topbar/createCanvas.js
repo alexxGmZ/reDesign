@@ -132,5 +132,6 @@ function createCanvasColorPicker() {
 }
 
 module.exports = {
-   canvas
+   canvas,
+   generateCanvasArea
 }
