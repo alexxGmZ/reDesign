@@ -48,12 +48,12 @@ function generateCanvasArea(canvasHeight, canvasWidth, bgColor) {
    canvasPlaceholder.appendChild(canvasElement);
 
    canvas = new fabric.Canvas("canvas", {
-      backgroundColor: bgColor,
       fireRightClick: true,
       preserveObjectStacking: true,
       height: canvasHeight,
       width: canvasWidth
    });
+   canvas.set('backgroundColor', bgColor).requestRenderAll();
 }
 
 /**
