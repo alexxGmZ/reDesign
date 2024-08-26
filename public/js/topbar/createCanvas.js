@@ -1,5 +1,7 @@
 console.log(__dirname)
 
+const fabric = require("fabric");
+let canvas;
 const iro = require("@jaames/iro");
 const { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
 
@@ -13,6 +15,46 @@ const closeCreateCanvasDialogBtn = document.getElementById("closeCreateCanvasDia
 closeCreateCanvasDialogBtn.addEventListener("click", () => {
    dialogClose("createCanvasDialog");
 });
+
+const generateCanvasBtn = document.getElementById("generateCanvas");
+generateCanvasBtn.addEventListener("click", () => {
+   generateCanvas();
+   dialogClose("createCanvasDialog");
+});
+
+function generateCanvas() {
+   console.log("generateCanvas()");
+
+	const red = document.getElementById("rgbR").value;
+	const green = document.getElementById("rgbG").value;
+	const blue = document.getElementById("rgbB").value;
+	const canvasBgColor = `rgb(${red}, ${green}, ${blue})`;
+
+   const canvasHeight = document.getElementById("canvasHeightInput").value.trim() || 0
+   const canvasWidth = document.getElementById("canvasWidthInput").value.trim() || 0
+
+   generateCanvasArea(canvasHeight, canvasWidth, canvasBgColor);
+}
+
+function generateCanvasArea(canvasHeight, canvasWidth, bgColor) {
+   console.log(`generateCanvasArea(${canvasHeight}, ${canvasWidth}, ${bgColor})`);
+
+	const canvasElement = document.createElement("canvas");
+	canvasElement.id = "canvas";
+	canvasElement.className = "border border-2";
+
+	const canvasPlaceholder = document.querySelector("#canvasArea");
+	canvasPlaceholder.innerHTML = "";
+	canvasPlaceholder.appendChild(canvasElement);
+
+	canvas = new fabric.Canvas("canvas", {
+		backgroundColor: bgColor,
+		fireRightClick: true,
+		preserveObjectStacking: true,
+		height: canvasHeight,
+		width: canvasWidth
+	});
+}
 
 /**
  * Initializes a color picker using the iro.js library, allowing users to pick a color
@@ -74,4 +116,8 @@ function createCanvasColorPicker() {
       blue = this.value;
       updateColorPicker();
    });
+}
+
+module.exports = {
+   canvas
 }

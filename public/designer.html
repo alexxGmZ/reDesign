@@ -72,6 +72,10 @@
       </button>
    </div>
 
+   <!-- canvas area -->
+	<div id="canvasArea" class="" style="margin-left: 70px; padding-top: 70px; margin-bottom: 60px">
+	</div>
+
    <!-- create canvas dialog -->
    <dialog id="createCanvasDialog" class="d-none border border-2 rounded-3" style="width: 700px">
       <h1 class="text-center">Generate Canvas</h1>
@@ -98,13 +102,13 @@
          <div class="col">
             <h2 class="fw-bold">Canvas Resolution:</h2>
             <div class="d-flex">
-               <label for="custom_canvas_height">Height:</label>
-               <input type="text" id="custom_canvas_height" class="border rounded-3" style="width: 70px">
+               <label for="canvasHeightInput">Height:</label>
+               <input type="text" id="canvasHeightInput" class="border rounded-3" style="width: 70px">
                <span>px</span>
             </div>
             <div class="d-flex">
-               <label for="custom_canvas_width">Width:</label>
-               <input type="text" id="custom_canvas_width" class="border rounded-3" style="width: 70px">
+               <label for="canvasWidthInput">Width:</label>
+               <input type="text" id="canvasWidthInput" class="border rounded-3" style="width: 70px">
                <span>px</span>
             </div>
          </div>
@@ -112,7 +116,7 @@
       <br>
 
       <div class="text-center">
-         <button class="btn btn-primary rounded-pill me-3">
+         <button id="generateCanvas" class="btn btn-primary rounded-pill me-3">
             Create
          </button>
          <button id="closeCreateCanvasDialog" class="btn btn-outline-secondary rounded-pill">
