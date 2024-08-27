@@ -5,6 +5,9 @@ var { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
 var { generateCanvas, createCanvasColorPicker } = require(__dirname + "/js/topbar/createCanvas");
 var { displayPointerCoordinates } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
 
+//
+// createCanvasDialog buttons
+//
 const openCreateCanvasDialogBtn = document.getElementById("openCreateCanvasDialog");
 openCreateCanvasDialogBtn.addEventListener("click", () => {
    dialogOpen("createCanvasDialog");
@@ -26,6 +29,9 @@ generateCanvasBtn.addEventListener("click", () => {
    dialogClose("createCanvasDialog");
 });
 
+//
+// changeCanvasResDialog buttons
+//
 const openChangeCanvasResDlgBtn = document.getElementById("openChangeCanvasResDialog");
 openChangeCanvasResDlgBtn.addEventListener("click", () => {
    dialogOpen("changeCanvasResDialog");
