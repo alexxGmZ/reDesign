@@ -48,3 +48,9 @@ const closeChangeCanvasResDlgBtn = document.getElementById("closeChangeResolutio
 closeChangeCanvasResDlgBtn.addEventListener("click", () => {
    dialogClose("changeCanvasResDialog");
 });
+
+const changeCanvasResBtn = document.getElementById("changeCanvasResolution");
+changeCanvasResBtn.addEventListener("click", () => {
+   updateCanvasResolution(canvas);
+   dialogClose("changeCanvasResDialog");
+});
