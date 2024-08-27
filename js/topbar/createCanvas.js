@@ -64,7 +64,7 @@ function generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, bgColor) 
 function createCanvasColorPicker(iro) {
    console.log(`createCanvasColorPicker(${iro})`);
 
-   var color_picker = new iro.ColorPicker("#canvasColorPicker", {
+   var colorPicker = new iro.ColorPicker("#canvasColorPicker", {
       // Set the size of the color picker
       width: 250,
       color: "rgb(255, 255, 255)",
@@ -76,7 +76,7 @@ function createCanvasColorPicker(iro) {
    var red, green, blue;
 
    // initial color picker values
-   color_picker.on('color:init', (color) => {
+   colorPicker.on('color:init', (color) => {
       // Convert the initial color to RGB
       red = color.rgb.r;
       green = color.rgb.g;
@@ -87,7 +87,7 @@ function createCanvasColorPicker(iro) {
    });
 
    // when the color picker is used
-   color_picker.on('color:change', (color) => {
+   colorPicker.on('color:change', (color) => {
       // Convert the initial color to RGB
       red = color.rgb.r;
       green = color.rgb.g;
@@ -100,7 +100,7 @@ function createCanvasColorPicker(iro) {
    function updateColorPicker() {
       console.log("updateColorPicker()");
       var newColor = `rgb(${red}, ${green}, ${blue})`;
-      color_picker.color.set(newColor);
+      colorPicker.color.set(newColor);
    }
 
    // update the color picker when the input box is used
