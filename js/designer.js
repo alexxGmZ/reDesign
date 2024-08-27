@@ -26,3 +26,12 @@ generateCanvasBtn.addEventListener("click", () => {
    dialogClose("createCanvasDialog");
 });
 
+const openChangeCanvasResDlgBtn = document.getElementById("openChangeCanvasResDialog");
+openChangeCanvasResDlgBtn.addEventListener("click", () => {
+   dialogOpen("changeCanvasResDialog");
+});
+
+const closeChangeCanvasResDlgBtn = document.getElementById("closeChangeResolutionDialog");
+closeChangeCanvasResDlgBtn.addEventListener("click", () => {
+   dialogClose("changeCanvasResDialog");
+});
