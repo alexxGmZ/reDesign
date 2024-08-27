@@ -2,9 +2,9 @@ const fabric = require("fabric");
 var canvas;
 const iro = require("@jaames/iro");
 const { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
-const { generateCanvas, createCanvasColorPicker } = require(__dirname + "/js/topbar/createCanvas");
+const { generateCanvas, generateCanvasArea, createCanvasColorPicker } = require(__dirname + "/js/topbar/createCanvas");
 const { displayPointerCoordinates } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
-const { changeResInitialValues } = require(__dirname + "/js/statusbar/changeCanvasResolution");
+const { changeResInitialValues, updateCanvasResolution } = require(__dirname + "/js/statusbar/changeCanvasResolution");
 
 //
 // createCanvasDialog buttons
@@ -25,7 +25,9 @@ closeCreateCanvasDialogBtn.addEventListener("click", () => {
 
 const generateCanvasBtn = document.getElementById("generateCanvas");
 generateCanvasBtn.addEventListener("click", () => {
-   generateCanvas(fabric, canvas);
+   const { canvasHeight, canvasWidth, canvasBgColor } = generateCanvas();
+   canvas = generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, canvasBgColor);
+
    displayPointerCoordinates(canvas);
    dialogClose("createCanvasDialog");
 
