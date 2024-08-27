@@ -1,9 +1,9 @@
-var fabric = require("fabric");
+const fabric = require("fabric");
 var canvas;
-var iro = require("@jaames/iro");
-var { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
-var { generateCanvas, createCanvasColorPicker } = require(__dirname + "/js/topbar/createCanvas");
-var { displayPointerCoordinates } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
+const iro = require("@jaames/iro");
+const { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
+const { generateCanvas, createCanvasColorPicker } = require(__dirname + "/js/topbar/createCanvas");
+const { displayPointerCoordinates } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
 
 //
 // createCanvasDialog buttons
