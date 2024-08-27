@@ -4,6 +4,7 @@ const iro = require("@jaames/iro");
 const { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
 const { generateCanvas, createCanvasColorPicker } = require(__dirname + "/js/topbar/createCanvas");
 const { displayPointerCoordinates } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
+const { changeResInitialValues } = require(__dirname + "/js/statusbar/changeCanvasResolution");
 
 //
 // createCanvasDialog buttons
@@ -38,6 +39,7 @@ generateCanvasBtn.addEventListener("click", () => {
 const openChangeCanvasResDlgBtn = document.getElementById("openChangeCanvasResDialog");
 openChangeCanvasResDlgBtn.addEventListener("click", () => {
    dialogOpen("changeCanvasResDialog");
+   changeResInitialValues();
 });
 
 const closeChangeCanvasResDlgBtn = document.getElementById("closeChangeResolutionDialog");
