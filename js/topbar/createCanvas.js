@@ -76,7 +76,7 @@ function createCanvasColorPicker(iro) {
    var red, green, blue;
 
    // initial color picker values
-   colorPicker.on('color:init', (color) => {
+   colorPicker.on("color:init", (color) => {
       // Convert the initial color to RGB
       red = color.rgb.r;
       green = color.rgb.g;
@@ -87,7 +87,7 @@ function createCanvasColorPicker(iro) {
    });
 
    // when the color picker is used
-   colorPicker.on('color:change', (color) => {
+   colorPicker.on("color:change", (color) => {
       // Convert the initial color to RGB
       red = color.rgb.r;
       green = color.rgb.g;
