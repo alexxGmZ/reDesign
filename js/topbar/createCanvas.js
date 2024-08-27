@@ -6,7 +6,7 @@
  * @param {Object} canvas - The Fabric.js canvas instance to be configured.
  */
 function generateCanvas(fabric, canvas) {
-   console.log("generateCanvas()");
+   console.log(`generateCanvas(${fabric}, ${canvas})`);
 
    const red = document.getElementById("rgbR").value;
    const green = document.getElementById("rgbG").value;
@@ -30,7 +30,7 @@ function generateCanvas(fabric, canvas) {
  * @param {string} bgColor - The background color of the canvas in RGB format (e.g., "rgb(255, 255, 255)").
  */
 function generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, bgColor) {
-   console.log(`generateCanvasArea(${canvasHeight}, ${canvasWidth}, ${bgColor})`);
+   console.log(`generateCanvasArea(${fabric}, ${canvas}, ${canvasHeight}, ${canvasWidth}, ${bgColor})`);
 
    const canvasElement = document.createElement("canvas");
    canvasElement.id = "canvas";
@@ -58,7 +58,7 @@ function generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, bgColor) 
  * @param {Object} iro - The Iro.js library object used to create the color picker.
  */
 function createCanvasColorPicker(iro) {
-   console.log("createCanvasColorPicker()");
+   console.log(`createCanvasColorPicker(${iro})`);
 
    var color_picker = new iro.ColorPicker("#canvasColorPicker", {
       // Set the size of the color picker
