@@ -27,6 +27,9 @@ generateCanvasBtn.addEventListener("click", () => {
    generateCanvas(fabric, canvas);
    displayPointerCoordinates(canvas);
    dialogClose("createCanvasDialog");
+
+   // FIX: fixes the incrementing color picker
+   document.getElementById("canvasColorPicker").innerHTML = "";
 });
 
 //
