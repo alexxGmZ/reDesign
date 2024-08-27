@@ -14,6 +14,9 @@ openCreateCanvasDialogBtn.addEventListener("click", () => {
 const closeCreateCanvasDialogBtn = document.getElementById("closeCreateCanvasDialog");
 closeCreateCanvasDialogBtn.addEventListener("click", () => {
    dialogClose("createCanvasDialog");
+
+   // FIX: fixes the incrementing color picker
+   document.getElementById("canvasColorPicker").innerHTML = "";
 });
 
 const generateCanvasBtn = document.getElementById("generateCanvas");
