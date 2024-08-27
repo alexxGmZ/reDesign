@@ -1,3 +1,8 @@
+/**
+ * Displays the pointer coordinates on the canvas while moving the mouse.
+ *
+ * @param {Object} canvas - The Fabric.js canvas instance to track pointer movement.
+ */
 function displayPointerCoordinates(canvas) {
    if (!canvas) return;
    console.log("canvasPointerCoordinates()");
