@@ -6,8 +6,8 @@ function displayPointerCoordinates(canvas) {
       var x = pointer.x.toFixed(3);
       var y = pointer.y.toFixed(3);
 
-      document.getElementById("canvas_pointer_coordinates_x").textContent = x;
-      document.getElementById("canvas_pointer_coordinates_y").textContent = y;
+      document.getElementById("canvasPntrCoordsX").textContent = x;
+      document.getElementById("canvasPntrCoordsY").textContent = y;
    });
 }
 
