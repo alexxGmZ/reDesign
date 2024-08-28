@@ -7,12 +7,17 @@
     "appId": "com.alexxGmZ.reDesign",
     "linux": {
       "target": "AppImage"
+    },
+    "win": {
+      "target": "zip"
     }
   },
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "linux": "electron-builder --linux",
+    "win": "electron-builder --win"
   },
   "author": "alexxGmZ",
   "license": "ISC",
