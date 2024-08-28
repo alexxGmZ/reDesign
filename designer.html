@@ -55,19 +55,19 @@
 
    <!-- sidebar tools -->
    <div class="d-flex position-fixed flex-column h-100 bg-body-tertiary border-end border-2 z-2">
-      <button onclick="generate_rectangle()" title="Generate rectangle"
+      <button id="generateRectangle" title="Generate rectangle"
          class="btn btn-outline-primary mx-1 mb-1 rounded-pill" style="margin-top: 100px">
          <img src="assets/svg/rectangle-tool-svgrepo-com.svg" width="20px" alt="">
       </button>
-      <button onclick="generate_circle()" title="Generate circle"
+      <button id="generateCircle" title="Generate circle"
          class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
          <img src="assets/svg/circle-tool-svgrepo-com.svg" width="20px" alt="">
       </button>
-      <button onclick="generate_text()" title="Generate a text box"
+      <button id="generateText" title="Generate a text box"
          class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
          <img src="assets/svg/text-tool-svgrepo-com.svg" width="20px" alt="">
       </button>
-      <button onclick="generate_line()" title="Generate a line" class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
+      <button id="generateLine" title="Generate a line" class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
          <img src="assets/svg/line-tool-svgrepo-com.svg" width="20px" alt="">
       </button>
    </div>
@@ -179,7 +179,6 @@
    </dialog>
 
    <script type="module" src="./js/designer.js"></script>
-   <script type="module" src="./js/statusbar/changeCanvasResolution.js"></script>
 </body>
 
 </html>

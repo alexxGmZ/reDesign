@@ -5,6 +5,12 @@ const { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
 const { generateCanvas, generateCanvasArea, createCanvasColorPicker } = require(__dirname + "/js/topbar/createCanvas");
 const { displayPointerCoordinates } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
 const { changeResInitialValues, updateCanvasResolution } = require(__dirname + "/js/statusbar/canvasResolution");
+const {
+   generateRectangle,
+   generateCircle,
+   generateText,
+   generateLine,
+} = require(__dirname + "/js/sidebar/object");
 
 //
 // createCanvasDialog buttons
@@ -53,4 +59,27 @@ const changeCanvasResBtn = document.getElementById("changeCanvasResolution");
 changeCanvasResBtn.addEventListener("click", () => {
    updateCanvasResolution(canvas);
    dialogClose("changeCanvasResDialog");
+});
+
+//
+// sidebar buttons
+//
+const generateRectangleBtn = document.getElementById("generateRectangle");
+generateRectangleBtn.addEventListener("click", () => {
+   generateRectangle(fabric, canvas);
+});
+
+const generateCircleBtn = document.getElementById("generateCircle")
+generateCircleBtn.addEventListener("click", () => {
+   generateCircle(fabric, canvas);
+});
+
+const generateTextBtn = document.getElementById("generateText")
+generateTextBtn.addEventListener("click", () => {
+   generateText(fabric, canvas);
+});
+
+const generateLineBtn = document.getElementById("generateLine")
+generateLineBtn.addEventListener("click", () => {
+   generateLine(fabric, canvas);
 });
