@@ -4,7 +4,7 @@ const iro = require("@jaames/iro");
 const { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
 const { generateCanvas, generateCanvasArea, createCanvasColorPicker } = require(__dirname + "/js/topbar/createCanvas");
 const { displayPointerCoordinates } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
-const { changeResInitialValues, updateCanvasResolution } = require(__dirname + "/js/statusbar/changeCanvasResolution");
+const { changeResInitialValues, updateCanvasResolution } = require(__dirname + "/js/statusbar/canvasResolution");
 
 //
 // createCanvasDialog buttons
