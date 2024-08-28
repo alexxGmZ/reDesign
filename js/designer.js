@@ -6,6 +6,7 @@ const {
    generateCanvas,
    generateCanvasArea,
    createCanvasColorPicker,
+   importCanvasFromJSON,
 } = require(__dirname + "/js/topbar/createCanvas");
 const {
    displayPointerCoordinates,
@@ -71,6 +72,24 @@ saveCanvasToJPEGBtn.addEventListener("click", () => {
 const saveCanvasToPNGBtn = document.getElementById("saveCanvasToPNG");
 saveCanvasToPNGBtn.addEventListener("click", () => {
    saveCanvasToPNG(canvas);
+});
+
+//
+// open canvas from JSON button
+//
+const importCanvasJSONBtn = document.getElementById("importCanvasFromJSON");
+importCanvasJSONBtn.addEventListener("click", async () => {
+   const {
+      canvasObjects,
+      canvasBgColor,
+      canvasWidth,
+      canvasHeight,
+   } = await importCanvasFromJSON();
+
+   canvas = await generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, canvasBgColor);
+   await canvas.loadFromJSON(canvasObjects);
+   await canvas.renderAll();
+   await displayPointerCoordinates(canvas);
 });
 
 //
