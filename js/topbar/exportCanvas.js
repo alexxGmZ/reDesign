@@ -7,7 +7,6 @@ function saveCanvasToJSON(canvas) {
       canvasWidth: canvas.width,
       canvasHeight: canvas.height
    };
-   console.log(canvasData);
    const jsonedCanvasData = JSON.stringify(canvasData, null, 2);
    const blob = new Blob([jsonedCanvasData], { type: "application/json" });
    const url = URL.createObjectURL(blob);
