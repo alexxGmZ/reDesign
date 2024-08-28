@@ -1,3 +1,8 @@
+/**
+ * Saves the current state of the Fabric.js canvas as a JSON file.
+ *
+ * @param {Object} canvas - The Fabric.js canvas instance to be saved.
+ */
 function saveCanvasToJSON(canvas) {
    if (!canvas) return;
    console.log(`saveCanvasToJSON(${canvas})`);
