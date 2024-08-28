@@ -20,6 +20,7 @@ const {
    generateText,
    generateLine,
 } = require(__dirname + "/js/sidebar/object");
+const { saveCanvasToJSON } = require(__dirname + "/js/topbar/exportCanvas");
 
 //
 // createCanvasDialog buttons
@@ -48,6 +49,14 @@ generateCanvasBtn.addEventListener("click", () => {
 
    // FIX: fixes the incrementing color picker
    document.getElementById("canvasColorPicker").innerHTML = "";
+});
+
+//
+// save and export buttons
+//
+const saveCanvasBtn = document.getElementById("saveCanvas");
+saveCanvasBtn.addEventListener("click", () => {
+   saveCanvasToJSON(canvas);
 });
 
 //
