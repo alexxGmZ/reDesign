@@ -23,6 +23,7 @@ const {
 const {
    saveCanvasToJSON,
    saveCanvasToJPEG,
+   saveCanvasToPNG,
 } = require(__dirname + "/js/topbar/exportCanvas");
 
 //
@@ -65,6 +66,11 @@ saveCanvasBtn.addEventListener("click", () => {
 const saveCanvasToJPEGBtn = document.getElementById("saveCanvasToJPEG");
 saveCanvasToJPEGBtn.addEventListener("click", () => {
    saveCanvasToJPEG(canvas);
+});
+
+const saveCanvasToPNGBtn = document.getElementById("saveCanvasToPNG");
+saveCanvasToPNGBtn.addEventListener("click", () => {
+   saveCanvasToPNG(canvas);
 });
 
 //
