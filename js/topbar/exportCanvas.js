@@ -23,6 +23,23 @@ function saveCanvasToJSON(canvas) {
    URL.revokeObjectURL(url);
 }
 
+/**
+ * Saves the current state of the Fabric.js canvas as a JPEG file.
+ *
+ * @param {Object} canvas - The Fabric.js canvas instance to be saved.
+ */
+function saveCanvasToJPEG(canvas) {
+   if (!canvas) return;
+
+   const dataURL = canvas.toDataURL({ format: 'jpeg' });
+   const anchorElement = document.createElement('a');
+
+   anchorElement.href = dataURL;
+   anchorElement.download = "untitled.jpeg";
+   anchorElement.click();
+}
+
 module.exports = {
-   saveCanvasToJSON
+   saveCanvasToJSON,
+   saveCanvasToJPEG
 }

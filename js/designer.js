@@ -20,7 +20,10 @@ const {
    generateText,
    generateLine,
 } = require(__dirname + "/js/sidebar/object");
-const { saveCanvasToJSON } = require(__dirname + "/js/topbar/exportCanvas");
+const {
+   saveCanvasToJSON,
+   saveCanvasToJPEG,
+} = require(__dirname + "/js/topbar/exportCanvas");
 
 //
 // createCanvasDialog buttons
@@ -57,6 +60,11 @@ generateCanvasBtn.addEventListener("click", () => {
 const saveCanvasBtn = document.getElementById("saveCanvas");
 saveCanvasBtn.addEventListener("click", () => {
    saveCanvasToJSON(canvas);
+});
+
+const saveCanvasToJPEGBtn = document.getElementById("saveCanvasToJPEG");
+saveCanvasToJPEGBtn.addEventListener("click", () => {
+   saveCanvasToJPEG(canvas);
 });
 
 //
