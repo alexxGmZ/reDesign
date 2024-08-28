@@ -50,7 +50,10 @@ function generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, bgColor) 
       height: canvasHeight,
       width: canvasWidth
    });
-   canvas.set('backgroundColor', bgColor).requestRenderAll();
+
+   // when bgColor in undefined then default to white
+   if (!bgColor) bgColor = "rgb(255, 255, 255)";
+   canvas.set("backgroundColor", bgColor).requestRenderAll();
 
    return canvas;
 }
