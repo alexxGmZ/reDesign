@@ -1,6 +1,6 @@
 {
   "name": "reDesign",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A rewrite of the HTML Canvas Graphics creator from the MenuMaApp Manage application.",
   "main": "main.js",
   "build": {
