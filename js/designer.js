@@ -161,3 +161,21 @@ const generateLineBtn = document.getElementById("generateLine")
 generateLineBtn.addEventListener("click", () => {
    generateLine(fabric, canvas);
 });
+
+document.addEventListener("keydown", function(event) {
+	// ctrl + c
+	if (event.ctrlKey && event.key.toLowerCase() === "c")
+		copyObjects(canvas);
+
+	// ctrl + x
+	if (event.ctrlKey && event.key.toLowerCase() === "x")
+		cutObjects(canvas);
+
+	// ctrl + v
+	if (event.ctrlKey && event.key.toLowerCase() === "v")
+		pasteObjects(canvas);
+
+	// ctrl + s
+	if (event.ctrlKey && event.key.toLowerCase() === "s")
+		saveCanvasToJSON(canvas);
+});
