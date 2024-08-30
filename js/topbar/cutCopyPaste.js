@@ -1,5 +1,11 @@
 let clipboard = null;
 
+/**
+ * Copies the currently selected objects on the Fabric.js canvas to the clipboard.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance from which objects
+ * are copied.
+ */
 function copyObjects(canvas) {
    if (!canvas) return;
 
@@ -19,6 +25,14 @@ function cutObjects(canvas) {
 
 }
 
+/**
+ * Pastes the objects from the clipboard onto the Fabric.js canvas.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance where the objects will be pasted.
+ * @param {string} toolUsed - The tool used to paste objects, either "mouse" or another method, which affects object positioning.
+ * @param {number} pointerX - The x-coordinate for object placement if using the mouse.
+ * @param {number} pointerY - The y-coordinate for object placement if using the mouse.
+ */
 function pasteObjects(canvas, toolUsed, pointerX, pointerY) {
    console.log(`called pasteObjects(${canvas}, ${toolUsed}, ${pointerX}, ${pointerY})`);
 
