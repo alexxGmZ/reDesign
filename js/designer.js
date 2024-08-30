@@ -7,7 +7,7 @@ const {
    generateCanvasArea,
    createCanvasColorPicker,
    importCanvasFromJSON,
-} = require(__dirname + "/js/topbar/createCanvas");
+} = require(__dirname + "/js/topbar/canvas");
 const {
    displayPointerCoordinates,
 } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
