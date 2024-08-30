@@ -97,6 +97,7 @@ importCanvasJSONBtn.addEventListener("click", async () => {
 //
 const openChangeCanvasResDlgBtn = document.getElementById("openChangeCanvasResDialog");
 openChangeCanvasResDlgBtn.addEventListener("click", () => {
+   if (!canvas) return;
    dialogOpen("changeCanvasResDialog");
    changeResInitialValues();
 });
