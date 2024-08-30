@@ -1,4 +1,4 @@
-const fabric = require("fabric");
+const fabric = require("fabric").fabric;
 var canvas;
 const iro = require("@jaames/iro");
 const { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
@@ -10,6 +10,7 @@ const {
 } = require(__dirname + "/js/topbar/canvas");
 const {
    displayPointerCoordinates,
+   getPointerCoordinates
 } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
 const {
    changeResInitialValues,
@@ -26,6 +27,11 @@ const {
    saveCanvasToJPEG,
    saveCanvasToPNG,
 } = require(__dirname + "/js/topbar/exportCanvas");
+const {
+   copyObjects,
+   cutObjects,
+   pasteObjects
+} = require(__dirname + "/js/topbar/cutCopyPaste");
 
 //
 // createCanvasDialog buttons
@@ -90,6 +96,22 @@ importCanvasJSONBtn.addEventListener("click", async () => {
    await canvas.loadFromJSON(canvasObjects);
    await canvas.renderAll();
    await displayPointerCoordinates(canvas);
+});
+
+//
+// cut, copy, and paste buttons
+//
+const copyObjectsBtn = document.getElementById("copyObjects");
+copyObjectsBtn.addEventListener("click", () => {
+   copyObjects(canvas);
+});
+
+const pasteObjectsBtn = document.getElementById("pasteObjects");
+pasteObjectsBtn.addEventListener("click", async () => {
+   if (!canvas) return;
+   const { pointerX, pointerY } = await getPointerCoordinates(canvas);
+   await pasteObjects(canvas, null, pointerX, pointerY);
+   await canvas.requestRenderAll();
 });
 
 //
