@@ -49,11 +49,11 @@ generateCanvasBtn.addEventListener("click", () => {
    const { canvasHeight, canvasWidth, canvasBgColor } = generateCanvas();
    canvas = generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, canvasBgColor);
 
-   displayPointerCoordinates(canvas);
    dialogClose("createCanvasDialog");
-
    // FIX: fixes the incrementing color picker
    document.getElementById("canvasColorPicker").innerHTML = "";
+
+   displayPointerCoordinates(canvas);
 });
 
 //
