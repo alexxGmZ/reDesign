@@ -99,7 +99,7 @@ const openChangeCanvasResDlgBtn = document.getElementById("openChangeCanvasResDi
 openChangeCanvasResDlgBtn.addEventListener("click", () => {
    if (!canvas) return;
    dialogOpen("changeCanvasResDialog");
-   changeResInitialValues();
+   changeResInitialValues(canvas);
 });
 
 const closeChangeCanvasResDlgBtn = document.getElementById("closeChangeResolutionDialog");

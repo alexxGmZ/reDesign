@@ -1,16 +1,14 @@
 /**
  * Sets the initial values of the change resolution input fields based on the current
  * canvas resolution displayed.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance.
  */
-function changeResInitialValues() {
-   console.log("changeResInitialValues()");
+function changeResInitialValues(canvas) {
+   console.log(`changeResInitialValues(${canvas})`);
 
-   const canvasRes = document.getElementById("displayCanvasResolution").textContent;
-   const [canvasWidth, canvasHeight] = canvasRes.split("x").map(Number);
-
-   // initial values for the change resolution input boxes
-   document.getElementById("changeResWidth").value = canvasWidth;
-   document.getElementById("changeResHeight").value = canvasHeight;
+   document.getElementById("changeResWidth").value = canvas.getWidth() || 0;
+   document.getElementById("changeResHeight").value = canvas.getHeight() || 0;
 }
 
 /**
