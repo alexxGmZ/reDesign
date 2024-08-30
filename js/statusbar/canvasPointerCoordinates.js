@@ -3,9 +3,6 @@
  *
  * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to track pointer
  * movements on.
- * @returns {Promise<{pointerX: number, pointerY: number}>} - A promise that resolves
- * with the pointer coordinates as numbers when the mouse moves, or rejects with an
- * error message if pointer data is unavailable.
  */
 function displayPointerCoordinates(canvas) {
    if (!canvas) return;
@@ -22,6 +19,15 @@ function displayPointerCoordinates(canvas) {
    });
 }
 
+/**
+ * Tracks and returns the pointer coordinates.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to track pointer
+ * movements on.
+ * @returns {Promise<{pointerX: number, pointerY: number}>} - A promise that resolves
+ * with the pointer coordinates as numbers when the mouse moves, or rejects with an
+ * error message if pointer data is unavailable.
+ */
 function getPointerCoordinates(canvas) {
    if (!canvas) return;
    console.log(`getPointerCoordinates(${canvas})`);
