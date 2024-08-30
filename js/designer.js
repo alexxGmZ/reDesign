@@ -106,6 +106,11 @@ copyObjectsBtn.addEventListener("click", () => {
    copyObjects(canvas);
 });
 
+const cutObjectsBtn = document.getElementById("cutObjects");
+cutObjectsBtn.addEventListener("click", () => {
+   cutObjects(canvas);
+});
+
 const pasteObjectsBtn = document.getElementById("pasteObjects");
 pasteObjectsBtn.addEventListener("click", async () => {
    if (!canvas) return;
