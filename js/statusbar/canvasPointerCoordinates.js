@@ -11,6 +11,21 @@ function displayPointerCoordinates(canvas) {
    if (!canvas) return;
    console.log(`displayPointerCoordinates(${canvas})`);
 
+   canvas.on("mouse:move", (options) => {
+      const pointer = canvas.getPointer(options.e);
+
+      const pointerX = parseFloat(pointer.x.toFixed(3));
+      const pointerY = parseFloat(pointer.y.toFixed(3));
+
+      document.getElementById("canvasPntrCoordsX").textContent = pointerX;
+      document.getElementById("canvasPntrCoordsY").textContent = pointerY;
+   });
+}
+
+function getPointerCoordinates(canvas) {
+   if (!canvas) return;
+   console.log(`getPointerCoordinates(${canvas})`);
+
    return new Promise((resolve, reject) => {
       canvas.on("mouse:move", (options) => {
          const pointer = canvas.getPointer(options.e);
@@ -19,14 +34,12 @@ function displayPointerCoordinates(canvas) {
          const pointerX = parseFloat(pointer.x.toFixed(3));
          const pointerY = parseFloat(pointer.y.toFixed(3));
 
-         document.getElementById("canvasPntrCoordsX").textContent = pointerX;
-         document.getElementById("canvasPntrCoordsY").textContent = pointerY;
-
          resolve({ pointerX, pointerY });
       });
    });
 }
 
 module.exports = {
-   displayPointerCoordinates
+   displayPointerCoordinates,
+   getPointerCoordinates
 }
