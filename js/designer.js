@@ -112,11 +112,10 @@ cutObjectsBtn.addEventListener("click", () => {
 });
 
 const pasteObjectsBtn = document.getElementById("pasteObjects");
-pasteObjectsBtn.addEventListener("click", async () => {
+pasteObjectsBtn.addEventListener("click", () => {
    if (!canvas) return;
-   const { pointerX, pointerY } = await getPointerCoordinates(canvas);
-   await pasteObjects(canvas, null, pointerX, pointerY);
-   await canvas.requestRenderAll();
+   pasteObjects(canvas);
+   canvas.requestRenderAll();
 });
 
 //
