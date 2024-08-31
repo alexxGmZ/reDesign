@@ -113,7 +113,6 @@ cutObjectsBtn.addEventListener("click", () => {
 
 const pasteObjectsBtn = document.getElementById("pasteObjects");
 pasteObjectsBtn.addEventListener("click", () => {
-   if (!canvas) return;
    pasteObjects(canvas);
    canvas.requestRenderAll();
 });

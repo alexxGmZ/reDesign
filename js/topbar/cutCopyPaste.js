@@ -60,6 +60,7 @@ function cutObjects(canvas) {
  * @param {number} pointerY - The y-coordinate for object placement if using the mouse.
  */
 function pasteObjects(canvas, toolUsed, pointerX, pointerY) {
+   if (!canvas || !clipboard) return;
    console.log(`called pasteObjects(${canvas}, ${toolUsed}, ${pointerX}, ${pointerY})`);
 
    clipboard.clone(function(clonedObj) {
