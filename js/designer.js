@@ -27,6 +27,7 @@ const {
    saveCanvasToJPEG,
    saveCanvasToPNG,
 } = require(__dirname + "/js/topbar/exportCanvas");
+const { importImage } = require(__dirname + "/js/topbar/importImage");
 const {
    copyObjects,
    cutObjects,
@@ -81,6 +82,14 @@ saveCanvasToPNGBtn.addEventListener("click", () => {
 });
 
 //
+// import image to canvas button
+//
+const importImageBtn = document.getElementById("importImage");
+importImageBtn.addEventListener("click", () => {
+   importImage(fabric, canvas);
+});
+
+//
 // open canvas from JSON button
 //
 const importCanvasJSONBtn = document.getElementById("importCanvasFromJSON");
@@ -113,7 +122,6 @@ cutObjectsBtn.addEventListener("click", () => {
 
 const pasteObjectsBtn = document.getElementById("pasteObjects");
 pasteObjectsBtn.addEventListener("click", () => {
-   if (!canvas) return;
    pasteObjects(canvas);
    canvas.requestRenderAll();
 });
@@ -162,20 +170,23 @@ generateLineBtn.addEventListener("click", () => {
    generateLine(fabric, canvas);
 });
 
+//
+// keymap
+//
 document.addEventListener("keydown", function(event) {
-	// ctrl + c
-	if (event.ctrlKey && event.key.toLowerCase() === "c")
-		copyObjects(canvas);
+   // ctrl + c
+   if (event.ctrlKey && event.key.toLowerCase() === "c")
+      copyObjects(canvas);
 
-	// ctrl + x
-	if (event.ctrlKey && event.key.toLowerCase() === "x")
-		cutObjects(canvas);
+   // ctrl + x
+   if (event.ctrlKey && event.key.toLowerCase() === "x")
+      cutObjects(canvas);
 
-	// ctrl + v
-	if (event.ctrlKey && event.key.toLowerCase() === "v")
-		pasteObjects(canvas);
+   // ctrl + v
+   if (event.ctrlKey && event.key.toLowerCase() === "v")
+      pasteObjects(canvas);
 
-	// ctrl + s
-	if (event.ctrlKey && event.key.toLowerCase() === "s")
-		saveCanvasToJSON(canvas);
+   // ctrl + s
+   if (event.ctrlKey && event.key.toLowerCase() === "s")
+      saveCanvasToJSON(canvas);
 });
