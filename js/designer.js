@@ -16,6 +16,7 @@ const {
    changeResInitialValues,
    updateCanvasResolution,
 } = require(__dirname + "/js/statusbar/canvasResolution");
+const { canvasScaler } = require(__dirname + "/js/statusbar/canvasScaler");
 const {
    generateRectangle,
    generateCircle,
@@ -33,6 +34,10 @@ const {
    cutObjects,
    pasteObjects
 } = require(__dirname + "/js/topbar/cutCopyPaste");
+
+document.addEventListener("DOMContentLoaded", () => {
+   canvasScaler(canvas);
+});
 
 //
 // createCanvasDialog buttons
@@ -60,6 +65,7 @@ generateCanvasBtn.addEventListener("click", () => {
    // FIX: fixes the incrementing color picker
    document.getElementById("canvasColorPicker").innerHTML = "";
 
+   canvasScaler(canvas);
    displayPointerCoordinates(canvas);
 });
 
@@ -104,6 +110,7 @@ importCanvasJSONBtn.addEventListener("click", async () => {
    canvas = await generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, canvasBgColor);
    await canvas.loadFromJSON(canvasObjects);
    await canvas.renderAll();
+   await canvasScaler(canvas);
    await displayPointerCoordinates(canvas);
 });
 
