@@ -161,6 +161,9 @@ generateLineBtn.addEventListener("click", () => {
    generateLine(fabric, canvas);
 });
 
+//
+// keymap
+//
 document.addEventListener("keydown", function(event) {
    // ctrl + c
    if (event.ctrlKey && event.key.toLowerCase() === "c")
