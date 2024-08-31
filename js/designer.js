@@ -16,6 +16,7 @@ const {
    changeResInitialValues,
    updateCanvasResolution,
 } = require(__dirname + "/js/statusbar/canvasResolution");
+const { canvasScaler } = require(__dirname + "/js/statusbar/canvasScaler");
 const {
    generateRectangle,
    generateCircle,
@@ -27,11 +28,16 @@ const {
    saveCanvasToJPEG,
    saveCanvasToPNG,
 } = require(__dirname + "/js/topbar/exportCanvas");
+const { importImage } = require(__dirname + "/js/topbar/importImage");
 const {
    copyObjects,
    cutObjects,
    pasteObjects
 } = require(__dirname + "/js/topbar/cutCopyPaste");
+
+document.addEventListener("DOMContentLoaded", () => {
+   canvasScaler(canvas);
+});
 
 //
 // createCanvasDialog buttons
@@ -59,6 +65,7 @@ generateCanvasBtn.addEventListener("click", () => {
    // FIX: fixes the incrementing color picker
    document.getElementById("canvasColorPicker").innerHTML = "";
 
+   canvasScaler(canvas);
    displayPointerCoordinates(canvas);
 });
 
@@ -81,6 +88,14 @@ saveCanvasToPNGBtn.addEventListener("click", () => {
 });
 
 //
+// import image to canvas button
+//
+const importImageBtn = document.getElementById("importImage");
+importImageBtn.addEventListener("click", () => {
+   importImage(fabric, canvas);
+});
+
+//
 // open canvas from JSON button
 //
 const importCanvasJSONBtn = document.getElementById("importCanvasFromJSON");
@@ -95,6 +110,7 @@ importCanvasJSONBtn.addEventListener("click", async () => {
    canvas = await generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, canvasBgColor);
    await canvas.loadFromJSON(canvasObjects);
    await canvas.renderAll();
+   await canvasScaler(canvas);
    await displayPointerCoordinates(canvas);
 });
 
@@ -106,12 +122,15 @@ copyObjectsBtn.addEventListener("click", () => {
    copyObjects(canvas);
 });
 
+const cutObjectsBtn = document.getElementById("cutObjects");
+cutObjectsBtn.addEventListener("click", () => {
+   cutObjects(canvas);
+});
+
 const pasteObjectsBtn = document.getElementById("pasteObjects");
-pasteObjectsBtn.addEventListener("click", async () => {
-   if (!canvas) return;
-   const { pointerX, pointerY } = await getPointerCoordinates(canvas);
-   await pasteObjects(canvas, null, pointerX, pointerY);
-   await canvas.requestRenderAll();
+pasteObjectsBtn.addEventListener("click", () => {
+   pasteObjects(canvas);
+   canvas.requestRenderAll();
 });
 
 //
@@ -156,4 +175,25 @@ generateTextBtn.addEventListener("click", () => {
 const generateLineBtn = document.getElementById("generateLine")
 generateLineBtn.addEventListener("click", () => {
    generateLine(fabric, canvas);
+});
+
+//
+// keymap
+//
+document.addEventListener("keydown", function(event) {
+   // ctrl + c
+   if (event.ctrlKey && event.key.toLowerCase() === "c")
+      copyObjects(canvas);
+
+   // ctrl + x
+   if (event.ctrlKey && event.key.toLowerCase() === "x")
+      cutObjects(canvas);
+
+   // ctrl + v
+   if (event.ctrlKey && event.key.toLowerCase() === "v")
+      pasteObjects(canvas);
+
+   // ctrl + s
+   if (event.ctrlKey && event.key.toLowerCase() === "s")
+      saveCanvasToJSON(canvas);
 });

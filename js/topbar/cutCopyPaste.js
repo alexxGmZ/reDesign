@@ -21,8 +21,34 @@ function copyObjects(canvas) {
    });
 }
 
+/**
+ * Cuts the selected objects from the Fabric.js canvas, cloning them to the clipboard
+ * and removing them from the canvas.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance from which the
+ * objects will be cut.
+ */
 function cutObjects(canvas) {
+	if (!canvas) return;
+	console.log(`cutObjects(${canvas})`);
 
+	canvas.getActiveObject().clone((cloned) => {
+		clipboard = cloned;
+		if (cloned.type === 'activeSelection') {
+			cloned.forEachObject((obj) => {
+				console.log(`Cutted object - Type: ${obj.type}`);
+			});
+		}
+      else console.log(`Cutted object - Type: ${cloned.type}`);
+
+		// remove active objects
+		const selectedObjects = canvas.getActiveObjects();
+		selectedObjects.forEach((obj) => {
+			canvas.remove(obj);
+		});
+		canvas.discardActiveObject();
+		canvas.requestRenderAll();
+	});
 }
 
 /**
@@ -34,6 +60,7 @@ function cutObjects(canvas) {
  * @param {number} pointerY - The y-coordinate for object placement if using the mouse.
  */
 function pasteObjects(canvas, toolUsed, pointerX, pointerY) {
+   if (!canvas || !clipboard) return;
    console.log(`called pasteObjects(${canvas}, ${toolUsed}, ${pointerX}, ${pointerY})`);
 
    clipboard.clone(function(clonedObj) {

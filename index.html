@@ -33,8 +33,8 @@
             class="btn btn-outline-primary border me-1">
             <img src="assets/svg/file-png-svgrepo-com.svg" width="20px">
          </button>
-         <input id="canvas_import_image" type="file" class="d-none" accept="image/*">
-         <button onclick="import_image()" title="Import image to canvas" class="btn btn-outline-primary border me-5">
+         <input id="importImageInput" type="file" class="d-none" accept="image/*">
+         <button id="importImage" title="Import image to canvas" class="btn btn-outline-primary border me-5">
             <img src="./assets/svg/download-svgrepo-com.svg" width="20px">
          </button>
 
@@ -42,7 +42,7 @@
             class="btn btn-outline-primary border me-1">
             <img src="assets/svg/copy-svgrepo-com.svg" width="20px">
          </button>
-         <button onclick="cut_selected_objects()" title="Cut selected object/s"
+         <button id="cutObjects" title="Cut selected object/s"
             class="btn btn-outline-primary border me-1">
             <img src="assets/svg/cut-svgrepo-com.svg" width="20px">
          </button>
@@ -141,12 +141,12 @@
             <span id="canvasPntrCoordsY" class="fw-bold"></span>
          </div>
          <div class="col d-flex justify-content-end">
-            <span id="scale_multiplier_text" class="me-1"></span>
-            <button id="canvas_scaler_minus" class="bg-white border border-2 rounded-pill me-1">
+            <span id="scaleMultiplierText" class="me-1"></span>
+            <button id="scaleDown" class="bg-white border border-2 rounded-pill me-1">
                <img src="assets/svg/minus-circle-1442-svgrepo-com.svg" width="10px" alt="">
             </button>
-            <input id="canvas_scale_range_input" type="range" value="1" min="0.3" max="2" step="0.1" class="me-1">
-            <button id="canvas_scaler_plus" class="bg-white border border-2 rounded-pill">
+            <input id="scaleRangeInput" type="range" value="1" min="0.3" max="2" step="0.1" class="me-1">
+            <button id="scaleUp" class="bg-white border border-2 rounded-pill">
                <img src="assets/svg/plus-circle-1441-svgrepo-com.svg" width="10px" alt="">
             </button>
          </div>
