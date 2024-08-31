@@ -27,6 +27,7 @@ const {
    saveCanvasToJPEG,
    saveCanvasToPNG,
 } = require(__dirname + "/js/topbar/exportCanvas");
+const { importImage } = require(__dirname + "/js/topbar/importImage");
 const {
    copyObjects,
    cutObjects,
@@ -78,6 +79,14 @@ saveCanvasToJPEGBtn.addEventListener("click", () => {
 const saveCanvasToPNGBtn = document.getElementById("saveCanvasToPNG");
 saveCanvasToPNGBtn.addEventListener("click", () => {
    saveCanvasToPNG(canvas);
+});
+
+//
+// import image to canvas button
+//
+const importImageBtn = document.getElementById("importImage");
+importImageBtn.addEventListener("click", () => {
+   importImage(fabric, canvas);
 });
 
 //
