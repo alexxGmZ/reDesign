@@ -1,5 +1,5 @@
 <p align="center">
-   <img src="./assets/icon/256/reDesign-box.png">
+   <img src="./assets/icon/256/box/256x256.png">
 </p>
 
 <h1 align="center">reDesign</h1>
