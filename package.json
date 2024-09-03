@@ -6,10 +6,12 @@
   "build": {
     "appId": "com.alexxGmZ.reDesign",
     "linux": {
-      "target": "AppImage"
+      "target": "AppImage",
+      "icon": "./assets/icon/256/circle/256x256.png"
     },
     "win": {
-      "target": "zip"
+      "target": "portable",
+      "icon": "./assets/icon/256/circle/256x256.png"
     }
   },
   "scripts": {
