@@ -1,6 +1,6 @@
 <p align="center">
-   <img src="./128/reDesign-box.png">
-   <img src="./128/reDesign-circle.png">
+   <img src="./128/box/128x128.png">
+   <img src="./128/circle/128x128.png">
 </p>
 
 # Icon Specifications
