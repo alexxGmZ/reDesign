@@ -16,7 +16,12 @@ const {
    changeResInitialValues,
    updateCanvasResolution,
 } = require(__dirname + "/js/statusbar/canvasResolution");
-const { canvasScaler } = require(__dirname + "/js/statusbar/canvasScaler");
+const {
+   initializeZoomButtons,
+   zoomIn,
+   zoomOut,
+   zoomRange
+} = require(__dirname + "/js/statusbar/canvasScaler");
 const {
    generateRectangle,
    generateCircle,
@@ -36,7 +41,7 @@ const {
 } = require(__dirname + "/js/topbar/cutCopyPaste");
 
 document.addEventListener("DOMContentLoaded", () => {
-   canvasScaler(canvas);
+   initializeZoomButtons(canvas);
 });
 
 //
@@ -65,7 +70,7 @@ generateCanvasBtn.addEventListener("click", () => {
    // FIX: fixes the incrementing color picker
    document.getElementById("canvasColorPicker").innerHTML = "";
 
-   canvasScaler(canvas);
+   initializeZoomButtons(canvas);
    displayPointerCoordinates(canvas);
 });
 
@@ -110,7 +115,7 @@ importCanvasJSONBtn.addEventListener("click", async () => {
    canvas = await generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, canvasBgColor);
    await canvas.loadFromJSON(canvasObjects);
    await canvas.renderAll();
-   await canvasScaler(canvas);
+   initializeZoomButtons(canvas);
    await displayPointerCoordinates(canvas);
 });
 
@@ -152,6 +157,22 @@ const changeCanvasResBtn = document.getElementById("changeCanvasResolution");
 changeCanvasResBtn.addEventListener("click", () => {
    updateCanvasResolution(canvas);
    dialogClose("changeCanvasResDialog");
+});
+
+//
+// zoom buttons
+//
+const scaleDownBtn = document.getElementById("scaleDown");
+scaleDownBtn.addEventListener("click", () => {
+   zoomOut(canvas);
+});
+const scaleRangeInput = document.getElementById("scaleRangeInput");
+scaleRangeInput.addEventListener("input", () => {
+   zoomRange(canvas);
+});
+const scaleUpBtn = document.getElementById("scaleUp");
+scaleUpBtn.addEventListener("click", () => {
+   zoomIn(canvas);
 });
 
 //
