@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
-# reDesign-box
-ffmpeg -y -i ./2000/reDesign-box.png -vf "scale=256:256" ./256/box/256x256.png
-ffmpeg -y -i ./2000/reDesign-box.png -vf "scale=128:128" ./128/box/128x128.png
-ffmpeg -y -i ./2000/reDesign-box.png -vf "scale=32:32" ./32/box/32x32.png
+declare -A resolutions=(
+  ["256"]="256"
+  ["128"]="128"
+  ["32"]="32"
+)
 
-# reDesign-circle
-ffmpeg -y -i ./2000/reDesign-circle.png -vf "scale=256:256" ./256/circle/256x256.png
-ffmpeg -y -i ./2000/reDesign-circle.png -vf "scale=128:128" ./128/circle/128x128.png
-ffmpeg -y -i ./2000/reDesign-circle.png -vf "scale=32:32" ./32/circle/32x32.png
+images=("reDesign-box" "reDesign-circle")
+
+for image in "${images[@]}"; do
+  for res in "${!resolutions[@]}"; do
+    ffmpeg -y -i "./2000/${image}.png" -vf "scale=${res}:${res}" "./${resolutions[$res]}/${image}/${res}x${res}.png"
+  done
+done
