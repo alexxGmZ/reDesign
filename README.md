@@ -15,4 +15,28 @@ The application was inspired by the simplicity of [Inkscape](https://inkscape.or
 * Electron & Electron Builder
 * [Fabric.js](http://fabricjs.com/)
 * Bootstrap
-* Node.js v20.16.0
+* Node.js (LTS)
+
+<br>
+
+## How to build
+
+1. Clone the repository.
+```bash
+git clone https://github.com/alexxGmZ/reDesign
+cd reDesign/
+```
+2. Install Node.js (LTS).
+3. Install dependencies and yarn.
+```bash
+npm install
+npm install -g yarn
+```
+4. Build which platform you are in.
+```bash
+# linux (AppImage)
+yarn run linux
+
+# windows (portable)
+yarn run win
+```
