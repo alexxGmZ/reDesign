@@ -45,6 +45,37 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //
+// keymaps
+//
+document.addEventListener("keydown", function(event) {
+   if (event.ctrlKey) {
+      // ctrl + c
+      if (event.key.toLowerCase() === "c") {
+         event.preventDefault();
+         copyObjects(canvas);
+      }
+
+      // ctrl + x
+      if (event.key.toLowerCase() === "x") {
+         event.preventDefault();
+         cutObjects(canvas);
+      }
+
+      // ctrl + v
+      if (event.key.toLowerCase() === "v") {
+         event.preventDefault();
+         pasteObjects(canvas);
+      }
+
+      // ctrl + s
+      if (event.key.toLowerCase() === "s") {
+         event.preventDefault();
+         saveCanvasToJSON(canvas);
+      }
+   }
+});
+
+//
 // createCanvasDialog buttons
 //
 const openCreateCanvasDialogBtn = document.getElementById("openCreateCanvasDialog");
@@ -198,23 +229,3 @@ generateLineBtn.addEventListener("click", () => {
    generateLine(fabric, canvas);
 });
 
-//
-// keymap
-//
-document.addEventListener("keydown", function(event) {
-   // ctrl + c
-   if (event.ctrlKey && event.key.toLowerCase() === "c")
-      copyObjects(canvas);
-
-   // ctrl + x
-   if (event.ctrlKey && event.key.toLowerCase() === "x")
-      cutObjects(canvas);
-
-   // ctrl + v
-   if (event.ctrlKey && event.key.toLowerCase() === "v")
-      pasteObjects(canvas);
-
-   // ctrl + s
-   if (event.ctrlKey && event.key.toLowerCase() === "s")
-      saveCanvasToJSON(canvas);
-});
