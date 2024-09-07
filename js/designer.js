@@ -9,8 +9,7 @@ const {
    importCanvasFromJSON,
 } = require(__dirname + "/js/topbar/canvas");
 const {
-   displayPointerCoordinates,
-   getPointerCoordinates
+   displayPointerCoordinates
 } = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
 const {
    changeResInitialValues,
