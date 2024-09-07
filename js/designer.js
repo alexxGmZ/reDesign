@@ -10,7 +10,7 @@ const {
 } = require(__dirname + "/js/topbar/canvas");
 const {
    displayPointerCoordinates
-} = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
+} = require(__dirname + "/js/statusbar/displayPointerCoordinates");
 const {
    changeResInitialValues,
    updateCanvasResolution,
