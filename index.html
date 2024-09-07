@@ -118,48 +118,42 @@
    </dialog>
 
    <!-- context menu -->
-   <div id="context_menu"
-      class="d-none position-absolute border border-1 bg-white p-1 rounded-2 text-xs drop-shadow-lg z-3">
+   <div id="contextMenu" style="display: none"
+      class="position-absolute border border-1 bg-white p-1 rounded-2 text-xs drop-shadow-lg z-3">
       <ul class="m-0 p-0">
-         <li id="context_menu_copy" class="d-flex">
+         <li id="contextMenuCopy" class="d-flex">
             <img src="assets/svg/copy-svgrepo-com.svg" width="12px" class="me-2">
-            <button onclick="copy_selected_objects()" class="border border-0 bg-white">Copy</button>
+            <button id="contextMenuCopyBtn" class="border border-0 bg-white">Copy</button>
          </li>
-         <li id="context_menu_cut" class="d-flex">
+         <li id="contextMenuCut" class="d-flex">
             <img src="assets/svg/cut-svgrepo-com.svg" width="12px" class="me-2">
-            <button onclick="cut_selected_objects()" class="border border-0 bg-white">Cut</button>
+            <button id="contextMenuCutBtn" class="border border-0 bg-white">Cut</button>
          </li>
-         <li id="context_menu_paste" class="d-flex">
+         <li id="contextMenuPaste" class="d-flex">
             <img src="assets/svg/paste-svgrepo-com.svg" width="12px" class="me-2">
-            <button onclick="paste_copied_objects('mouse')" class="border border-0 bg-white">Paste</button>
+            <button id="contextMenuPasteBtn" class="border border-0 bg-white">Paste</button>
          </li>
-         <li id="context_menu_select_group" class="d-flex">
-            <img src="assets/svg/object-group-svgrepo-com.svg" width="12px" class="me-2">
-            <button onclick="get_selected_object_group()" class="border border-0 bg-white">Select Group</button>
-         </li>
-         <li id="layer_bring_to_front" class="d-flex">
+         <li id="layerBringToFront" style="display: flex">
             <img src="assets/svg/align-top-arrow-01-svgrepo-com.svg" width="12px" class="me-2">
-            <button onclick="adjust_object_layer('bring_to_front')" class="border border-0 bg-white">Bring to
+            <button class="border border-0 bg-white">Bring to
                front</button>
          </li>
-         <li id="layer_bring_forward" class="d-flex">
+         <li id="layerBringForward" style="display: flex">
             <img src="assets/svg/arrow-up-svgrepo-com.svg" width="12px" class="me-2">
-            <button onclick="adjust_object_layer('bring_forward')" class="border border-0 bg-white">Bring
-               forward</button>
+            <button class="border border-0 bg-white">Bring forward</button>
          </li>
-         <li id="layer_send_backward" class="d-flex">
-            <img src="assets/svg/arrow-up-svgrepo-com.svg" width="12px" class="me-2"
-               style="transform: scaleY(-1)">
-            <button onclick="adjust_object_layer('send_backward')" class="border border-0 bg-white">Send
+         <li id="layerSendBackward" style="display: flex">
+            <img src="assets/svg/arrow-up-svgrepo-com.svg" width="12px" class="me-2" style="transform: scaleY(-1)">
+            <button class="border border-0 bg-white">Send
                backward</button>
          </li>
-         <li id="layer_send_to_back" class="d-flex">
+         <li id="layerSendToBack" style="display: flex">
             <img src="assets/svg/align-top-arrow-01-svgrepo-com.svg" width="12px" class="me-2"
                style="transform: scaleY(-1)">
-            <button onclick="adjust_object_layer('send_to_back')" class="border border-0 bg-white">Send to back</button>
+            <button class="border border-0 bg-white">Send to back</button>
          </li>
-         <li id="context_menu_properties" class="d-flex">
-            <button onclick="object_properties('show')" class="border border-0 bg-white">Properties</button>
+         <li id="objectProperties" style="display: flex">
+            <button class="border border-0 bg-white">Properties</button>
          </li>
       </ul>
    </div>
