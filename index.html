@@ -17,20 +17,17 @@
             <img src="assets/svg/create-note-svgrepo-com.svg" width="20px">
          </button>
          <input type="file" id="inputCanvasJSON" class="d-none" accept=".json">
-         <button id="importCanvasFromJSON" title="Open an existing design"
-            class="btn btn-outline-primary border me-1">
+         <button id="importCanvasFromJSON" title="Open an existing design" class="btn btn-outline-primary border me-1">
             <img src="assets/svg/open-folder-svgrepo-com.svg" width="20px">
          </button>
 
          <button id="saveCanvas" title="Save design" class="btn btn-outline-primary border me-1">
             <img src="assets/svg/save-svgrepo-com.svg" width="20px">
          </button>
-         <button id="saveCanvasToJPEG" title="Export design to JPEG format"
-            class="btn btn-outline-primary border me-1">
+         <button id="saveCanvasToJPEG" title="Export design to JPEG format" class="btn btn-outline-primary border me-1">
             <img src="assets/svg/file-jpg-svgrepo-com.svg" width="20px">
          </button>
-         <button id="saveCanvasToPNG" title="Export design to PNG format"
-            class="btn btn-outline-primary border me-1">
+         <button id="saveCanvasToPNG" title="Export design to PNG format" class="btn btn-outline-primary border me-1">
             <img src="assets/svg/file-png-svgrepo-com.svg" width="20px">
          </button>
          <input id="importImageInput" type="file" class="d-none" accept="image/*">
@@ -38,16 +35,13 @@
             <img src="./assets/svg/download-svgrepo-com.svg" width="20px">
          </button>
 
-         <button id="copyObjects" title="Copy selected object/s"
-            class="btn btn-outline-primary border me-1">
+         <button id="copyObjects" title="Copy selected object/s" class="btn btn-outline-primary border me-1">
             <img src="assets/svg/copy-svgrepo-com.svg" width="20px">
          </button>
-         <button id="cutObjects" title="Cut selected object/s"
-            class="btn btn-outline-primary border me-1">
+         <button id="cutObjects" title="Cut selected object/s" class="btn btn-outline-primary border me-1">
             <img src="assets/svg/cut-svgrepo-com.svg" width="20px">
          </button>
-         <button id="pasteObjects" title="Paste copied/cutted object/s"
-            class="btn btn-outline-primary border me-1">
+         <button id="pasteObjects" title="Paste copied/cutted object/s" class="btn btn-outline-primary border me-1">
             <img src="assets/svg/paste-svgrepo-com.svg" width="20px">
          </button>
       </div>
@@ -55,16 +49,14 @@
 
    <!-- sidebar tools -->
    <div class="d-flex position-fixed flex-column h-100 bg-body-tertiary border-end border-2 z-2">
-      <button id="generateRectangle" title="Generate rectangle"
-         class="btn btn-outline-primary mx-1 mb-1 rounded-pill" style="margin-top: 100px">
+      <button id="generateRectangle" title="Generate rectangle" class="btn btn-outline-primary mx-1 mb-1 rounded-pill"
+         style="margin-top: 100px">
          <img src="assets/svg/rectangle-tool-svgrepo-com.svg" width="20px" alt="">
       </button>
-      <button id="generateCircle" title="Generate circle"
-         class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
+      <button id="generateCircle" title="Generate circle" class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
          <img src="assets/svg/circle-tool-svgrepo-com.svg" width="20px" alt="">
       </button>
-      <button id="generateText" title="Generate a text box"
-         class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
+      <button id="generateText" title="Generate a text box" class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
          <img src="assets/svg/text-tool-svgrepo-com.svg" width="20px" alt="">
       </button>
       <button id="generateLine" title="Generate a line" class="btn btn-outline-primary mx-1 mb-1 rounded-pill">
@@ -124,6 +116,53 @@
          </button>
       </div>
    </dialog>
+
+   <!-- context menu -->
+   <div id="context_menu"
+      class="d-none position-absolute border border-1 bg-white p-1 rounded-2 text-xs drop-shadow-lg z-3">
+      <ul class="m-0 p-0">
+         <li id="context_menu_copy" class="d-flex">
+            <img src="assets/svg/designer/copy-svgrepo-com.svg" width="12px" class="me-2">
+            <button onclick="copy_selected_objects()" class="border border-0 bg-white">Copy</button>
+         </li>
+         <li id="context_menu_cut" class="d-flex">
+            <img src="assets/svg/designer/cut-svgrepo-com.svg" width="12px" class="me-2">
+            <button onclick="cut_selected_objects()" class="border border-0 bg-white">Cut</button>
+         </li>
+         <li id="context_menu_paste" class="d-flex">
+            <img src="assets/svg/designer/paste-svgrepo-com.svg" width="12px" class="me-2">
+            <button onclick="paste_copied_objects('mouse')" class="border border-0 bg-white">Paste</button>
+         </li>
+         <li id="context_menu_select_group" class="d-flex">
+            <img src="assets/svg/designer/object-group-svgrepo-com.svg" width="12px" class="me-2">
+            <button onclick="get_selected_object_group()" class="border border-0 bg-white">Select Group</button>
+         </li>
+         <li id="layer_bring_to_front" class="d-flex">
+            <img src="assets/svg/designer/align-top-arrow-01-svgrepo-com.svg" width="12px" class="me-2">
+            <button onclick="adjust_object_layer('bring_to_front')" class="border border-0 bg-white">Bring to
+               front</button>
+         </li>
+         <li id="layer_bring_forward" class="d-flex">
+            <img src="assets/svg/designer/arrow-up-svgrepo-com.svg" width="12px" class="me-2">
+            <button onclick="adjust_object_layer('bring_forward')" class="border border-0 bg-white">Bring
+               forward</button>
+         </li>
+         <li id="layer_send_backward" class="d-flex">
+            <img src="assets/svg/designer/arrow-up-svgrepo-com.svg" width="12px" class="me-2"
+               style="transform: scaleY(-1)">
+            <button onclick="adjust_object_layer('send_backward')" class="border border-0 bg-white">Send
+               backward</button>
+         </li>
+         <li id="layer_send_to_back" class="d-flex">
+            <img src="assets/svg/designer/align-top-arrow-01-svgrepo-com.svg" width="12px" class="me-2"
+               style="transform: scaleY(-1)">
+            <button onclick="adjust_object_layer('send_to_back')" class="border border-0 bg-white">Send to back</button>
+         </li>
+         <li id="context_menu_properties" class="d-flex">
+            <button onclick="object_properties('show')" class="border border-0 bg-white">Properties</button>
+         </li>
+      </ul>
+   </div>
 
    <!-- statusbar -->
    <div class="fixed-bottom bg-body-tertiary p-1 border-top z-2">
