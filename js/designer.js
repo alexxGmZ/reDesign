@@ -38,7 +38,11 @@ const {
    cutObjects,
    pasteObjects
 } = require(__dirname + "/js/topbar/cutCopyPaste");
-const { mouseContextMenu } = require(__dirname + "/js/contextMenu/contextMenu");
+const {
+   getPointerCoordinates,
+   mouseContextMenu,
+   toggleContextMenu
+} = require(__dirname + "/js/contextMenu/contextMenu");
 
 document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
@@ -234,4 +238,22 @@ generateLineBtn.addEventListener("click", () => {
 //
 // context menu
 //
+const contextMenuCopyBtn = document.getElementById("contextMenuCopyBtn");
+contextMenuCopyBtn.addEventListener("click", () => {
+   copyObjects(canvas);
+   toggleContextMenu(canvas, "hide");
+});
 
+const contextMenuCutBtn = document.getElementById("contextMenuCutBtn");
+contextMenuCutBtn.addEventListener("click", () => {
+   cutObjects(canvas);
+   toggleContextMenu(canvas, "hide");
+});
+
+const contextMenuPasteBtn = document.getElementById("contextMenuPasteBtn");
+contextMenuPasteBtn.addEventListener("click", () => {
+   const { pointerX, pointerY } = getPointerCoordinates();
+   pasteObjects(canvas, pointerX, pointerY);
+   canvas.requestRenderAll();
+   toggleContextMenu(canvas, "hide");
+})
