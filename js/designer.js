@@ -38,7 +38,7 @@ const {
    cutObjects,
    pasteObjects
 } = require(__dirname + "/js/topbar/cutCopyPaste");
-const { toggleContextMenu } = require(__dirname + "/js/contextMenu/contextMenu");
+const { mouseContextMenu } = require(__dirname + "/js/contextMenu/contextMenu");
 
 document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
@@ -103,7 +103,7 @@ generateCanvasBtn.addEventListener("click", () => {
 
    initializeZoomButtons(canvas);
    displayPointerCoordinates(canvas);
-   toggleContextMenu(canvas);
+   mouseContextMenu(canvas);
 });
 
 //
@@ -149,7 +149,7 @@ importCanvasJSONBtn.addEventListener("click", async () => {
    await canvas.renderAll();
    initializeZoomButtons(canvas);
    await displayPointerCoordinates(canvas);
-   await toggleContextMenu(canvas);
+   await mouseContextMenu(canvas);
 });
 
 //
@@ -230,4 +230,8 @@ const generateLineBtn = document.getElementById("generateLine")
 generateLineBtn.addEventListener("click", () => {
    generateLine(fabric, canvas);
 });
+
+//
+// context menu
+//
 

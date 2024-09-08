@@ -22,7 +22,7 @@ function getPointerCoordinates() {
  * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to monitor for mouse
  * events.
  */
-function toggleContextMenu(canvas) {
+function mouseContextMenu(canvas) {
    if (!canvas) return;
    console.log(`toggleContextMenu(${canvas})`);
 
@@ -36,13 +36,13 @@ function toggleContextMenu(canvas) {
       if (selectedObjects.length === 0) {
          if (isLeftClick) {
             console.log("left click");
-            contextMenu(canvas, "hide");
+            toggleContextMenu(canvas, "hide");
          }
 
          // show context menu when right-clicked in any place of canvas
          if (isRightClick) {
             console.log("right click");
-            contextMenu(canvas, "show");
+            toggleContextMenu(canvas, "show");
          }
       }
 
@@ -56,14 +56,14 @@ function toggleContextMenu(canvas) {
                console.log(`Right clicked object - Type: ${object.type}`);
          });
 
-         if (isRightClick) contextMenu(canvas, "show");
+         if (isRightClick) toggleContextMenu(canvas, "show");
       }
    });
 
    canvas.on("mouse:down", () => {
       console.log("canvas mouse:down event");
       // hide context menu when the mouse is pressed down
-      contextMenu(canvas, "hide");
+      toggleContextMenu(canvas, "hide");
    });
 }
 
@@ -75,7 +75,7 @@ function toggleContextMenu(canvas) {
  * @param {string} displayType - Specifies whether to "show" or "hide" the context
  * menu.
  */
-function contextMenu(canvas, displayType) {
+function toggleContextMenu(canvas, displayType) {
    console.log(`contextMenu(${canvas}, ${displayType})`);
    const contextMenu = document.getElementById("contextMenu");
 
@@ -121,6 +121,6 @@ function contextMenu(canvas, displayType) {
 
 module.exports = {
    getPointerCoordinates,
-   toggleContextMenu,
-   contextMenu
+   mouseContextMenu,
+   toggleContextMenu
 }
