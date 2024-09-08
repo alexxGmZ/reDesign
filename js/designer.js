@@ -57,18 +57,21 @@ document.addEventListener("keydown", function(event) {
       if (event.key.toLowerCase() === "c") {
          event.preventDefault();
          copyObjects(canvas);
+         toggleContextMenu(canvas, "hide");
       }
 
       // ctrl + x
       if (event.key.toLowerCase() === "x") {
          event.preventDefault();
          cutObjects(canvas);
+         toggleContextMenu(canvas, "hide");
       }
 
       // ctrl + v
       if (event.key.toLowerCase() === "v") {
          event.preventDefault();
          pasteObjects(canvas);
+         toggleContextMenu(canvas, "hide");
       }
 
       // ctrl + s
@@ -162,17 +165,20 @@ importCanvasJSONBtn.addEventListener("click", async () => {
 const copyObjectsBtn = document.getElementById("copyObjects");
 copyObjectsBtn.addEventListener("click", () => {
    copyObjects(canvas);
+   toggleContextMenu(canvas, "hide");
 });
 
 const cutObjectsBtn = document.getElementById("cutObjects");
 cutObjectsBtn.addEventListener("click", () => {
    cutObjects(canvas);
+   toggleContextMenu(canvas, "hide");
 });
 
 const pasteObjectsBtn = document.getElementById("pasteObjects");
 pasteObjectsBtn.addEventListener("click", () => {
    pasteObjects(canvas);
    canvas.requestRenderAll();
+   toggleContextMenu(canvas, "hide");
 });
 
 //
