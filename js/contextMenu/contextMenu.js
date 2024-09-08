@@ -1,27 +1,19 @@
 /**
- * Tracks and returns the pointer coordinates.
+ * Retrieves the current pointer coordinates from the DOM elements showing the canvas
+ * pointer positions.
  *
- * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to track pointer
- * movements on.
- * @returns {Promise<{pointerX: number, pointerY: number}>} - A promise that resolves
- * with the pointer coordinates as numbers when the mouse moves, or rejects with an
- * error message if pointer data is unavailable.
+ * @returns {{pointerX: number, pointerY: number}} - The current pointer coordinates
+ * as numbers with one decimal precision.
  */
-function getPointerCoordinates(canvas) {
-   if (!canvas) return;
-   console.log(`getPointerCoordinates(${canvas})`);
+function getPointerCoordinates() {
+   console.log(`getPointerCoordinates()`);
 
-   return new Promise((resolve, reject) => {
-      canvas.on("mouse:move", (options) => {
-         const pointer = canvas.getPointer(options.e);
-         if (!pointer) return reject("No pointer data");
+   const pointerXElement = document.getElementById("canvasPntrCoordsX").textContent;
+   const pointerYElement = document.getElementById("canvasPntrCoordsY").textContent;
+   const pointerX = parseFloat(pointerXElement).toFixed(1);
+   const pointerY = parseFloat(pointerYElement).toFixed(1);
 
-         const pointerX = parseFloat(pointer.x.toFixed(3));
-         const pointerY = parseFloat(pointer.y.toFixed(3));
-
-         resolve({ pointerX, pointerY });
-      });
-   });
+   return { pointerX, pointerY };
 }
 
 /**
@@ -92,8 +84,7 @@ function contextMenu(canvas, displayType) {
    }
 
    else if (displayType == "show") {
-      const pointerX = parseFloat(document.getElementById("canvasPntrCoordsX").textContent).toFixed(1);
-      const pointerY = parseFloat(document.getElementById("canvasPntrCoordsY").textContent).toFixed(1);
+      const { pointerX, pointerY } = getPointerCoordinates();
       const canvasZoom = document.getElementById("scaleRangeInput").value;
 
       contextMenu.style.display = "block";
