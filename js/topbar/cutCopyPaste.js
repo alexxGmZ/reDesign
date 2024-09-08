@@ -68,8 +68,8 @@ function pasteObjects(canvas, toolUsed, pointerX, pointerY) {
       // if mouse is used to paste then position objects in the mouse
       if (toolUsed === "mouse") {
          clonedObj.set({
-            left: pointerX,
-            top: pointerY,
+            left: parseFloat(pointerX),
+            top: parseFloat(pointerY),
             evented: true,
          });
       }
