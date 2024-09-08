@@ -55,18 +55,17 @@ function cutObjects(canvas) {
  * Pastes the objects from the clipboard onto the Fabric.js canvas.
  *
  * @param {fabric.Canvas} canvas - The Fabric.js canvas instance where the objects will be pasted.
- * @param {string} toolUsed - The tool used to paste objects, either "mouse" or another method, which affects object positioning.
  * @param {number} pointerX - The x-coordinate for object placement if using the mouse.
  * @param {number} pointerY - The y-coordinate for object placement if using the mouse.
  */
-function pasteObjects(canvas, toolUsed, pointerX, pointerY) {
+function pasteObjects(canvas, pointerX, pointerY) {
    if (!canvas || !clipboard) return;
-   console.log(`called pasteObjects(${canvas}, ${toolUsed}, ${pointerX}, ${pointerY})`);
+   console.log(`called pasteObjects(${canvas}, ${pointerX}, ${pointerY})`);
 
    clipboard.clone(function(clonedObj) {
       canvas.discardActiveObject();
-      // if mouse is used to paste then position objects in the mouse
-      if (toolUsed === "mouse") {
+      // if pointerX and pointerY has value
+      if (pointerX && pointerY) {
          clonedObj.set({
             left: parseFloat(pointerX),
             top: parseFloat(pointerY),
