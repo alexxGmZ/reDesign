@@ -100,6 +100,7 @@ function pasteObjects(canvas, pointerX, pointerY) {
       clipboard.top += 10;
       clipboard.left += 10;
       canvas.setActiveObject(clonedObj);
+      canvas.requestRenderAll();
    });
 }
 

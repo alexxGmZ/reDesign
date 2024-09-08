@@ -177,7 +177,6 @@ cutObjectsBtn.addEventListener("click", () => {
 const pasteObjectsBtn = document.getElementById("pasteObjects");
 pasteObjectsBtn.addEventListener("click", () => {
    pasteObjects(canvas);
-   canvas.requestRenderAll();
    toggleContextMenu(canvas, "hide");
 });
 
@@ -260,6 +259,5 @@ const contextMenuPasteBtn = document.getElementById("contextMenuPasteBtn");
 contextMenuPasteBtn.addEventListener("click", () => {
    const { pointerX, pointerY } = getPointerCoordinates();
    pasteObjects(canvas, pointerX, pointerY);
-   canvas.requestRenderAll();
    toggleContextMenu(canvas, "hide");
 })
