@@ -6,6 +6,9 @@ const scaleMultiplierText = document.getElementById("scaleMultiplierText");
 let rangeMax;
 let rangeMin;
 let rangeStep;
+
+// WARN: the values of these two variables should only be updated via the
+// initializeZoomButtons() or else the canvas will scale undesirably.
 let canvasWidth;
 let canvasHeight;
 
