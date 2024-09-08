@@ -29,26 +29,26 @@ function copyObjects(canvas) {
  * objects will be cut.
  */
 function cutObjects(canvas) {
-	if (!canvas) return;
-	console.log(`cutObjects(${canvas})`);
+   if (!canvas) return;
+   console.log(`cutObjects(${canvas})`);
 
-	canvas.getActiveObject().clone((cloned) => {
-		clipboard = cloned;
-		if (cloned.type === 'activeSelection') {
-			cloned.forEachObject((obj) => {
-				console.log(`Cutted object - Type: ${obj.type}`);
-			});
-		}
+   canvas.getActiveObject().clone((cloned) => {
+      clipboard = cloned;
+      if (cloned.type === 'activeSelection') {
+         cloned.forEachObject((obj) => {
+            console.log(`Cutted object - Type: ${obj.type}`);
+         });
+      }
       else console.log(`Cutted object - Type: ${cloned.type}`);
 
-		// remove active objects
-		const selectedObjects = canvas.getActiveObjects();
-		selectedObjects.forEach((obj) => {
-			canvas.remove(obj);
-		});
-		canvas.discardActiveObject();
-		canvas.requestRenderAll();
-	});
+      // remove active objects
+      const selectedObjects = canvas.getActiveObjects();
+      selectedObjects.forEach((obj) => {
+         canvas.remove(obj);
+      });
+      canvas.discardActiveObject();
+      canvas.requestRenderAll();
+   });
 }
 
 /**
