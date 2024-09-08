@@ -216,17 +216,17 @@ generateRectangleBtn.addEventListener("click", () => {
    generateRectangle(fabric, canvas);
 });
 
-const generateCircleBtn = document.getElementById("generateCircle")
+const generateCircleBtn = document.getElementById("generateCircle");
 generateCircleBtn.addEventListener("click", () => {
    generateCircle(fabric, canvas);
 });
 
-const generateTextBtn = document.getElementById("generateText")
+const generateTextBtn = document.getElementById("generateText");
 generateTextBtn.addEventListener("click", () => {
    generateText(fabric, canvas);
 });
 
-const generateLineBtn = document.getElementById("generateLine")
+const generateLineBtn = document.getElementById("generateLine");
 generateLineBtn.addEventListener("click", () => {
    generateLine(fabric, canvas);
 });

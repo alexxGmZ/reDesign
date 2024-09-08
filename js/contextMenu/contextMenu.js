@@ -24,7 +24,7 @@ function getPointerCoordinates() {
  */
 function mouseContextMenu(canvas) {
    if (!canvas) return;
-   console.log(`toggleContextMenu(${canvas})`);
+   console.log(`mouseContextMenu(${canvas})`);
 
    canvas.on("mouse:up", (event) => {
       console.log("canvas mouse:up event");
@@ -76,7 +76,7 @@ function mouseContextMenu(canvas) {
  * menu.
  */
 function toggleContextMenu(canvas, displayType) {
-   console.log(`contextMenu(${canvas}, ${displayType})`);
+   console.log(`toggleContextMenu(${canvas}, ${displayType})`);
    const contextMenu = document.getElementById("contextMenu");
 
    if (displayType == "hide") {
