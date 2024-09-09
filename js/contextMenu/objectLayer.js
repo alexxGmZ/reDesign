@@ -24,6 +24,24 @@ function adjustObjectLayer(canvas, action) {
    canvas.requestRenderAll();
 }
 
+/**
+ * Retrieves the layer stack of objects on the canvas.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to get objects from.
+ * @returns {Object[]} - An array of objects representing the layer stack, with each
+ * object containing:
+ *  - `index` {number}: The index of the canvas object in the stack.
+ *  - `type` {string}: The type of the canvas object.
+ * The array is reversed to reflect the topmost object first.
+ */
+function getObjectsLayerStack(canvas) {
+   console.log(`getObjectsLayerStack(${canvas})`);
+   return canvas.getObjects()
+      .map((object, index) => ({ index, type: object.type }))
+      .reverse();
+}
+
 module.exports = {
-   adjustObjectLayer
+   adjustObjectLayer,
+   getObjectsLayerStack
 }
