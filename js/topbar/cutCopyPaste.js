@@ -29,47 +29,46 @@ function copyObjects(canvas) {
  * objects will be cut.
  */
 function cutObjects(canvas) {
-	if (!canvas) return;
-	console.log(`cutObjects(${canvas})`);
+   if (!canvas) return;
+   console.log(`cutObjects(${canvas})`);
 
-	canvas.getActiveObject().clone((cloned) => {
-		clipboard = cloned;
-		if (cloned.type === 'activeSelection') {
-			cloned.forEachObject((obj) => {
-				console.log(`Cutted object - Type: ${obj.type}`);
-			});
-		}
+   canvas.getActiveObject().clone((cloned) => {
+      clipboard = cloned;
+      if (cloned.type === 'activeSelection') {
+         cloned.forEachObject((obj) => {
+            console.log(`Cutted object - Type: ${obj.type}`);
+         });
+      }
       else console.log(`Cutted object - Type: ${cloned.type}`);
 
-		// remove active objects
-		const selectedObjects = canvas.getActiveObjects();
-		selectedObjects.forEach((obj) => {
-			canvas.remove(obj);
-		});
-		canvas.discardActiveObject();
-		canvas.requestRenderAll();
-	});
+      // remove active objects
+      const selectedObjects = canvas.getActiveObjects();
+      selectedObjects.forEach((obj) => {
+         canvas.remove(obj);
+      });
+      canvas.discardActiveObject();
+      canvas.requestRenderAll();
+   });
 }
 
 /**
  * Pastes the objects from the clipboard onto the Fabric.js canvas.
  *
  * @param {fabric.Canvas} canvas - The Fabric.js canvas instance where the objects will be pasted.
- * @param {string} toolUsed - The tool used to paste objects, either "mouse" or another method, which affects object positioning.
  * @param {number} pointerX - The x-coordinate for object placement if using the mouse.
  * @param {number} pointerY - The y-coordinate for object placement if using the mouse.
  */
-function pasteObjects(canvas, toolUsed, pointerX, pointerY) {
+function pasteObjects(canvas, pointerX, pointerY) {
    if (!canvas || !clipboard) return;
-   console.log(`called pasteObjects(${canvas}, ${toolUsed}, ${pointerX}, ${pointerY})`);
+   console.log(`called pasteObjects(${canvas}, ${pointerX}, ${pointerY})`);
 
    clipboard.clone(function(clonedObj) {
       canvas.discardActiveObject();
-      // if mouse is used to paste then position objects in the mouse
-      if (toolUsed === "mouse") {
+      // if pointerX and pointerY has value
+      if (pointerX && pointerY) {
          clonedObj.set({
-            left: pointerX,
-            top: pointerY,
+            left: parseFloat(pointerX),
+            top: parseFloat(pointerY),
             evented: true,
          });
       }
@@ -101,6 +100,7 @@ function pasteObjects(canvas, toolUsed, pointerX, pointerY) {
       clipboard.top += 10;
       clipboard.left += 10;
       canvas.setActiveObject(clonedObj);
+      canvas.requestRenderAll();
    });
 }
 

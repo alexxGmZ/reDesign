@@ -9,9 +9,8 @@ const {
    importCanvasFromJSON,
 } = require(__dirname + "/js/topbar/canvas");
 const {
-   displayPointerCoordinates,
-   getPointerCoordinates
-} = require(__dirname + "/js/statusbar/canvasPointerCoordinates");
+   displayPointerCoordinates
+} = require(__dirname + "/js/statusbar/displayPointerCoordinates");
 const {
    changeResInitialValues,
    updateCanvasResolution,
@@ -39,9 +38,48 @@ const {
    cutObjects,
    pasteObjects
 } = require(__dirname + "/js/topbar/cutCopyPaste");
+const {
+   getPointerCoordinates,
+   mouseContextMenu,
+   toggleContextMenu
+} = require(__dirname + "/js/contextMenu/contextMenu");
 
 document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
+});
+
+//
+// keymaps
+//
+document.addEventListener("keydown", function(event) {
+   if (event.ctrlKey) {
+      // ctrl + c
+      if (event.key.toLowerCase() === "c") {
+         event.preventDefault();
+         copyObjects(canvas);
+         toggleContextMenu(canvas, "hide");
+      }
+
+      // ctrl + x
+      if (event.key.toLowerCase() === "x") {
+         event.preventDefault();
+         cutObjects(canvas);
+         toggleContextMenu(canvas, "hide");
+      }
+
+      // ctrl + v
+      if (event.key.toLowerCase() === "v") {
+         event.preventDefault();
+         pasteObjects(canvas);
+         toggleContextMenu(canvas, "hide");
+      }
+
+      // ctrl + s
+      if (event.key.toLowerCase() === "s") {
+         event.preventDefault();
+         saveCanvasToJSON(canvas);
+      }
+   }
 });
 
 //
@@ -72,6 +110,7 @@ generateCanvasBtn.addEventListener("click", () => {
 
    initializeZoomButtons(canvas);
    displayPointerCoordinates(canvas);
+   mouseContextMenu(canvas);
 });
 
 //
@@ -117,6 +156,7 @@ importCanvasJSONBtn.addEventListener("click", async () => {
    await canvas.renderAll();
    initializeZoomButtons(canvas);
    await displayPointerCoordinates(canvas);
+   await mouseContextMenu(canvas);
 });
 
 //
@@ -125,17 +165,19 @@ importCanvasJSONBtn.addEventListener("click", async () => {
 const copyObjectsBtn = document.getElementById("copyObjects");
 copyObjectsBtn.addEventListener("click", () => {
    copyObjects(canvas);
+   toggleContextMenu(canvas, "hide");
 });
 
 const cutObjectsBtn = document.getElementById("cutObjects");
 cutObjectsBtn.addEventListener("click", () => {
    cutObjects(canvas);
+   toggleContextMenu(canvas, "hide");
 });
 
 const pasteObjectsBtn = document.getElementById("pasteObjects");
 pasteObjectsBtn.addEventListener("click", () => {
    pasteObjects(canvas);
-   canvas.requestRenderAll();
+   toggleContextMenu(canvas, "hide");
 });
 
 //
@@ -183,38 +225,39 @@ generateRectangleBtn.addEventListener("click", () => {
    generateRectangle(fabric, canvas);
 });
 
-const generateCircleBtn = document.getElementById("generateCircle")
+const generateCircleBtn = document.getElementById("generateCircle");
 generateCircleBtn.addEventListener("click", () => {
    generateCircle(fabric, canvas);
 });
 
-const generateTextBtn = document.getElementById("generateText")
+const generateTextBtn = document.getElementById("generateText");
 generateTextBtn.addEventListener("click", () => {
    generateText(fabric, canvas);
 });
 
-const generateLineBtn = document.getElementById("generateLine")
+const generateLineBtn = document.getElementById("generateLine");
 generateLineBtn.addEventListener("click", () => {
    generateLine(fabric, canvas);
 });
 
 //
-// keymap
+// context menu
 //
-document.addEventListener("keydown", function(event) {
-   // ctrl + c
-   if (event.ctrlKey && event.key.toLowerCase() === "c")
-      copyObjects(canvas);
-
-   // ctrl + x
-   if (event.ctrlKey && event.key.toLowerCase() === "x")
-      cutObjects(canvas);
-
-   // ctrl + v
-   if (event.ctrlKey && event.key.toLowerCase() === "v")
-      pasteObjects(canvas);
-
-   // ctrl + s
-   if (event.ctrlKey && event.key.toLowerCase() === "s")
-      saveCanvasToJSON(canvas);
+const contextMenuCopyBtn = document.getElementById("contextMenuCopyBtn");
+contextMenuCopyBtn.addEventListener("click", () => {
+   copyObjects(canvas);
+   toggleContextMenu(canvas, "hide");
 });
+
+const contextMenuCutBtn = document.getElementById("contextMenuCutBtn");
+contextMenuCutBtn.addEventListener("click", () => {
+   cutObjects(canvas);
+   toggleContextMenu(canvas, "hide");
+});
+
+const contextMenuPasteBtn = document.getElementById("contextMenuPasteBtn");
+contextMenuPasteBtn.addEventListener("click", () => {
+   const { pointerX, pointerY } = getPointerCoordinates();
+   pasteObjects(canvas, pointerX, pointerY);
+   toggleContextMenu(canvas, "hide");
+})
