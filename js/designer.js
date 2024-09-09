@@ -43,6 +43,7 @@ const {
    mouseContextMenu,
    toggleContextMenu
 } = require(__dirname + "/js/contextMenu/contextMenu");
+const { adjustObjectLayer } = require(__dirname + "/js/contextMenu/objectLayer");
 
 document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
@@ -260,4 +261,28 @@ contextMenuPasteBtn.addEventListener("click", () => {
    const { pointerX, pointerY } = getPointerCoordinates();
    pasteObjects(canvas, pointerX, pointerY);
    toggleContextMenu(canvas, "hide");
-})
+});
+
+const layerBringToFrontBtn = document.getElementById("layerBringToFrontBtn");
+layerBringToFrontBtn.addEventListener("click", () => {
+   adjustObjectLayer(canvas, "bringToFront");
+   toggleContextMenu(canvas, "hide");
+});
+
+const layerBringForwardBtn = document.getElementById("layerBringForwardBtn");
+layerBringForwardBtn.addEventListener("click", () => {
+   adjustObjectLayer(canvas, "bringForward");
+   toggleContextMenu(canvas, "hide");
+});
+
+const layerSendBackwardBtn = document.getElementById("layerSendBackwardBtn");
+layerSendBackwardBtn.addEventListener("click", () => {
+   adjustObjectLayer(canvas, "sendBackward");
+   toggleContextMenu(canvas, "hide");
+});
+
+const layerSendToBackBtn = document.getElementById("layerSendToBackBtn");
+layerSendToBackBtn.addEventListener("click", () => {
+   adjustObjectLayer(canvas, "sendToBack");
+   toggleContextMenu(canvas, "hide");
+});
