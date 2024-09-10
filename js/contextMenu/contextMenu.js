@@ -76,6 +76,8 @@ function mouseContextMenu(canvas) {
  * menu.
  */
 function toggleContextMenu(canvas, displayType) {
+   if (!canvas) return;
+
    console.log(`toggleContextMenu(${canvas}, ${displayType})`);
    const contextMenu = document.getElementById("contextMenu");
 
