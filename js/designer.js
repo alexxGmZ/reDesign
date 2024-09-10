@@ -78,6 +78,7 @@ document.addEventListener("keydown", function(event) {
       // ctrl + s
       if (event.key.toLowerCase() === "s") {
          event.preventDefault();
+         toggleContextMenu(canvas, "hide");
          saveCanvasToJSON(canvas);
       }
    }
@@ -90,6 +91,7 @@ const openCreateCanvasDialogBtn = document.getElementById("openCreateCanvasDialo
 openCreateCanvasDialogBtn.addEventListener("click", () => {
    dialogOpen("createCanvasDialog");
    createCanvasColorPicker(iro);
+   toggleContextMenu(canvas, "hide");
 });
 
 const closeCreateCanvasDialogBtn = document.getElementById("closeCreateCanvasDialog");
@@ -119,16 +121,19 @@ generateCanvasBtn.addEventListener("click", () => {
 //
 const saveCanvasBtn = document.getElementById("saveCanvas");
 saveCanvasBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    saveCanvasToJSON(canvas);
 });
 
 const saveCanvasToJPEGBtn = document.getElementById("saveCanvasToJPEG");
 saveCanvasToJPEGBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    saveCanvasToJPEG(canvas);
 });
 
 const saveCanvasToPNGBtn = document.getElementById("saveCanvasToPNG");
 saveCanvasToPNGBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    saveCanvasToPNG(canvas);
 });
 
@@ -137,6 +142,7 @@ saveCanvasToPNGBtn.addEventListener("click", () => {
 //
 const importImageBtn = document.getElementById("importImage");
 importImageBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    importImage(fabric, canvas);
 });
 
@@ -145,6 +151,7 @@ importImageBtn.addEventListener("click", () => {
 //
 const importCanvasJSONBtn = document.getElementById("importCanvasFromJSON");
 importCanvasJSONBtn.addEventListener("click", async () => {
+   await toggleContextMenu(canvas, "hide");
    const {
       canvasObjects,
       canvasBgColor,
@@ -187,6 +194,7 @@ pasteObjectsBtn.addEventListener("click", () => {
 const openChangeCanvasResDlgBtn = document.getElementById("openChangeCanvasResDialog");
 openChangeCanvasResDlgBtn.addEventListener("click", () => {
    if (!canvas) return;
+   toggleContextMenu(canvas, "hide");
    dialogOpen("changeCanvasResDialog");
    changeResInitialValues(canvas);
 });
@@ -207,14 +215,17 @@ changeCanvasResBtn.addEventListener("click", () => {
 //
 const scaleDownBtn = document.getElementById("scaleDown");
 scaleDownBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    zoomOut(canvas);
 });
 const scaleRangeInput = document.getElementById("scaleRangeInput");
 scaleRangeInput.addEventListener("input", () => {
+   toggleContextMenu(canvas, "hide");
    zoomRange(canvas);
 });
 const scaleUpBtn = document.getElementById("scaleUp");
 scaleUpBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    zoomIn(canvas);
 });
 
@@ -223,21 +234,25 @@ scaleUpBtn.addEventListener("click", () => {
 //
 const generateRectangleBtn = document.getElementById("generateRectangle");
 generateRectangleBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    generateRectangle(fabric, canvas);
 });
 
 const generateCircleBtn = document.getElementById("generateCircle");
 generateCircleBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    generateCircle(fabric, canvas);
 });
 
 const generateTextBtn = document.getElementById("generateText");
 generateTextBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    generateText(fabric, canvas);
 });
 
 const generateLineBtn = document.getElementById("generateLine");
 generateLineBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
    generateLine(fabric, canvas);
 });
 
