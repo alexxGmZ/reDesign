@@ -218,11 +218,13 @@ scaleDownBtn.addEventListener("click", () => {
    toggleContextMenu(canvas, "hide");
    zoomOut(canvas);
 });
+
 const scaleRangeInput = document.getElementById("scaleRangeInput");
 scaleRangeInput.addEventListener("input", () => {
    toggleContextMenu(canvas, "hide");
    zoomRange(canvas);
 });
+
 const scaleUpBtn = document.getElementById("scaleUp");
 scaleUpBtn.addEventListener("click", () => {
    toggleContextMenu(canvas, "hide");
