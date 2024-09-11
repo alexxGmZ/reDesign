@@ -49,6 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
 });
 
+document.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
+});
+
 //
 // keymaps
 //
