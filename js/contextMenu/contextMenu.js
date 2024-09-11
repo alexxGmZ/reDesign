@@ -90,8 +90,8 @@ function toggleContextMenu(canvas, displayType) {
       const canvasZoom = document.getElementById("scaleRangeInput").value;
 
       contextMenu.style.display = "block";
-      contextMenu.style.left = ((pointerX * canvasZoom) + 70) + 'px';
-      contextMenu.style.top = ((pointerY * canvasZoom) + 80) + 'px';
+      contextMenu.style.left = ((pointerX * canvasZoom) + 60) + "px";
+      contextMenu.style.top = ((pointerY * canvasZoom) + 70) + "px";
 
       const layerBringToFront = document.getElementById("layerBringToFront");
       const layerBringForward = document.getElementById("layerBringForward");
