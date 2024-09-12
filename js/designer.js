@@ -1,3 +1,15 @@
+// This is the designer.js file. Most buttons or DOM elements needing event listeners
+// should be placed here.
+//
+// WARN: All CommonJS "require" statements should be placed here, not in other JavaScript
+// (*.js) files. Including them in other files is difficult to manage in the Electron
+// Renderer process. Electron's IPC can be used, but it adds complexity, especially for
+// developers new to Electron.
+//
+// It's highly recommended to keep the code modular and reusable.
+//
+// - Al
+
 const fabric = require("fabric").fabric;
 var canvas;
 const iro = require("@jaames/iro");
