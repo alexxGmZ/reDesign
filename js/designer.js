@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
 });
 
+// hide context menu on click event buttons
 document.addEventListener("click", () => {
    toggleContextMenu(canvas, "hide");
 });
@@ -128,19 +129,16 @@ generateCanvasBtn.addEventListener("click", () => {
 //
 const saveCanvasBtn = document.getElementById("saveCanvas");
 saveCanvasBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    saveCanvasToJSON(canvas);
 });
 
 const saveCanvasToJPEGBtn = document.getElementById("saveCanvasToJPEG");
 saveCanvasToJPEGBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    saveCanvasToJPEG(canvas);
 });
 
 const saveCanvasToPNGBtn = document.getElementById("saveCanvasToPNG");
 saveCanvasToPNGBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    saveCanvasToPNG(canvas);
 });
 
@@ -149,7 +147,6 @@ saveCanvasToPNGBtn.addEventListener("click", () => {
 //
 const importImageBtn = document.getElementById("importImage");
 importImageBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    importImage(fabric, canvas);
 });
 
@@ -158,7 +155,6 @@ importImageBtn.addEventListener("click", () => {
 //
 const importCanvasJSONBtn = document.getElementById("importCanvasFromJSON");
 importCanvasJSONBtn.addEventListener("click", async () => {
-   await toggleContextMenu(canvas, "hide");
    const {
       canvasObjects,
       canvasBgColor,
@@ -222,19 +218,16 @@ changeCanvasResBtn.addEventListener("click", () => {
 //
 const scaleDownBtn = document.getElementById("scaleDown");
 scaleDownBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    zoomOut(canvas);
 });
 
 const scaleRangeInput = document.getElementById("scaleRangeInput");
 scaleRangeInput.addEventListener("input", () => {
-   toggleContextMenu(canvas, "hide");
    zoomRange(canvas);
 });
 
 const scaleUpBtn = document.getElementById("scaleUp");
 scaleUpBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    zoomIn(canvas);
 });
 
@@ -243,25 +236,21 @@ scaleUpBtn.addEventListener("click", () => {
 //
 const generateRectangleBtn = document.getElementById("generateRectangle");
 generateRectangleBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    generateRectangle(fabric, canvas);
 });
 
 const generateCircleBtn = document.getElementById("generateCircle");
 generateCircleBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    generateCircle(fabric, canvas);
 });
 
 const generateTextBtn = document.getElementById("generateText");
 generateTextBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    generateText(fabric, canvas);
 });
 
 const generateLineBtn = document.getElementById("generateLine");
 generateLineBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    generateLine(fabric, canvas);
 });
 
@@ -271,49 +260,41 @@ generateLineBtn.addEventListener("click", () => {
 const contextMenuCopyBtn = document.getElementById("contextMenuCopyBtn");
 contextMenuCopyBtn.addEventListener("click", () => {
    copyObjects(canvas);
-   toggleContextMenu(canvas, "hide");
 });
 
 const contextMenuCutBtn = document.getElementById("contextMenuCutBtn");
 contextMenuCutBtn.addEventListener("click", () => {
    cutObjects(canvas);
-   toggleContextMenu(canvas, "hide");
 });
 
 const contextMenuPasteBtn = document.getElementById("contextMenuPasteBtn");
 contextMenuPasteBtn.addEventListener("click", () => {
    const { pointerX, pointerY } = getPointerCoordinates();
    pasteObjects(canvas, pointerX, pointerY);
-   toggleContextMenu(canvas, "hide");
 });
 
 const layerBringToFrontBtn = document.getElementById("layerBringToFrontBtn");
 layerBringToFrontBtn.addEventListener("click", () => {
    adjustObjectLayer(canvas, "bringToFront");
-   toggleContextMenu(canvas, "hide");
 });
 
 const layerBringForwardBtn = document.getElementById("layerBringForwardBtn");
 layerBringForwardBtn.addEventListener("click", () => {
    adjustObjectLayer(canvas, "bringForward");
-   toggleContextMenu(canvas, "hide");
 });
 
 const layerSendBackwardBtn = document.getElementById("layerSendBackwardBtn");
 layerSendBackwardBtn.addEventListener("click", () => {
    adjustObjectLayer(canvas, "sendBackward");
-   toggleContextMenu(canvas, "hide");
 });
 
 const layerSendToBackBtn = document.getElementById("layerSendToBackBtn");
 layerSendToBackBtn.addEventListener("click", () => {
    adjustObjectLayer(canvas, "sendToBack");
-   toggleContextMenu(canvas, "hide");
 });
 
 const objectPropertiesBtn = document.getElementById("objectPropertiesBtn");
 objectPropertiesBtn.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
    const { pointerX, pointerY } = getPointerCoordinates();
    toggleObjectPropertiesWindow(canvas, "show", pointerX, pointerY);
 });
