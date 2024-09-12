@@ -36,13 +36,13 @@ function mouseContextMenu(canvas) {
       if (selectedObjects.length === 0) {
          if (isLeftClick) {
             console.log("left click");
-            toggleContextMenu(canvas, "hide");
+            hideContextMenu();
          }
 
          // show context menu when right-clicked in any place of canvas
          if (isRightClick) {
             console.log("right click");
-            toggleContextMenu(canvas, "show");
+            showContextMenu(canvas);
          }
       }
 
@@ -56,73 +56,74 @@ function mouseContextMenu(canvas) {
                console.log(`Right clicked object - Type: ${object.type}`);
          });
 
-         if (isRightClick) toggleContextMenu(canvas, "show");
+         if (isRightClick) showContextMenu(canvas);
       }
    });
 
    canvas.on("mouse:down", () => {
       console.log("canvas mouse:down event");
       // hide context menu when the mouse is pressed down
-      toggleContextMenu(canvas, "hide");
+      hideContextMenu();
    });
 }
 
 /**
- * Controls the display of the context menu on the canvas based on user interactions.
- *
- * @param {fabric.Canvas} canvas - The Fabric.js canvas instance where the context menu
- * is shown or hidden.
- * @param {string} displayType - Specifies whether to "show" or "hide" the context
- * menu.
+ * Hides the context menu by setting its display style to "none".
  */
-function toggleContextMenu(canvas, displayType) {
-   if (!canvas) return;
-
-   console.log(`toggleContextMenu(${canvas}, ${displayType})`);
+function hideContextMenu() {
+   console.log(`hideContextMenu()`);
    const contextMenu = document.getElementById("contextMenu");
+   contextMenu.style.display = "none";
+}
 
-   if (displayType == "hide") {
-      contextMenu.style.display = "none";
+/**
+ * Displays the context menu at the current pointer location and adjusts its options
+ * based on the number of selected objects on the canvas.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to use for displaying
+ * the context menu and checking selected objects.
+ */
+function showContextMenu(canvas) {
+   if (!canvas) return;
+   console.log(`showContextMenu(${canvas})`);
+   const contextMenu = document.getElementById("contextMenu");
+   const { pointerX, pointerY } = getPointerCoordinates();
+   const canvasZoom = document.getElementById("scaleRangeInput").value;
+
+   contextMenu.style.display = "block";
+   contextMenu.style.left = ((pointerX * canvasZoom) + 60) + "px";
+   contextMenu.style.top = ((pointerY * canvasZoom) + 70) + "px";
+
+   const layerBringToFront = document.getElementById("layerBringToFront");
+   const layerBringForward = document.getElementById("layerBringForward");
+   const layerSendBackward = document.getElementById("layerSendBackward");
+   const layerSendToBack = document.getElementById("layerSendToBack");
+   const objectProperties = document.getElementById("objectPropertiesBtn");
+
+   layerBringToFront.style.display = "none";
+   layerBringForward.style.display = "none";
+   layerSendBackward.style.display = "none";
+   layerSendToBack.style.display = "none";
+   objectProperties.style.display = "none";
+
+   const selectedObjects = canvas.getActiveObjects();
+
+   if (selectedObjects.length > 0) {
+      layerBringToFront.style.display = "flex";
+      layerBringForward.style.display = "flex";
+      layerSendBackward.style.display = "flex";
+      layerSendToBack.style.display = "flex";
    }
 
-   else if (displayType == "show") {
-      const { pointerX, pointerY } = getPointerCoordinates();
-      const canvasZoom = document.getElementById("scaleRangeInput").value;
-
-      contextMenu.style.display = "block";
-      contextMenu.style.left = ((pointerX * canvasZoom) + 60) + "px";
-      contextMenu.style.top = ((pointerY * canvasZoom) + 70) + "px";
-
-      const layerBringToFront = document.getElementById("layerBringToFront");
-      const layerBringForward = document.getElementById("layerBringForward");
-      const layerSendBackward = document.getElementById("layerSendBackward");
-      const layerSendToBack = document.getElementById("layerSendToBack");
-      const objectProperties = document.getElementById("objectPropertiesBtn");
-
-      layerBringToFront.style.display = "none";
-      layerBringForward.style.display = "none";
-      layerSendBackward.style.display = "none";
-      layerSendToBack.style.display = "none";
-      objectProperties.style.display = "none";
-
-      const selectedObjects = canvas.getActiveObjects();
-
-      if (selectedObjects.length > 0) {
-         layerBringToFront.style.display = "flex";
-         layerBringForward.style.display = "flex";
-         layerSendBackward.style.display = "flex";
-         layerSendToBack.style.display = "flex";
-      }
-
-      // show context menu properties if there's only one object selected
-      if (selectedObjects.length == 1) {
-         objectProperties.style.display = "flex";
-      }
+   // show context menu properties if there's only one object selected
+   if (selectedObjects.length == 1) {
+      objectProperties.style.display = "flex";
    }
 }
 
 module.exports = {
    getPointerCoordinates,
    mouseContextMenu,
-   toggleContextMenu
+   hideContextMenu,
+   showContextMenu
 }
