@@ -73,7 +73,6 @@ document.addEventListener("click", () => {
 // keymaps
 //
 document.addEventListener("keydown", function(event) {
-
    if (event.ctrlKey) {
       // ctrl + c
       if (event.key.toLowerCase() === "c") {
