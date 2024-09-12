@@ -44,6 +44,9 @@ const {
    toggleContextMenu
 } = require(__dirname + "/js/contextMenu/contextMenu");
 const { adjustObjectLayer } = require(__dirname + "/js/contextMenu/objectLayer");
+const {
+   toggleObjectPropertiesWindow,
+} = require(__dirname + "/js/contextMenu/objectProperties");
 
 document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
@@ -306,4 +309,24 @@ const layerSendToBackBtn = document.getElementById("layerSendToBackBtn");
 layerSendToBackBtn.addEventListener("click", () => {
    adjustObjectLayer(canvas, "sendToBack");
    toggleContextMenu(canvas, "hide");
+});
+
+const objectPropertiesBtn = document.getElementById("objectPropertiesBtn");
+objectPropertiesBtn.addEventListener("click", () => {
+   toggleContextMenu(canvas, "hide");
+   const { pointerX, pointerY } = getPointerCoordinates();
+   toggleObjectPropertiesWindow(canvas, "show", pointerX, pointerY);
+});
+
+//
+// object properties window
+//
+const objectPropertiesHeaderCloseBtn = document.getElementById("objectPropertiesHeaderCloseBtn");
+objectPropertiesHeaderCloseBtn.addEventListener("click", () => {
+   toggleObjectPropertiesWindow(canvas, "hide");
+});
+
+const objectPropertiesCloseBtn = document.getElementById("objectPropertiesCloseBtn");
+objectPropertiesCloseBtn.addEventListener("click", () => {
+   toggleObjectPropertiesWindow(canvas, "hide");
 });

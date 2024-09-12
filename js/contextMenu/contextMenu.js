@@ -97,7 +97,7 @@ function toggleContextMenu(canvas, displayType) {
       const layerBringForward = document.getElementById("layerBringForward");
       const layerSendBackward = document.getElementById("layerSendBackward");
       const layerSendToBack = document.getElementById("layerSendToBack");
-      const objectProperties = document.getElementById("objectProperties");
+      const objectProperties = document.getElementById("objectPropertiesBtn");
 
       layerBringToFront.style.display = "none";
       layerBringForward.style.display = "none";

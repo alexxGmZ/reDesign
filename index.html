@@ -158,43 +158,35 @@
                style="transform: scaleY(-1)">
             <button id="layerSendToBackBtn" class="border border-0 bg-white">Send to back</button>
          </li>
-         <li id="objectProperties" style="display: flex">
+         <li id="objectPropertiesBtn" style="display: flex">
             <button class="border border-0 bg-white">Properties</button>
          </li>
       </ul>
    </div>
 
    <!-- object properties -->
-   <div id="object_properties" class="d-none position-absolute bg-white fs-6 rounded-3 border px-4 pb-2 overflow-auto"
-      style="white-space: nowrap; z-index: 50;">
-      <div id="object_properties_header" class="fw-bold text-center" style="cursor: move">
+   <div id="objectPropertiesWindow" class="position-absolute bg-white fs-6 rounded-3 border px-4 pb-2 overflow-auto"
+      style="display: none; white-space: nowrap; z-index: 50;">
+      <div id="objectPropertiesHeader" class="fw-bold text-center" style="cursor: move">
          <div class="row">
             <div class="col">
                Object Properties
             </div>
             <div class="col d-flex justify-content-end">
-               <button onclick="object_properties('hide')" class="bg-white border-0">
+               <button id="objectPropertiesHeaderCloseBtn" class="bg-white border-0">
                   <img src="./assets/svg/bootstrap/bi-x-lg.svg">
                </button>
             </div>
          </div>
       </div>
-      <label for="object_properties_group_id" class="fw-bold">Group ID:</label>
-      <span id="object_properties_group_id"></span>
-      <br>
-
-      <label for="object_properties_object_id" class="fw-bold">Object ID:</label>
-      <span id="object_properties_object_id"></span>
-      <br>
-
-      <label for="object_properties_object_type" class="fw-bold">Object type:</label>
-      <span id="object_properties_object_type"></span>
+      <label for="objectPropertiesObjectType" class="fw-bold">Object type:</label>
+      <span id="objectPropertiesObjectType"></span>
       <br><br>
 
       <div class="mb-6">
       </div>
       <center>
-         <button onclick="object_properties('hide')" class="btn btn-outline-primary rounded-pill">Close</button>
+         <button id="objectPropertiesCloseBtn" class="btn btn-sm btn-outline-primary rounded-pill">Close</button>
       </center>
    </div>
 
