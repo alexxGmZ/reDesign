@@ -42,8 +42,10 @@ function mouseContextMenu(canvas) {
  * Hides the context menu by setting its display style to "none".
  */
 function hideContextMenu() {
-   console.log(`hideContextMenu()`);
    const contextMenu = document.getElementById("contextMenu");
+   if (contextMenu.style.display === "none") return;
+
+   console.log(`hideContextMenu()`);
    contextMenu.style.display = "none";
 }
 
