@@ -27,29 +27,8 @@ function mouseContextMenu(canvas) {
    console.log(`mouseContextMenu(${canvas})`);
 
    canvas.on("mouse:up", (event) => {
-      console.log("canvas mouse:up event");
-      const selectedObjects = canvas.getActiveObjects();
-      const isLeftClick = event.button === 1;
-      const isRightClick = event.button === 3;
-
-      // if canvas is right clicked
-      if (selectedObjects.length === 0 && isRightClick) {
-         console.log("right click");
-         showContextMenu(canvas);
-      }
-
-      // if object/s are clieked
-      else {
-         selectedObjects.forEach((object) => {
-            if (isLeftClick)
-               console.log(`Left clicked object - Type: ${object.type}`);
-
-            if (isRightClick)
-               console.log(`Right clicked object - Type: ${object.type}`);
-         });
-
-         if (isRightClick) showContextMenu(canvas);
-      }
+      // if the canvas or canvas objects are right clicked
+      if (event.button === 3) showContextMenu(canvas);
    });
 
    canvas.on("mouse:down", () => {
