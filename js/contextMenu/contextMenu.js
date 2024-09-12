@@ -32,18 +32,10 @@ function mouseContextMenu(canvas) {
       const isLeftClick = event.button === 1;
       const isRightClick = event.button === 3;
 
-      // if canvas is clicked
-      if (selectedObjects.length === 0) {
-         if (isLeftClick) {
-            console.log("left click");
-            hideContextMenu();
-         }
-
-         // show context menu when right-clicked in any place of canvas
-         if (isRightClick) {
-            console.log("right click");
-            showContextMenu(canvas);
-         }
+      // if canvas is right clicked
+      if (selectedObjects.length === 0 && isRightClick) {
+         console.log("right click");
+         showContextMenu(canvas);
       }
 
       // if object/s are clieked
