@@ -53,7 +53,7 @@ const {
 const {
    getPointerCoordinates,
    mouseContextMenu,
-   toggleContextMenu
+   hideContextMenu
 } = require(__dirname + "/js/contextMenu/contextMenu");
 const { adjustObjectLayer } = require(__dirname + "/js/contextMenu/objectLayer");
 const {
@@ -66,39 +66,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // hide context menu on click event buttons
 document.addEventListener("click", () => {
-   toggleContextMenu(canvas, "hide");
+   hideContextMenu();
 });
 
 //
 // keymaps
 //
 document.addEventListener("keydown", function(event) {
+
    if (event.ctrlKey) {
       // ctrl + c
       if (event.key.toLowerCase() === "c") {
          event.preventDefault();
+         hideContextMenu();
          copyObjects(canvas);
-         toggleContextMenu(canvas, "hide");
       }
 
       // ctrl + x
       if (event.key.toLowerCase() === "x") {
          event.preventDefault();
+         hideContextMenu();
          cutObjects(canvas);
-         toggleContextMenu(canvas, "hide");
       }
 
       // ctrl + v
       if (event.key.toLowerCase() === "v") {
          event.preventDefault();
+         hideContextMenu();
          pasteObjects(canvas);
-         toggleContextMenu(canvas, "hide");
       }
 
       // ctrl + s
       if (event.key.toLowerCase() === "s") {
          event.preventDefault();
-         toggleContextMenu(canvas, "hide");
+         hideContextMenu();
          saveCanvasToJSON(canvas);
       }
    }
@@ -111,7 +112,6 @@ const openCreateCanvasDialogBtn = document.getElementById("openCreateCanvasDialo
 openCreateCanvasDialogBtn.addEventListener("click", () => {
    dialogOpen("createCanvasDialog");
    createCanvasColorPicker(iro);
-   toggleContextMenu(canvas, "hide");
 });
 
 const closeCreateCanvasDialogBtn = document.getElementById("closeCreateCanvasDialog");
@@ -187,20 +187,20 @@ importCanvasJSONBtn.addEventListener("click", async () => {
 //
 const copyObjectsBtn = document.getElementById("copyObjects");
 copyObjectsBtn.addEventListener("click", () => {
+   hideContextMenu();
    copyObjects(canvas);
-   toggleContextMenu(canvas, "hide");
 });
 
 const cutObjectsBtn = document.getElementById("cutObjects");
 cutObjectsBtn.addEventListener("click", () => {
+   hideContextMenu();
    cutObjects(canvas);
-   toggleContextMenu(canvas, "hide");
 });
 
 const pasteObjectsBtn = document.getElementById("pasteObjects");
 pasteObjectsBtn.addEventListener("click", () => {
+   hideContextMenu();
    pasteObjects(canvas);
-   toggleContextMenu(canvas, "hide");
 });
 
 //
@@ -209,7 +209,7 @@ pasteObjectsBtn.addEventListener("click", () => {
 const openChangeCanvasResDlgBtn = document.getElementById("openChangeCanvasResDialog");
 openChangeCanvasResDlgBtn.addEventListener("click", () => {
    if (!canvas) return;
-   toggleContextMenu(canvas, "hide");
+   hideContextMenu();
    dialogOpen("changeCanvasResDialog");
    changeResInitialValues(canvas);
 });
