@@ -7,4 +7,5 @@ in Markdown format.
 
 ## Table of Contents
 
+* [Coding Style](./coding-style.md)
 * [Directory Structure](./directory-structure.md)
