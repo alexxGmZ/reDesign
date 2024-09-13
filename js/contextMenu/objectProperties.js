@@ -1,3 +1,6 @@
+/**
+ * NOTE: Work in Progress
+ */
 function toggleObjectPropertiesWindow(canvas, displayType, pointerX, pointerY) {
    if (!canvas) return;
    console.log(`toggleObjectPropertiesWindow(${canvas}, ${displayType}, ${pointerX}, ${pointerY})`);
@@ -23,6 +26,10 @@ function toggleObjectPropertiesWindow(canvas, displayType, pointerX, pointerY) {
    }
 }
 
+/**
+ * Adds a drag event to the object properties window, allowing the window to be
+ * dragged around the screen by clicking and holding on its header.
+ */
 function objectPropertiesDragEvent() {
    console.log("objectPropertiesDragEvent()");
    const objPropWindow = document.getElementById("objectPropertiesWindow");
