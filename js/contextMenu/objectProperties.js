@@ -33,23 +33,34 @@ function openObjectPropertiesWindow(selectedObject, pointerX, pointerY) {
    document.getElementById("objectPropertiesText").style.display = "none";
 }
 
-/**
- * NOTE: Work in Progress
- */
 let changeFontListener;
 let changeFontSizeListener;
-function textObjectProperties(canvas, iro, object) {
-   console.log(`textObjectProperties(${canvas}, ${iro}, ${object})`);
+/**
+ * Displays and handles text object properties for the selected text object on the
+ * canvas. This function updates the UI elements related to font family, font size,
+ * and text fill RGB values. It sets up listeners to handle changes in these
+ * properties and updates the canvas accordingly.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance.
+ * @param {fabric.IText} object - The selected Fabric.js text object (IText) whose
+ * properties will be manipulated.
+ */
+function textObjectProperties(canvas, object) {
+   console.log(`textObjectProperties(${canvas}, ${object})`);
 
    // display text object properties
    document.getElementById("objectPropertiesText").style.display = "initial";
 
    const fontElement = document.getElementById("textFontSelect");
    const fontSizeElement = document.getElementById("textFontSize");
+   const textFillR = document.getElementById("textFillR");
+   const textFillG = document.getElementById("textFillG");
+   const textFillB = document.getElementById("textFillB");
 
    fontElement.value = object.fontFamily;
    fontSizeElement.value = object.fontSize;
 
+   // WARN: Do not remove this condition or else all i-text objects will be modified
    if (changeFontListener)
       fontElement.removeEventListener("input", changeFontListener);
    if (changeFontSizeListener)
@@ -68,6 +79,86 @@ function textObjectProperties(canvas, iro, object) {
 
    fontElement.addEventListener("input", changeFontListener);
    fontSizeElement.addEventListener("input", changeFontSizeListener);
+
+   // initialize the text fill RGB inputs
+   var objectFillRGB = object.fill.match(/\d+/g);
+   textFillR.value = objectFillRGB[0];
+   textFillG.value = objectFillRGB[1];
+   textFillB.value = objectFillRGB[2];
+}
+
+/**
+ * Initializes a color picker and synchronizes it with RGB input fields. The color picker
+ * allows the user to pick a color for a selected object, and the RGB inputs allow manual
+ * input of RGB values. Updates the object fill color on the canvas and re-renders the
+ * canvas when the color changes.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance.
+ * @param {Object} iro - The iro.js color picker library.
+ * @param {fabric.Object} object - The Fabric.js object to which the color will be
+ * applied.
+ * @param {Array<string>} colorPickerAndRGBFieldsIDs - Array containing the IDs for the
+ * color picker, RGB input fields, and the button to apply the color change.
+ * The array must follow this index order:
+ *
+ *  - Index 0: ID of the HTML element where the iro color picker will be generated.
+ *  - Index 1: ID of the input element for the red (R) value.
+ *  - Index 2: ID of the input element for the green (G) value.
+ *  - Index 3: ID of the input element for the blue (B) value.
+ *  - Index 4: ID of the button that, when clicked, will update the object's color on the
+ *    canvas.
+ */
+function colorPickerRGB(canvas, iro, object, colorPickerAndRGBFieldsIDs) {
+   console.log(`colorPickerRGB(${canvas}, ${iro}, ${object}, ${colorPickerAndRGBFieldsIDs})`);
+   const colorPickerElementId = colorPickerAndRGBFieldsIDs[0];
+   const inputRed = document.getElementById(`${colorPickerAndRGBFieldsIDs[1]}`);
+   const inputGreen = document.getElementById(`${colorPickerAndRGBFieldsIDs[2]}`);
+   const inputBlue = document.getElementById(`${colorPickerAndRGBFieldsIDs[3]}`);
+   const changeColorBtn = document.getElementById(`${colorPickerAndRGBFieldsIDs[4]}`)
+
+   const colorPicker = new iro.ColorPicker(`#${colorPickerElementId}`, {
+      width: 150,
+      color: object.fill,
+      layoutDirection: "horizontal",
+      borderWidth: 1,
+      borderColor: "#000000"
+   });
+
+   let red = inputRed.value;
+   let green = inputGreen.value;
+   let blue = inputBlue.value;
+
+   colorPicker.on("color:change", (color) => {
+      red = color.rgb.r;
+      green = color.rgb.g;
+      blue = color.rgb.b;
+      inputRed.value = red;
+      inputGreen.value = green;
+      inputBlue.value = blue;
+   });
+
+   function updateColorPicker() {
+      var newColor = `rgb(${red}, ${green}, ${blue})`
+      colorPicker.color.set(newColor);
+   }
+
+   inputRed.addEventListener("input", function() {
+      red = this.value;
+      updateColorPicker();
+   });
+   inputGreen.addEventListener("input", function() {
+      green = this.value;
+      updateColorPicker();
+   });
+   inputBlue.addEventListener("input", function() {
+      blue = this.value;
+      updateColorPicker();
+   });
+
+   changeColorBtn.addEventListener("click", () => {
+      object.set({ fill: `rgb(${red}, ${green}, ${blue})` });
+      canvas.renderAll();
+   });
 }
 
 /**
@@ -122,5 +213,6 @@ function objectPropertiesDragEvent(objPropWindow) {
 module.exports = {
    closeObjectPropertiesWindow,
    openObjectPropertiesWindow,
-   textObjectProperties
+   textObjectProperties,
+   colorPickerRGB
 }
