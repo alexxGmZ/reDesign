@@ -57,7 +57,8 @@ const {
 } = require(__dirname + "/js/contextMenu/contextMenu");
 const { adjustObjectLayer } = require(__dirname + "/js/contextMenu/objectLayer");
 const {
-   toggleObjectPropertiesWindow,
+   closeObjectPropertiesWindow,
+   openObjectPropertiesWindow
 } = require(__dirname + "/js/contextMenu/objectProperties");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -307,7 +308,7 @@ layerSendToBackBtn.addEventListener("click", () => {
 const objectPropertiesBtn = document.getElementById("objectPropertiesBtn");
 objectPropertiesBtn.addEventListener("click", () => {
    const { pointerX, pointerY } = getPointerCoordinates();
-   toggleObjectPropertiesWindow(canvas, "show", pointerX, pointerY);
+   openObjectPropertiesWindow(canvas, pointerX, pointerY);
 });
 
 //
@@ -315,10 +316,10 @@ objectPropertiesBtn.addEventListener("click", () => {
 //
 const objectPropertiesHeaderCloseBtn = document.getElementById("objectPropertiesHeaderCloseBtn");
 objectPropertiesHeaderCloseBtn.addEventListener("click", () => {
-   toggleObjectPropertiesWindow(canvas, "hide");
+   closeObjectPropertiesWindow();
 });
 
 const objectPropertiesCloseBtn = document.getElementById("objectPropertiesCloseBtn");
 objectPropertiesCloseBtn.addEventListener("click", () => {
-   toggleObjectPropertiesWindow(canvas, "hide");
+   closeObjectPropertiesWindow();
 });
