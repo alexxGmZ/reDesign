@@ -11,15 +11,17 @@ function closeObjectPropertiesWindow() {
 }
 
 /**
- * NOTE: Work in Progress
+ * Opens the object properties window and positions it relative to the pointer coordinates.
+ * The window becomes draggable once opened.
+ *
+ * @param {Object} selectedObject - The selected object on the canvas.
+ * @param {number} pointerX - The X coordinate of the pointer.
+ * @param {number} pointerY - The Y coordinate of the pointer.
  */
-function openObjectPropertiesWindow(canvas, pointerX, pointerY) {
-   if (!canvas) return;
-
-   console.log(`openObjectPropertiesWindow(${canvas}, ${pointerX}, ${pointerY})`);
+function openObjectPropertiesWindow(selectedObject, pointerX, pointerY) {
+   console.log(`openObjectPropertiesWindow(${selectedObject}, ${pointerX}, ${pointerY})`);
    const objPropWindow = document.getElementById("objectPropertiesWindow");
    const canvasZoom = document.getElementById("scaleRangeInput").value;
-   const selectedObject = canvas.getActiveObjects()[0];
    const objectType = selectedObject.type;
 
    objPropWindow.style.display = "block";
@@ -28,6 +30,44 @@ function openObjectPropertiesWindow(canvas, pointerX, pointerY) {
    objectPropertiesDragEvent(objPropWindow);
 
    document.getElementById("objectPropertiesObjectType").innerHTML = objectType;
+   document.getElementById("objectPropertiesText").style.display = "none";
+}
+
+/**
+ * NOTE: Work in Progress
+ */
+let changeFontListener;
+let changeFontSizeListener;
+function textObjectProperties(canvas, iro, object) {
+   console.log(`textObjectProperties(${canvas}, ${iro}, ${object})`);
+
+   // display text object properties
+   document.getElementById("objectPropertiesText").style.display = "initial";
+
+   const fontElement = document.getElementById("textFontSelect");
+   const fontSizeElement = document.getElementById("textFontSize");
+
+   fontElement.value = object.fontFamily;
+   fontSizeElement.value = object.fontSize;
+
+   if (changeFontListener)
+      fontElement.removeEventListener("input", changeFontListener);
+   if (changeFontSizeListener)
+      fontSizeElement.removeEventListener("input", changeFontSizeListener);
+
+   changeFontListener = function() {
+		console.log("changeFontListener()")
+		object.set({ fontFamily: this.value });
+      canvas.renderAll();
+   }
+   changeFontSizeListener = function() {
+		console.log("changeFontSizeListener()");
+		object.set({ fontSize: this.value });
+      canvas.renderAll();
+   }
+
+   fontElement.addEventListener("input", changeFontListener);
+   fontSizeElement.addEventListener("input", changeFontSizeListener);
 }
 
 /**
@@ -81,5 +121,6 @@ function objectPropertiesDragEvent(objPropWindow) {
 
 module.exports = {
    closeObjectPropertiesWindow,
-   openObjectPropertiesWindow
+   openObjectPropertiesWindow,
+   textObjectProperties
 }

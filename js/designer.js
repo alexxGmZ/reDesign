@@ -58,7 +58,8 @@ const {
 const { adjustObjectLayer } = require(__dirname + "/js/contextMenu/objectLayer");
 const {
    closeObjectPropertiesWindow,
-   openObjectPropertiesWindow
+   openObjectPropertiesWindow,
+   textObjectProperties
 } = require(__dirname + "/js/contextMenu/objectProperties");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -308,7 +309,16 @@ layerSendToBackBtn.addEventListener("click", () => {
 const objectPropertiesBtn = document.getElementById("objectPropertiesBtn");
 objectPropertiesBtn.addEventListener("click", () => {
    const { pointerX, pointerY } = getPointerCoordinates();
-   openObjectPropertiesWindow(canvas, pointerX, pointerY);
+   const selectedObject = canvas.getActiveObjects()[0];
+   openObjectPropertiesWindow(selectedObject, pointerX, pointerY);
+
+   const objectTypeFunctionMap = {
+      "i-text": textObjectProperties
+   };
+   const selectedObjectFunction = objectTypeFunctionMap[selectedObject.type];
+   if (selectedObjectFunction) {
+      selectedObjectFunction(canvas, iro, selectedObject);
+   }
 });
 
 //
