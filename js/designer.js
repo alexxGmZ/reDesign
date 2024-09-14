@@ -311,9 +311,10 @@ const objectPropertiesBtn = document.getElementById("objectPropertiesBtn");
 objectPropertiesBtn.addEventListener("click", () => {
    const { pointerX, pointerY } = getPointerCoordinates();
    const selectedObject = canvas.getActiveObjects()[0];
+   const objectType = selectedObject.type;
    openObjectPropertiesWindow(selectedObject, pointerX, pointerY);
 
-   if (selectedObject.type === "i-text") {
+   if (objectType === "i-text") {
       textObjectProperties(canvas, selectedObject);
       colorPickerRGB(canvas, iro, selectedObject, [
          "textFillColorPicker",
