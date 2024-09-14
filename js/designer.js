@@ -59,7 +59,8 @@ const { adjustObjectLayer } = require(__dirname + "/js/contextMenu/objectLayer")
 const {
    closeObjectPropertiesWindow,
    openObjectPropertiesWindow,
-   textObjectProperties
+   textObjectProperties,
+   colorPickerRGB
 } = require(__dirname + "/js/contextMenu/objectProperties");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -312,12 +313,15 @@ objectPropertiesBtn.addEventListener("click", () => {
    const selectedObject = canvas.getActiveObjects()[0];
    openObjectPropertiesWindow(selectedObject, pointerX, pointerY);
 
-   const objectTypeFunctionMap = {
-      "i-text": textObjectProperties
-   };
-   const selectedObjectFunction = objectTypeFunctionMap[selectedObject.type];
-   if (selectedObjectFunction) {
-      selectedObjectFunction(canvas, iro, selectedObject);
+   if (selectedObject.type === "i-text") {
+      textObjectProperties(canvas, selectedObject);
+      colorPickerRGB(canvas, iro, selectedObject, [
+         "textFillColorPicker",
+         "textFillR",
+         "textFillG",
+         "textFillB",
+         "textFillChangeBtn"
+      ]);
    }
 });
 
@@ -327,9 +331,15 @@ objectPropertiesBtn.addEventListener("click", () => {
 const objectPropertiesHeaderCloseBtn = document.getElementById("objectPropertiesHeaderCloseBtn");
 objectPropertiesHeaderCloseBtn.addEventListener("click", () => {
    closeObjectPropertiesWindow();
+
+   // NOTE: deletes iro color picker instance to prevent stacking up
+   document.getElementById("textFillColorPicker").innerHTML = "";
 });
 
 const objectPropertiesCloseBtn = document.getElementById("objectPropertiesCloseBtn");
 objectPropertiesCloseBtn.addEventListener("click", () => {
    closeObjectPropertiesWindow();
+
+   // NOTE: deletes iro color picker instance to prevent stacking up
+   document.getElementById("textFillColorPicker").innerHTML = "";
 });
