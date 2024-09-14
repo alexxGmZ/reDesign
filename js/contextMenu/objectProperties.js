@@ -111,10 +111,10 @@ function textObjectProperties(canvas, object) {
 function colorPickerRGB(canvas, iro, object, colorPickerAndRGBFieldsIDs) {
    console.log(`colorPickerRGB(${canvas}, ${iro}, ${object}, ${colorPickerAndRGBFieldsIDs})`);
    const colorPickerElementId = colorPickerAndRGBFieldsIDs[0];
-   const inputRed = document.getElementById(`${colorPickerAndRGBFieldsIDs[1]}`);
-   const inputGreen = document.getElementById(`${colorPickerAndRGBFieldsIDs[2]}`);
-   const inputBlue = document.getElementById(`${colorPickerAndRGBFieldsIDs[3]}`);
-   const changeColorBtn = document.getElementById(`${colorPickerAndRGBFieldsIDs[4]}`)
+   const inputRed = document.getElementById(colorPickerAndRGBFieldsIDs[1]);
+   const inputGreen = document.getElementById(colorPickerAndRGBFieldsIDs[2]);
+   const inputBlue = document.getElementById(colorPickerAndRGBFieldsIDs[3]);
+   const changeColorBtn = document.getElementById(colorPickerAndRGBFieldsIDs[4]);
 
    const colorPicker = new iro.ColorPicker(`#${colorPickerElementId}`, {
       width: 150,
