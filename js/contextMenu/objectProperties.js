@@ -56,13 +56,13 @@ function textObjectProperties(canvas, iro, object) {
       fontSizeElement.removeEventListener("input", changeFontSizeListener);
 
    changeFontListener = function() {
-		console.log("changeFontListener()")
-		object.set({ fontFamily: this.value });
+      console.log("changeFontListener()")
+      object.set({ fontFamily: this.value });
       canvas.renderAll();
    }
    changeFontSizeListener = function() {
-		console.log("changeFontSizeListener()");
-		object.set({ fontSize: this.value });
+      console.log("changeFontSizeListener()");
+      object.set({ fontSize: this.value });
       canvas.renderAll();
    }
 
