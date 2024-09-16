@@ -10,6 +10,7 @@
 //
 // - Al
 
+const { ipcRenderer } = require("electron");
 const fabric = require("fabric").fabric;
 var canvas;
 const iro = require("@jaames/iro");
@@ -65,6 +66,36 @@ const {
 
 document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
+
+   //
+   // NOTE: Put all Electron IPC stuff for renderer process here.
+   //
+
+   //
+   // Open a canvas JSON file via the "File" menu.
+   //
+   // Send the open file request to the main process
+   ipcRenderer.on("open-canvas-file", () => {
+      console.log("ipcRenderer.on('open-canvas-file')");
+      ipcRenderer.send("open-canvas-file");
+   });
+   // Handle the reply with the JSON data from the main process
+   ipcRenderer.on("open-canvas-file-reply", async (_, jsonData) => {
+      console.log("ipcRenderer.on('open-canvas-file-reply')");
+      if (jsonData.error) return console.error(jsonData.error);
+
+      const canvasObjects = jsonData.canvasObjects;
+      const canvasBgColor = canvasObjects.background;
+      const canvasWidth = jsonData.canvasWidth;
+      const canvasHeight = jsonData.canvasHeight;
+
+      canvas = await generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, canvasBgColor);
+      await canvas.loadFromJSON(canvasObjects);
+      await canvas.renderAll();
+      initializeZoomButtons(canvas);
+      displayPointerCoordinates(canvas);
+      mouseContextMenu(canvas);
+   });
 });
 
 // hide context menu on click event buttons
