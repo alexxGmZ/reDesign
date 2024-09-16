@@ -11,6 +11,7 @@ codebase, ensuring consistency and quality throughout the code.
 - [Line Column Limit](#line-column-limit)
 - [Code Commenting](#code-commenting)
 - [Function Structure](#function-structure)
+- [Strings](#strings)
 
 <br>
 
@@ -85,3 +86,17 @@ function foo(param1, param2) {
    console.log(`foo(${param1}, ${param2})`);
 }
 ```
+
+<br>
+
+## Strings
+
+Most strings should be enclosed in `"double quotes"`. When emphasizing a specific word
+within a string, it should be done like this: `"emphasize 'this'"`.
+
+For JavaScript string formatting, always use backticks for template literals, as shown
+below:
+
+```javascript
+const var = "heehee";
+console.log(`The value of var is ${var}`);
