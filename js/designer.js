@@ -11,6 +11,10 @@
 // - Al
 
 const { ipcRenderer } = require("electron");
+// WARN: The Fabric.js version should be specifically v5.3.0 for the renderer process.
+// While v6.*.* is acceptable, as of 2024-09-16, its official documentation has not yet
+// been released. Note that v5.3.0 is not Node.js-friendly, so it should only be used
+// in the renderer process.
 const fabric = require("fabric").fabric;
 var canvas;
 const iro = require("@jaames/iro");
