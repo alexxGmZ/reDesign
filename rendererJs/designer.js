@@ -76,14 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
    //
 
    //
-   // Open a canvas JSON file via the "File" menu.
+   // Open a canvas JSON file via the "File > Open canvas file" menu.
    //
    // Send the open file request to the main process
    ipcRenderer.on("open-canvas-file", () => {
       console.log("ipcRenderer.on('open-canvas-file')");
       ipcRenderer.send("open-canvas-file");
    });
-   // Handle the reply with the JSON data from the main process
+   // Handle the reply with the JSON data from the main process and generate the canvas
+   // from that data
    ipcRenderer.on("open-canvas-file-reply", async (_, jsonData) => {
       console.log("ipcRenderer.on('open-canvas-file-reply')");
       if (jsonData.error) return console.error(jsonData.error);
