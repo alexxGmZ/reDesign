@@ -1,11 +1,14 @@
 /**
- * Saves the current state of the Fabric.js canvas as a JSON file.
+ * Saves the current Fabric.js canvas to a JSON format and sends the data via IPC to the
+ * main process for saving. If the canvas is not defined, the function exits early.
  *
- * @param {Object} canvas - The Fabric.js canvas instance to be saved.
+ * @param {Electron.IpcRenderer} ipcRenderer - The IPC renderer instance for communication
+ * with the main process.
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to be saved.
  */
-function saveCanvasToJSON(canvas) {
+function saveCanvasToJSON(ipcRenderer, canvas) {
    if (!canvas) return;
-   console.log(`saveCanvasToJSON(${canvas})`);
+   console.log(`saveCanvasToJSON(${ipcRenderer}, ${canvas})`);
 
    const canvasData = {
       canvasObjects: canvas.toObject(),
@@ -13,14 +16,8 @@ function saveCanvasToJSON(canvas) {
       canvasHeight: canvas.height
    };
    const jsonedCanvasData = JSON.stringify(canvasData, null, 2);
-   const blob = new Blob([jsonedCanvasData], { type: "application/json" });
-   const url = URL.createObjectURL(blob);
-   const anchorElement = document.createElement("a");
 
-   anchorElement.href = url;
-   anchorElement.download = "untitled.json";
-   anchorElement.click();
-   URL.revokeObjectURL(url);
+   ipcRenderer.send("save-canvas-data", jsonedCanvasData);
 }
 
 /**
@@ -60,5 +57,5 @@ function saveCanvasToPNG(canvas) {
 module.exports = {
    saveCanvasToJSON,
    saveCanvasToJPEG,
-   saveCanvasToPNG
+   saveCanvasToPNG,
 }

@@ -48,6 +48,7 @@ const {
    saveCanvasToJSON,
    saveCanvasToJPEG,
    saveCanvasToPNG,
+   ipcOnceSaveCanvas
 } = require(__dirname + "/rendererJs/topbar/exportCanvas");
 const { importImage } = require(__dirname + "/rendererJs/topbar/importImage");
 const {
@@ -162,7 +163,7 @@ document.addEventListener("keydown", function(event) {
       if (event.key.toLowerCase() === "s") {
          event.preventDefault();
          hideContextMenu();
-         saveCanvasToJSON(canvas);
+         saveCanvasToJSON(ipcRenderer, canvas);
       }
    }
 });
@@ -203,7 +204,7 @@ generateCanvasBtn.addEventListener("click", () => {
 //
 const saveCanvasBtn = document.getElementById("saveCanvas");
 saveCanvasBtn.addEventListener("click", () => {
-   saveCanvasToJSON(canvas);
+   saveCanvasToJSON(ipcRenderer, canvas);
 });
 
 const saveCanvasToJPEGBtn = document.getElementById("saveCanvasToJPEG");
