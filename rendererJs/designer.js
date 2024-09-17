@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
    // from that data
    ipcRenderer.on("open-canvas-file-reply", async (_, jsonData) => {
       console.log("ipcRenderer.on('open-canvas-file-reply')");
-      if (jsonData.error) return console.error(jsonData.error);
+      if (jsonData.error) return alert(jsonData);
 
       const canvasObjects = jsonData.canvasObjects;
       const canvasBgColor = canvasObjects.background;

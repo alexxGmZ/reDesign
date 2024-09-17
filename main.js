@@ -37,7 +37,7 @@ ipcMain.on("open-canvas-file", async (event) => {
 
    if (canceled && filePaths.length == 0) {
       return event.reply("open-canvas-file-reply", {
-         error: "File selection canceled",
+         message: "File selection canceled",
       });
    }
 
@@ -47,7 +47,8 @@ ipcMain.on("open-canvas-file", async (event) => {
       if (err) {
          console.error("Failed to read file:", err);
          return event.reply("open-canvas-file-reply", {
-            error: "Failed to read file",
+            message: "Failed to read file",
+            error: err
          });
       }
 
@@ -57,7 +58,8 @@ ipcMain.on("open-canvas-file", async (event) => {
       } catch (error) {
          console.error("Failed to parse JSON:", error);
          return event.reply("open-canvas-file-reply", {
-            error: "Invalid JSON file",
+            message: "Invalid JSON file",
+            error: error,
          });
       }
    });
