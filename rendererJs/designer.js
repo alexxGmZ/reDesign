@@ -18,55 +18,55 @@ const { ipcRenderer } = require("electron");
 const fabric = require("fabric").fabric;
 var canvas;
 const iro = require("@jaames/iro");
-const { dialogOpen, dialogClose } = require(__dirname + "/js/modules/dialog");
+const { dialogOpen, dialogClose } = require(__dirname + "/rendererJs/modules/dialog");
 const {
    generateCanvas,
    generateCanvasArea,
    createCanvasColorPicker,
    importCanvasFromJSON,
-} = require(__dirname + "/js/topbar/canvas");
+} = require(__dirname + "/rendererJs/topbar/canvas");
 const {
    displayPointerCoordinates
-} = require(__dirname + "/js/statusbar/displayPointerCoordinates");
+} = require(__dirname + "/rendererJs/statusbar/displayPointerCoordinates");
 const {
    changeResInitialValues,
    updateCanvasResolution,
-} = require(__dirname + "/js/statusbar/canvasResolution");
+} = require(__dirname + "/rendererJs/statusbar/canvasResolution");
 const {
    initializeZoomButtons,
    zoomIn,
    zoomOut,
    zoomRange
-} = require(__dirname + "/js/statusbar/canvasScaler");
+} = require(__dirname + "/rendererJs/statusbar/canvasScaler");
 const {
    generateRectangle,
    generateCircle,
    generateText,
    generateLine,
-} = require(__dirname + "/js/sidebar/object");
+} = require(__dirname + "/rendererJs/sidebar/object");
 const {
    saveCanvasToJSON,
    saveCanvasToJPEG,
    saveCanvasToPNG,
-} = require(__dirname + "/js/topbar/exportCanvas");
-const { importImage } = require(__dirname + "/js/topbar/importImage");
+} = require(__dirname + "/rendererJs/topbar/exportCanvas");
+const { importImage } = require(__dirname + "/rendererJs/topbar/importImage");
 const {
    copyObjects,
    cutObjects,
    pasteObjects
-} = require(__dirname + "/js/topbar/cutCopyPaste");
+} = require(__dirname + "/rendererJs/topbar/cutCopyPaste");
 const {
    getPointerCoordinates,
    mouseContextMenu,
    hideContextMenu
-} = require(__dirname + "/js/contextMenu/contextMenu");
-const { adjustObjectLayer } = require(__dirname + "/js/contextMenu/objectLayer");
+} = require(__dirname + "/rendererJs/contextMenu/contextMenu");
+const { adjustObjectLayer } = require(__dirname + "/rendererJs/contextMenu/objectLayer");
 const {
    closeObjectPropertiesWindow,
    openObjectPropertiesWindow,
    textObjectProperties,
    colorPickerRGB
-} = require(__dirname + "/js/contextMenu/objectProperties");
+} = require(__dirname + "/rendererJs/contextMenu/objectProperties");
 
 document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
