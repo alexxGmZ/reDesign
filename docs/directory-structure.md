@@ -13,8 +13,9 @@ The following is the current project directory layout:
 ├── dist/
 ├── docs/
 ├── .git/
-├── js/
+├── mainJs/
 ├── node_modules/
+├── rendererJs/
 ├── styles/
 ├── .gitignore
 ├── index.html
@@ -34,9 +35,9 @@ The following is the current project directory layout:
 - [bootstrap/](#bootstrap)
 - [dist/](#dist)
 - [docs/](#docs)
-- [js/](#js)
+- [mainJs/](#mainjs)
+- [rendererJs/](#rendererjs)
 - [styles/](#styles)
-- [main.js](#mainjs)
 
 <br>
 
@@ -82,14 +83,22 @@ in Markdown format.
 
 <br>
 
-## js/
+## mainJs/
 
-This directory contains all the JavaScript files used in the application.
+This directory contains all of the Node.js files needed for the application's **main**
+process.
+
+<br>
+
+## rendererJs/
+
+This directory contains all the JavaScript files used in the application's **renderer**
+process (browser view).
 
 As of 2024-09-13, the current files and subdirectories are:
 
 ```bash
-js/
+rendererJs/
 ├── contextMenu/
 ├── modules/
 ├── sidebar/
@@ -99,12 +108,12 @@ js/
 ```
 
 > [!NOTE]
-> tree -a -L 1 -F --dirsfirst js
+> tree -a -L 1 -F --dirsfirst rendererJs
 
 The **designer.js** file is the main JavaScript file where all of the application's event
-listeners are placed. The **modules/** directory is for JavaScript files that cannot be
-grouped by UI components. The remaining directories contain JavaScript modules grouped
-by their respective UI components.
+listeners and IPC for renderer process are placed. The **modules/** directory is for
+JavaScript files that cannot be grouped by UI components. The remaining directories
+contain JavaScript modules grouped by their respective UI components.
 
 <br>
 
@@ -113,10 +122,3 @@ by their respective UI components.
 This directory contains all custom CSS files. These are files that cannot be
 implemented using Bootstrap.
 
-<br>
-
-## main.js
-
-This is the main Electron file. As of 2024-09-13, not much Electron-specific code
-has been implemented because most JavaScript files are used in the Renderer process.
-Currently, the main purpose of this file is to launch the Renderer process.
