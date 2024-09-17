@@ -14,6 +14,14 @@ const menuTemplate = Menu.buildFromTemplate([
                BrowserWindow.getFocusedWindow().webContents.send("open-canvas-file");
             }
          },
+         {
+            label: "Save canvas",
+            click: () => {
+               console.log("Save canvas");
+               // send a signal to renderer
+               BrowserWindow.getFocusedWindow().webContents.send("save-canvas");
+            }
+         },
          { role: "toggleDevTools" },
          { role: "reload" }
       ]

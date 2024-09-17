@@ -62,3 +62,40 @@ ipcMain.on("open-canvas-file", async (event) => {
       }
    });
 });
+
+/**
+ * Handles the "save-canvas-data" IPC event, which triggers a save dialog and writes
+ * canvas data to a JSON file. The file path is chosen by the user, and a response is sent
+ * back to the renderer process with the status of the save operation.
+ */
+ipcMain.on("save-canvas-data", async (event, jsonedCanvasData) => {
+   console.log("ipcMain.on('save-canvas-data')");
+
+   const { filePath } = await dialog.showSaveDialog({
+      title: "Save Canvas",
+      defaultPath: "untitled.json",
+      filters: [{ name: "JSON", extensions: ["json"] }]
+   });
+
+   if (!filePath) {
+      console.log("Save canvas canceled");
+      return event.reply("save-canvas-reply", {
+         message: "Save canvas canceled",
+      });
+   }
+
+   fs.writeFile(filePath, jsonedCanvasData, (error) => {
+      if (error) {
+         console.log("Save canvas failed", error);
+         return event.reply("save-canvas-reply", {
+            message: "Save canvas failed",
+            error: error
+         });
+      }
+
+      console.log("Canvas saved successfully");
+      return event.reply("save-canvas-reply", {
+         message: "Canvas saved successfully",
+      });
+   });
+});

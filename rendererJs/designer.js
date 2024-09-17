@@ -100,6 +100,30 @@ document.addEventListener("DOMContentLoaded", () => {
       displayPointerCoordinates(canvas);
       mouseContextMenu(canvas);
    });
+
+   //
+   // Save a canvas via the "File > Save canvas" menu.
+   //
+   // Receive save canvas request and send the jsoned canvas data to the main process
+   ipcRenderer.on("save-canvas", () => {
+      console.log("ipcRenderer.on('save-canvas')");
+      if (!canvas) return;
+
+      const canvasData = {
+         canvasObjects: canvas.toObject(),
+         canvasWidth: canvas.width,
+         canvasHeight: canvas.height
+      };
+      const jsonedCanvasData = JSON.stringify(canvasData, null, 2);
+
+      ipcRenderer.send("save-canvas-data", jsonedCanvasData);
+   });
+   // Receives and logs the reply status of the save operation from the main process
+   ipcRenderer.on("save-canvas-reply", (_, reply) => {
+      console.log("ipcRenderer.on('save-canvas-reply')")
+      if (reply.error) return alert(reply);
+      console.log(reply.message);
+   });
 });
 
 // hide context menu on click event buttons
