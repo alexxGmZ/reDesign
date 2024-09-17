@@ -11,6 +11,10 @@ The application was inspired by the simplicity of [Inkscape](https://inkscape.or
 
 <br>
 
+## Supported Platforms
+
+[![Platforms](https://skillicons.dev/icons?i=windows,linux&theme=light)](https://skillicons.dev)
+
 **Dependencies:**
 
 * Electron & Electron Builder
