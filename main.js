@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog, Menu } = require("electron");
 const fs = require("fs");
+const { menuTemplate } = require("./mainJs/menuTemplate.js");
 
 const createWindow = () => {
    const win = new BrowserWindow({
@@ -11,24 +12,8 @@ const createWindow = () => {
          enableRemoteModule: true,
       }
    });
-   const menu = Menu.buildFromTemplate([
-      {
-         label: "File",
-         submenu: [
-            {
-               label: "Open canvas file",
-               click: () => {
-                  console.log("Open canvas file");
-                  BrowserWindow.getFocusedWindow().webContents.send("open-canvas-file");
-               }
-            },
-            { role: "toggleDevTools" },
-            { role: "reload" }
-         ]
-      }
-   ]);
 
-   Menu.setApplicationMenu(menu);
+   Menu.setApplicationMenu(menuTemplate);
    win.loadFile("./index.html");
 }
 
