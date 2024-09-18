@@ -133,6 +133,24 @@ document.addEventListener("DOMContentLoaded", () => {
       if (reply.error) return alert(reply);
       console.log(reply.message);
    });
+
+   //
+   // Exports the canvas via the "File > Export > JPEG" menu
+   //
+   // Receive export canvas to jpeg request and sends the canvas data url as a response to
+   // the main process
+   ipcRenderer.on("export-canvas-to-jpeg", () => {
+      console.log("ipcRenderer.on('export-canvas-to-jpeg')");
+      const dataURL = canvas.toDataURL({ format: "jpeg" });
+      ipcRenderer.send("export-canvas-to-jpeg", dataURL);
+   });
+   // Receives and logs the reply status of the export to jpeg operation from the main
+   // process
+   ipcRenderer.on("export-canvas-to-jpeg-reply", (_, reply) => {
+      console.log("ipcRenderer.on('export-canvas-to-jpeg-reply')");
+      if (reply.error) return alert(reply);
+      console.log(reply.message);
+   });
 });
 
 // hide context menu on click event buttons

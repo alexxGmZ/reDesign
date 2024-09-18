@@ -31,6 +31,13 @@ const menuTemplate = Menu.buildFromTemplate([
                      console.log("File > Export > PNG");
                      BrowserWindow.getFocusedWindow().webContents.send("export-canvas-to-png");
                   }
+               },
+               {
+                  label: "JPEG",
+                  click: () => {
+                     console.log("File > Export > JPEG");
+                     BrowserWindow.getFocusedWindow().webContents.send("export-canvas-to-jpeg");
+                  }
                }
             ]
          },
