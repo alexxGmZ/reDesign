@@ -70,7 +70,7 @@ ipcMain.on("open-canvas-file", async (event) => {
  * canvas data to a JSON file. The file path is chosen by the user, and a response is sent
  * back to the renderer process with the status of the save operation.
  */
-ipcMain.on("save-canvas-data", async (event, jsonedCanvasData) => {
+ipcMain.on("save-canvas", async (event, jsonedCanvasData) => {
    console.log("ipcMain.on('save-canvas-data')");
 
    const { filePath } = await dialog.showSaveDialog({

@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       const jsonedCanvasData = JSON.stringify(canvasData, null, 2);
 
-      ipcRenderer.send("save-canvas-data", jsonedCanvasData);
+      ipcRenderer.send("save-canvas", jsonedCanvasData);
    });
    // Receives and logs the reply status of the save operation from the main process
    ipcRenderer.on("save-canvas-reply", (_, reply) => {
