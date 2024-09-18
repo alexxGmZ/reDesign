@@ -121,57 +121,8 @@ function createCanvasColorPicker(iro) {
    });
 }
 
-/**
- * Imports a canvas from a JSON file and extracts its properties.
- *
- * @returns {Promise<{
- *    canvasObjects: Object,
- *    canvasBgColor: string,
- *    canvasWidth: number,
- *    canvasHeight: number
- * }>} - A promise that resolves with an object containing the following:
- *   - `canvasObjects` (Object): The Fabric.js canvas objects.
- *   - `canvasBgColor` (string): The background color of the canvas.
- *   - `canvasWidth` (number): The width of the canvas.
- *   - `canvasHeight` (number): The height of the canvas.
- */
-async function importCanvasFromJSON() {
-   console.log("importCanvasFromJSON()");
-
-   try {
-      const { canvasObjects, canvasWidth, canvasHeight } = await new Promise((resolve, reject) => {
-         const canvasInput = document.getElementById("inputCanvasJSON");
-
-         canvasInput.click();
-         canvasInput.addEventListener("change", function(event) {
-            const selectedFile = event.target.files[0];
-            if (!selectedFile) return reject("No file selected");
-
-            const reader = new FileReader();
-            reader.onload = function(event) {
-               const jsonData = event.target.result;
-               const parsedJSON = JSON.parse(jsonData);
-
-               resolve({
-                  canvasObjects: parsedJSON.canvasObjects,
-                  canvasWidth: parsedJSON.canvasWidth,
-                  canvasHeight: parsedJSON.canvasHeight
-               });
-            }
-            reader.readAsText(selectedFile);
-         });
-      });
-      const canvasBgColor = canvasObjects.background;
-
-      return { canvasObjects, canvasBgColor, canvasWidth, canvasHeight };
-   } catch (error) {
-      return alert(error);
-   }
-}
-
 module.exports = {
    generateCanvas,
    generateCanvasArea,
-   createCanvasColorPicker,
-   importCanvasFromJSON
+   createCanvasColorPicker
 }

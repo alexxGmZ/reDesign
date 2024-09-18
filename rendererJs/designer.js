@@ -23,7 +23,6 @@ const {
    generateCanvas,
    generateCanvasArea,
    createCanvasColorPicker,
-   importCanvasFromJSON,
 } = require(__dirname + "/rendererJs/topbar/canvas");
 const {
    displayPointerCoordinates
