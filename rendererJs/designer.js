@@ -45,7 +45,7 @@ const {
 } = require(__dirname + "/rendererJs/sidebar/object");
 const {
    saveCanvasToJSON,
-   saveCanvasToJPEG,
+   exportCanvasToJPEG,
    exportCanvasToPNG
 } = require(__dirname + "/rendererJs/topbar/exportCanvas");
 const { importImage } = require(__dirname + "/rendererJs/topbar/importImage");
@@ -141,8 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
    // the main process
    ipcRenderer.on("export-canvas-to-jpeg", () => {
       console.log("ipcRenderer.on('export-canvas-to-jpeg')");
-      const dataURL = canvas.toDataURL({ format: "jpeg" });
-      ipcRenderer.send("export-canvas-to-jpeg", dataURL);
+      exportCanvasToJPEG(ipcRenderer, canvas);
    });
    // Receives and logs the reply status of the export to jpeg operation from the main
    // process
@@ -234,7 +233,7 @@ saveCanvasBtn.addEventListener("click", () => {
 
 const saveCanvasToJPEGBtn = document.getElementById("saveCanvasToJPEG");
 saveCanvasToJPEGBtn.addEventListener("click", () => {
-   saveCanvasToJPEG(canvas);
+   exportCanvasToJPEG(ipcRenderer, canvas);
 });
 
 const saveCanvasToPNGBtn = document.getElementById("saveCanvasToPNG");
