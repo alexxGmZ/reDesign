@@ -23,7 +23,7 @@ function saveCanvasToJSON(ipcRenderer, canvas) {
 /**
  * Saves the current state of the Fabric.js canvas as a JPEG file.
  *
- * @param {Object} canvas - The Fabric.js canvas instance to be saved.
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to be saved.
  */
 function saveCanvasToJPEG(canvas) {
    if (!canvas) return;
@@ -40,7 +40,7 @@ function saveCanvasToJPEG(canvas) {
 /**
  * Saves the current state of the Fabric.js canvas as a PNG file.
  *
- * @param {Object} canvas - The Fabric.js canvas instance to be saved.
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to be saved.
  */
 function saveCanvasToPNG(canvas) {
    if (!canvas) return;

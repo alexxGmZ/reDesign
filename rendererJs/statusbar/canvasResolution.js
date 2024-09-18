@@ -14,7 +14,7 @@ function changeResInitialValues(canvas) {
 /**
  * Updates the canvas resolution and the displayed resolution text.
  *
- * @param {Object} canvas - The Fabric.js canvas instance to be updated.
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to be updated.
  */
 function updateCanvasResolution(canvas) {
    if (!canvas) return;

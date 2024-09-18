@@ -1,8 +1,8 @@
 /**
  * Generates a rectangle on the specified Fabric.js canvas.
  *
- * @param {Object} fabric - The Fabric.js library object.
- * @param {Object} canvas - The Fabric.js canvas instance where the rectangle will be added.
+ * @param {fabric} fabric - The Fabric.js library object.
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance where the rectangle will be added.
  */
 function generateRectangle(fabric, canvas) {
    if (!canvas) return;
@@ -25,8 +25,8 @@ function generateRectangle(fabric, canvas) {
 /**
  * Generates a circle on the specified Fabric.js canvas.
  *
- * @param {Object} fabric - The Fabric.js library object.
- * @param {Object} canvas - The Fabric.js canvas instance where the circle will be added.
+ * @param {fabric} fabric - The Fabric.js library object.
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance where the circle will be added.
  */
 function generateCircle(fabric, canvas) {
    if (!canvas) return;
@@ -48,8 +48,8 @@ function generateCircle(fabric, canvas) {
 /**
  * Generates a text object on the specified Fabric.js canvas.
  *
- * @param {Object} fabric - The Fabric.js library object.
- * @param {Object} canvas - The Fabric.js canvas instance where the text will be added.
+ * @param {fabric} fabric - The Fabric.js library object.
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance where the text will be added.
  */
 function generateText(fabric, canvas) {
    if (!canvas) return;
@@ -67,8 +67,8 @@ function generateText(fabric, canvas) {
 /**
  * Generates a line on the specified Fabric.js canvas.
  *
- * @param {Object} fabric - The Fabric.js library object.
- * @param {Object} canvas - The Fabric.js canvas instance where the line will be added.
+ * @param {fabric} fabric - The Fabric.js library object.
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance where the line will be added.
  */
 function generateLine(fabric, canvas) {
    if (!canvas) return;

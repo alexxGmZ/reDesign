@@ -23,12 +23,12 @@ function generateCanvas() {
 /**
  * Creates and initializes a new canvas element with the given dimensions and background color.
  *
- * @param {Object} fabric - The Fabric.js library.
+ * @param {fabric} fabric - The Fabric.js library.
  * @param {Object} canvas - The canvas object to be used.
  * @param {number} canvasHeight - The height of the canvas.
  * @param {number} canvasWidth - The width of the canvas.
  * @param {string} bgColor - The background color of the canvas in RGB format.
- * @returns {Object} The Fabric.js canvas instance.
+ * @returns {fabric.Canvas} The Fabric.js canvas instance.
  */
 function generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, bgColor) {
    console.log(`generateCanvasArea(${fabric}, ${canvas}, ${canvasHeight}, ${canvasWidth}, ${bgColor})`);
