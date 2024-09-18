@@ -125,6 +125,25 @@ document.addEventListener("DOMContentLoaded", () => {
       if (reply.error) return alert(reply);
       console.log(reply.message);
    });
+
+   //
+   // Exports the canvas via the "File > Export > PNG" menu
+   //
+   // Receive export canvas to png request and sends the canvas data url as a response to
+   // the main process
+   ipcRenderer.on("export-canvas-to-png", () => {
+      console.log("ipcRenderer.on('export-canvas-to-png')");
+      if (!canvas) return;
+      const dataURL = canvas.toDataURL({ format: "png" });
+      ipcRenderer.send("export-canvas-to-png", dataURL);
+   });
+   // Receives and logs the reply status of the export to png operation from the main
+   // process
+   ipcRenderer.on("export-canvas-to-png-reply", (_, reply) => {
+      console.log("ipcRenderer.on('export-canvas-to-png-reply')");
+      if (reply.error) return alert(reply);
+      console.log(reply.message);
+   });
 });
 
 // hide context menu on click event buttons

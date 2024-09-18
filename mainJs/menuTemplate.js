@@ -22,6 +22,18 @@ const menuTemplate = Menu.buildFromTemplate([
                BrowserWindow.getFocusedWindow().webContents.send("save-canvas");
             }
          },
+         {
+            label: "Export",
+            submenu: [
+               {
+                  label: "PNG",
+                  click: () => {
+                     console.log("File > Export > PNG");
+                     BrowserWindow.getFocusedWindow().webContents.send("export-canvas-to-png");
+                  }
+               }
+            ]
+         },
          { role: "toggleDevTools" },
          { role: "reload" }
       ]

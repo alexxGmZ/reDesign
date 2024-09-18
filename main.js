@@ -102,3 +102,42 @@ ipcMain.on("save-canvas", async (event, jsonedCanvasData) => {
       });
    });
 });
+
+/**
+ * Handles the "export-canvas-to-png" IPC event, which triggers a save dialog and exports
+ * canvas data to a PNG file. The canvas data is provided as a Data URL and is converted
+ * to binary format before saving.
+ */
+ipcMain.on("export-canvas-to-png", async (event, canvasDataURL) => {
+   const replyChannel = "export-canvas-to-png-reply";
+   const { filePath } = await dialog.showSaveDialog({
+      title: "Export canvas to PNG",
+      defaultPath: "untitled.png",
+      filters: [{ name: "PNG", extensions: ["png"] }]
+   });
+
+   if (!filePath) {
+      console.log("Export canvas to PNG canceled");
+      return event.reply(replyChannel, {
+         message: "Export canvas to PNG canceled",
+      });
+   }
+
+   const base64Data = canvasDataURL.replace(/^data:image\/png;base64,/, "");
+   const binaryData = Buffer.from(base64Data, "base64");
+
+   fs.writeFile(filePath, binaryData, (error) => {
+      if (error) {
+         console.log("Export canvas to PNG failed", error);
+         return event.reply(replyChannel, {
+            message: "Export canvas to PNG failed",
+            error: error
+         });
+      }
+
+      console.log("Canvas exported to PNG successfully");
+      return event.reply(replyChannel, {
+         message: "Canvas exported to PNG successfully",
+      });
+   });
+});
