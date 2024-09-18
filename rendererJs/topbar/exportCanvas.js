@@ -17,7 +17,7 @@ function saveCanvasToJSON(ipcRenderer, canvas) {
    };
    const jsonedCanvasData = JSON.stringify(canvasData, null, 2);
 
-   ipcRenderer.send("save-canvas-data", jsonedCanvasData);
+   ipcRenderer.send("save-canvas", jsonedCanvasData);
 }
 
 /**
