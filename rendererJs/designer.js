@@ -230,20 +230,8 @@ importImageBtn.addEventListener("click", () => {
 // open canvas from JSON button
 //
 const importCanvasJSONBtn = document.getElementById("importCanvasFromJSON");
-importCanvasJSONBtn.addEventListener("click", async () => {
-   const {
-      canvasObjects,
-      canvasBgColor,
-      canvasWidth,
-      canvasHeight,
-   } = await importCanvasFromJSON();
-
-   canvas = await generateCanvasArea(fabric, canvas, canvasHeight, canvasWidth, canvasBgColor);
-   await canvas.loadFromJSON(canvasObjects);
-   await canvas.renderAll();
-   initializeZoomButtons(canvas);
-   await displayPointerCoordinates(canvas);
-   await mouseContextMenu(canvas);
+importCanvasJSONBtn.addEventListener("click", () => {
+   ipcRenderer.send("open-canvas-file");
 });
 
 //
