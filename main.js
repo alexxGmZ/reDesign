@@ -36,6 +36,7 @@ ipcMain.on("open-canvas-file", async (event) => {
    });
 
    if (canceled && filePaths.length == 0) {
+      console.log("file selection canceled");
       return event.reply("open-canvas-file-reply", {
          message: "File selection canceled",
       });
