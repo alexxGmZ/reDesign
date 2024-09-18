@@ -46,7 +46,6 @@ const {
 const {
    saveCanvasToJSON,
    saveCanvasToJPEG,
-   saveCanvasToPNG
 } = require(__dirname + "/rendererJs/topbar/exportCanvas");
 const { importImage } = require(__dirname + "/rendererJs/topbar/importImage");
 const {

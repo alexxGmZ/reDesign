@@ -37,25 +37,7 @@ function saveCanvasToJPEG(canvas) {
    anchorElement.click();
 }
 
-/**
- * Saves the current state of the Fabric.js canvas as a PNG file.
- *
- * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to be saved.
- */
-function saveCanvasToPNG(canvas) {
-   if (!canvas) return;
-   console.log(`saveCanvasToPNG(${canvas})`);
-
-   const dataURL = canvas.toDataURL({ format: "png" });
-   const anchorElement = document.createElement("a");
-
-   anchorElement.href = dataURL;
-   anchorElement.download = "untitled.png";
-   anchorElement.click();
-}
-
 module.exports = {
    saveCanvasToJSON,
-   saveCanvasToJPEG,
-   saveCanvasToPNG,
+   saveCanvasToJPEG
 }
