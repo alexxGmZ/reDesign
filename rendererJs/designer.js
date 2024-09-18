@@ -232,7 +232,9 @@ saveCanvasToJPEGBtn.addEventListener("click", () => {
 
 const saveCanvasToPNGBtn = document.getElementById("saveCanvasToPNG");
 saveCanvasToPNGBtn.addEventListener("click", () => {
-   saveCanvasToPNG(canvas);
+   if (!canvas) return;
+   const dataURL = canvas.toDataURL({ format: "png" });
+   ipcRenderer.send("export-canvas-to-png", dataURL);
 });
 
 //
