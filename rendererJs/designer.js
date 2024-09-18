@@ -35,7 +35,8 @@ const {
    initializeZoomButtons,
    zoomIn,
    zoomOut,
-   zoomRange
+   zoomRange,
+   resetCanvasZoom,
 } = require(__dirname + "/rendererJs/statusbar/canvasScaler");
 const {
    generateRectangle,
@@ -124,7 +125,10 @@ document.addEventListener("DOMContentLoaded", () => {
    // the main process
    ipcRenderer.on("export-canvas-to-png", () => {
       console.log("ipcRenderer.on('export-canvas-to-png')");
-      exportCanvasToPNG(ipcRenderer, canvas);
+      resetCanvasZoom(canvas);
+      setTimeout(() => {
+         exportCanvasToPNG(ipcRenderer, canvas);
+      }, 50);
    });
    // Receives and logs the reply status of the export to png operation from the main
    // process
@@ -141,7 +145,10 @@ document.addEventListener("DOMContentLoaded", () => {
    // the main process
    ipcRenderer.on("export-canvas-to-jpeg", () => {
       console.log("ipcRenderer.on('export-canvas-to-jpeg')");
-      exportCanvasToJPEG(ipcRenderer, canvas);
+      resetCanvasZoom(canvas);
+      setTimeout(() => {
+         exportCanvasToJPEG(ipcRenderer, canvas);
+      }, 50);
    });
    // Receives and logs the reply status of the export to jpeg operation from the main
    // process
@@ -233,12 +240,18 @@ saveCanvasBtn.addEventListener("click", () => {
 
 const saveCanvasToJPEGBtn = document.getElementById("saveCanvasToJPEG");
 saveCanvasToJPEGBtn.addEventListener("click", () => {
-   exportCanvasToJPEG(ipcRenderer, canvas);
+   resetCanvasZoom(canvas);
+   setTimeout(() => {
+      exportCanvasToJPEG(ipcRenderer, canvas);
+   }, 50);
 });
 
 const saveCanvasToPNGBtn = document.getElementById("saveCanvasToPNG");
 saveCanvasToPNGBtn.addEventListener("click", () => {
-   exportCanvasToPNG(ipcRenderer, canvas);
+   resetCanvasZoom(canvas);
+   setTimeout(() => {
+      exportCanvasToPNG(ipcRenderer, canvas);
+   }, 50);
 });
 
 //

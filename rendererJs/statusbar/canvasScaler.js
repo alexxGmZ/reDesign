@@ -109,9 +109,31 @@ function updateCanvasSize(canvas) {
    canvas.setZoom(parseFloat(scaleRangeInput.value));
 }
 
+/**
+ * Resets the Fabric.js canvas zoom level to 1 (default) and updates the corresponding
+ * UI elements such as the scale range input and multiplier text. If the canvas is not
+ * defined, the function exits early.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance whose zoom level is to be
+ * reset.
+ */
+function resetCanvasZoom(canvas) {
+   if (!canvas) return;
+   console.log(`resetCanvasZoom(${canvas})`);
+   const scaleRangeInput = document.getElementById("scaleRangeInput");
+   const scaleMultiplierText = document.getElementById("scaleMultiplierText");
+
+   scaleRangeInput.value = 1;
+   scaleMultiplierText.textContent = "1x";
+   canvas.setWidth(canvasWidth);
+   canvas.setHeight(canvasHeight);
+   canvas.setZoom(1);
+}
+
 module.exports = {
    initializeZoomButtons,
    zoomIn,
    zoomOut,
-   zoomRange
+   zoomRange,
+   resetCanvasZoom
 }
