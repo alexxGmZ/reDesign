@@ -1,17 +1,4 @@
 /**
- * Sets the initial values of the change resolution input fields based on the current
- * canvas resolution displayed.
- *
- * @param {fabric.Canvas} canvas - The Fabric.js canvas instance.
- */
-function changeResInitialValues(canvas) {
-   console.log(`changeResInitialValues(${canvas})`);
-
-   document.getElementById("changeResWidth").value = canvas.getWidth() || 0;
-   document.getElementById("changeResHeight").value = canvas.getHeight() || 0;
-}
-
-/**
  * Updates the canvas resolution and the displayed resolution text.
  *
  * @param {fabric.Canvas} canvas - The Fabric.js canvas instance to be updated.
@@ -30,6 +17,5 @@ function updateCanvasResolution(canvas) {
 }
 
 module.exports = {
-   changeResInitialValues,
    updateCanvasResolution
 }

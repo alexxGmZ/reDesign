@@ -28,7 +28,6 @@ const {
    displayPointerCoordinates
 } = require(__dirname + "/rendererJs/statusbar/displayPointerCoordinates");
 const {
-   changeResInitialValues,
    updateCanvasResolution,
 } = require(__dirname + "/rendererJs/statusbar/canvasResolution");
 const {
