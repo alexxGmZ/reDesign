@@ -100,3 +100,4 @@ below:
 ```javascript
 const var = "heehee";
 console.log(`The value of var is ${var}`);
+```
