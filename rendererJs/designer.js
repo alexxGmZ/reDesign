@@ -37,6 +37,7 @@ const {
    zoomOut,
    zoomRange,
    resetCanvasZoom,
+   getCanvasResolution
 } = require(__dirname + "/rendererJs/statusbar/canvasScaler");
 const {
    generateRectangle,
@@ -298,7 +299,9 @@ const openChangeCanvasResDlgBtn = document.getElementById("openChangeCanvasResDi
 openChangeCanvasResDlgBtn.addEventListener("click", () => {
    if (!canvas) return;
    dialogOpen("changeCanvasResDialog");
-   changeResInitialValues(canvas);
+   const { width, height } = getCanvasResolution(canvas);
+   document.getElementById("changeResWidth").value = width || 0;
+   document.getElementById("changeResHeight").value = height || 0;
 });
 
 const closeChangeCanvasResDlgBtn = document.getElementById("closeChangeResolutionDialog");

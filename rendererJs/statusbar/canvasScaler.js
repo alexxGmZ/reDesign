@@ -134,10 +134,31 @@ function resetCanvasZoom(canvas) {
    canvas.setZoom(1);
 }
 
+/**
+ * Retrieves the current resolution (width and height) of the Fabric.js canvas. If the
+ * canvas is not defined, the function exits early and returns default values of 0 for
+ * width and height.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance from which to get the
+ * resolution.
+ * @returns {{ width: number, height: number }} An object containing the width and height
+ * of the canvas, defaulting to 0 if the canvas is not defined.
+ */
+function getCanvasResolution(canvas) {
+   if (!canvas) return;
+   const width = canvasWidth || 0;
+   const height = canvasHeight || 0;
+   return {
+      width: width,
+      height: height
+   }
+}
+
 module.exports = {
    initializeZoomButtons,
    zoomIn,
    zoomOut,
    zoomRange,
-   resetCanvasZoom
+   resetCanvasZoom,
+   getCanvasResolution
 }
