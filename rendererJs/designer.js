@@ -297,7 +297,6 @@ pasteObjectsBtn.addEventListener("click", () => {
 const openChangeCanvasResDlgBtn = document.getElementById("openChangeCanvasResDialog");
 openChangeCanvasResDlgBtn.addEventListener("click", () => {
    if (!canvas) return;
-   hideContextMenu();
    dialogOpen("changeCanvasResDialog");
    changeResInitialValues(canvas);
 });
