@@ -30,9 +30,13 @@ function initializeZoomButtons(canvas) {
    scaleDownBtn.disabled = false;
    scaleRangeInput.disabled = false;
    scaleUpBtn.disabled = false;
+
+   scaleRangeInput.value = 1;
    scaleMultiplierText.textContent = scaleRangeInput.value + "x";
+
    canvasWidth = canvas.getWidth();
    canvasHeight = canvas.getHeight();
+
    rangeMax = parseFloat(scaleRangeInput.max);
    rangeMin = parseFloat(scaleRangeInput.min);
    rangeStep = parseFloat(scaleRangeInput.step);
