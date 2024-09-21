@@ -109,6 +109,8 @@ ipcMain.on("save-canvas", async (event, jsonedCanvasData) => {
  * to binary format before saving.
  */
 ipcMain.on("export-canvas-to-png", async (event, canvasDataURL) => {
+   console.log("ipcMain.on('export-canvas-to-png')");
+
    const replyChannel = "export-canvas-to-png-reply";
    const { filePath } = await dialog.showSaveDialog({
       title: "Export canvas to PNG",
@@ -148,6 +150,8 @@ ipcMain.on("export-canvas-to-png", async (event, canvasDataURL) => {
  * to binary format before saving.
  */
 ipcMain.on("export-canvas-to-jpeg", async (event, canvasDataURL) => {
+   console.log("ipcMain.on('export-canvas-to-jpeg')");
+
    const replyChannel = "export-canvas-to-jpeg-reply";
    const { filePath } = await dialog.showSaveDialog({
       title: "Export canvas to JPEG",
