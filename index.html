@@ -183,6 +183,60 @@
       <br><br>
 
       <div class="mb-6">
+         <!-- rectable object properties -->
+         <div id="object_properties_rect" class="">
+            <label for="rect_radius" class="fw-bold">Radius:</label>
+            <input type="number" id="rect_radius" min="0" step="0.1" class="border rounded-3 px-2" style="width: 70px">
+
+            <div class="mb-2">
+               <p class="fw-bold">Fill Color</p>
+               <label for="rect_fill_color_r">R:</label>
+               <input type="number" min="0" max="255" id="rect_fill_color_r" class="border rounded-3 px-1"
+                  style="width: 60px">
+               <label for="rect_fill_color_g">G:</label>
+               <input type="number" min="0" max="255" id="rect_fill_color_g" class="border rounded-3 px-1"
+                  style="width: 60px">
+               <label for="rect_fill_color_b">B:</label>
+               <input type="number" min="0" max="255" id="rect_fill_color_b" class="border rounded-3 px-1"
+                  style="width: 60px">
+               <label for="rect_fill_color_a">A:</label>
+               <input type="number" min="0" max="1" step="0.01" id="rect_fill_color_a" class="border rounded-3 px-1"
+                  style="width: 60px">
+               <button id="rect_fill_change" class="bg-white rounded-pill border px-1 ">
+                  Change
+               </button>
+            </div>
+            <div id="rect_fill_color_picker" class="mb-3">
+            </div>
+
+            <label for="rect_stroke_width" class="fw-bold">Stroke Width:</label>
+            <input type="number" id="rect_stroke_width" min="0.1" step="0.1" class="border rounded-3 px-2"
+               style="width: 70px">
+            <br>
+
+            <div class="mb-2">
+               <p class="fw-bold">Stroke Color</p>
+               <label for="rect_stroke_color_r">R:</label>
+               <input type="number" min="0" max="255" id="rect_stroke_color_r" class="border rounded-3 px-1"
+                  style="width: 60px">
+               <label for="rect_stroke_color_g">G:</label>
+               <input type="number" min="0" max="255" id="rect_stroke_color_g" class="border rounded-3 px-1"
+                  style="width: 60px">
+               <label for="rect_stroke_color_b">B:</label>
+               <input type="number" min="0" max="255" id="rect_stroke_color_b" class="border rounded-3 px-1"
+                  style="width: 60px">
+               <label for="rect_stroke_color_a">A:</label>
+               <input type="number" min="0" max="1" step="0.01" id="rect_stroke_color_a"
+                  class="border w-14 rounded-3 px-1" style="width: 60px">
+               <button id="rect_stroke_change" class="bg-white rounded-pill border px-1">
+                  Change
+               </button>
+            </div>
+            <div id="rect_stroke_color_picker">
+            </div>
+         </div>
+
+         <!-- text object properties -->
          <div id="objectPropertiesText" class="">
             <label for="textFontSelect" class="fw-bold">Font:</label>
             <select id="textFontSelect" class="border rounded-3 px-2">
