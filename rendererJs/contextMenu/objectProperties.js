@@ -30,7 +30,75 @@ function openObjectPropertiesWindow(selectedObject, pointerX, pointerY) {
    objectPropertiesDragEvent(objPropWindow);
 
    document.getElementById("objectPropertiesObjectType").innerHTML = objectType;
+   document.getElementById("objectPropertiesRect").style.display = "none";
    document.getElementById("objectPropertiesText").style.display = "none";
+}
+
+let changeRectRadiusListener;
+let changeRectStrokeWidthListener;
+/**
+ * Displays and initializes the rectangle object properties in the UI based on the
+ * selected Fabric.js rectangle object. Sets up listeners for updating the rectangle's
+ * corner radius and stroke width, and populates the fill and stroke RGBA input fields.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance on which the rectangle
+ * object exists.
+ * @param {fabric.Rect} object - The rectangle object whose properties are displayed and
+ * updated.
+ */
+function rectObjectProperties(canvas, object) {
+   console.log(`rectObjectProperties(${canvas}, ${object})`);
+
+   // display rectangle object properties
+   document.getElementById("objectPropertiesRect").style.display = "initial";
+
+   const radiusElement = document.getElementById("rectRadius");
+   const fillR = document.getElementById("rectFillR");
+   const fillG = document.getElementById("rectFillG");
+   const fillB = document.getElementById("rectFillB");
+   const fillA = document.getElementById("rectFillA");
+   const strokeWidthElement = document.getElementById("rectStrokeWidth");
+   const strokeR = document.getElementById("rectStrokeR");
+   const strokeG = document.getElementById("rectStrokeG");
+   const strokeB = document.getElementById("rectStrokeB");
+   const strokeA = document.getElementById("rectStrokeA");
+
+   radiusElement.value = object.rx;
+   strokeWidthElement.value = object.strokeWidth;
+
+   // WARN: Do not remove this condition or else all rectangle objects will be modified
+   if (changeRectRadiusListener)
+      radiusElement.removeEventListener("input", changeRectRadiusListener);
+   if (changeRectStrokeWidthListener)
+      strokeWidthElement.removeEventListener("input", changeRectStrokeWidthListener);
+
+   changeRectRadiusListener = function() {
+      console.log("changeRectRadiusListener()")
+      object.set({ rx: parseFloat(this.value), ry: parseFloat(this.value) });
+      canvas.renderAll();
+   }
+   changeRectStrokeWidthListener = function() {
+      console.log("changeRectStrokeWidthListener()");
+      object.set({ strokeWidth: parseFloat(this.value) });
+      canvas.renderAll();
+   }
+
+   radiusElement.addEventListener("input", changeRectRadiusListener);
+   strokeWidthElement.addEventListener("input", changeRectStrokeWidthListener);
+
+   // initialize the rectangle fill RGBA inputs
+   var objectFillRGBA = object.fill.match(/\d+/g);
+   fillR.value = objectFillRGBA[0];
+   fillG.value = objectFillRGBA[1];
+   fillB.value = objectFillRGBA[2];
+   fillA.value = objectFillRGBA[3];
+
+   // initialize the rectangle stroke RGBA inputs
+   var objectStrokeRGBA = object.stroke.match(/\d+/g);
+   strokeR.value = objectStrokeRGBA[0];
+   strokeG.value = objectStrokeRGBA[1];
+   strokeB.value = objectStrokeRGBA[2];
+   strokeA.value = objectStrokeRGBA[3];
 }
 
 let changeFontListener;
@@ -213,6 +281,7 @@ function objectPropertiesDragEvent(objPropWindow) {
 module.exports = {
    closeObjectPropertiesWindow,
    openObjectPropertiesWindow,
+   rectObjectProperties,
    textObjectProperties,
    colorPickerRGB
 }

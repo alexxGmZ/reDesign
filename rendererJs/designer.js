@@ -64,6 +64,7 @@ const { adjustObjectLayer } = require(__dirname + "/rendererJs/contextMenu/objec
 const {
    closeObjectPropertiesWindow,
    openObjectPropertiesWindow,
+   rectObjectProperties,
    textObjectProperties,
    colorPickerRGB
 } = require(__dirname + "/rendererJs/contextMenu/objectProperties");
@@ -402,6 +403,9 @@ objectPropertiesBtn.addEventListener("click", () => {
          "textFillB",
          "textFillChangeBtn"
       ]);
+   } else if (objectType === "rect") {
+      rectObjectProperties(canvas, selectedObject);
+      // TODO: create colorpicker function for rgba
    }
 });
 
