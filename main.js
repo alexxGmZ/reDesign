@@ -74,6 +74,7 @@ ipcMain.on("open-canvas-file", async (event) => {
 ipcMain.on("save-canvas", async (event, jsonedCanvasData) => {
    console.log("ipcMain.on('save-canvas-data')");
 
+   const replyChannel = "save-canvas-reply";
    const { filePath } = await dialog.showSaveDialog({
       title: "Save Canvas",
       defaultPath: "untitled.json",
@@ -82,7 +83,7 @@ ipcMain.on("save-canvas", async (event, jsonedCanvasData) => {
 
    if (!filePath) {
       console.log("Save canvas canceled");
-      return event.reply("save-canvas-reply", {
+      return event.reply(replyChannel, {
          message: "Save canvas canceled",
       });
    }
@@ -90,14 +91,14 @@ ipcMain.on("save-canvas", async (event, jsonedCanvasData) => {
    fs.writeFile(filePath, jsonedCanvasData, (error) => {
       if (error) {
          console.log("Save canvas failed", error);
-         return event.reply("save-canvas-reply", {
+         return event.reply(replyChannel, {
             message: "Save canvas failed",
             error: error
          });
       }
 
       console.log("Canvas saved successfully");
-      return event.reply("save-canvas-reply", {
+      return event.reply(replyChannel, {
          message: "Canvas saved successfully",
       });
    });
