@@ -31,6 +31,7 @@ ipcMain.on("open-canvas-file", async (event) => {
    console.log("ipcMain.on('open-canvas-file')");
    // show dialog for JSON files
    const { canceled, filePaths } = await dialog.showOpenDialog({
+      title: "Open Canvas",
       properties: ["openFile"],
       filters: [{ name: "JSON", extensions: ["json"] }]
    });
