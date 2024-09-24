@@ -88,8 +88,6 @@ function rectObjectProperties(canvas, object) {
 
    // initialize the rectangle fill RGBA inputs
    var objectFillRGBA = object.fill.match(/\d+/g);
-   console.log(object.fill);
-   console.log(objectFillRGBA);
    fillR.value = objectFillRGBA[0];
    fillG.value = objectFillRGBA[1];
    fillB.value = objectFillRGBA[2];
@@ -97,8 +95,6 @@ function rectObjectProperties(canvas, object) {
 
    // initialize the rectangle stroke RGBA inputs
    var objectStrokeRGBA = object.stroke.match(/\d+/g);
-   console.log(object.stroke);
-   console.log(objectStrokeRGBA);
    strokeR.value = objectStrokeRGBA[0];
    strokeG.value = objectStrokeRGBA[1];
    strokeB.value = objectStrokeRGBA[2];
