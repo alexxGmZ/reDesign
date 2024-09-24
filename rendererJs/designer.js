@@ -397,8 +397,7 @@ objectPropertiesBtn.addEventListener("click", () => {
 
    if (objectType === "i-text") {
       textObjectProperties(canvas, selectedObject);
-      // TODO: clear textFillColorPicker before calling colorPickerRGB or it will stack
-      // when the properties window is not closed and using the close buttons
+      document.getElementById("textFillColorPicker").innerHTML = "";
       colorPickerRGB(canvas, iro, selectedObject, [
          "textFillColorPicker",
          "textFillR",
