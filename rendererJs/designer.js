@@ -66,7 +66,8 @@ const {
    openObjectPropertiesWindow,
    rectObjectProperties,
    textObjectProperties,
-   colorPickerRGB
+   colorPickerRGB,
+   colorPickerRGBA
 } = require(__dirname + "/rendererJs/contextMenu/objectProperties");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -396,6 +397,8 @@ objectPropertiesBtn.addEventListener("click", () => {
 
    if (objectType === "i-text") {
       textObjectProperties(canvas, selectedObject);
+      // TODO: clear textFillColorPicker before calling colorPickerRGB or it will stack
+      // when the properties window is not closed and using the close buttons
       colorPickerRGB(canvas, iro, selectedObject, [
          "textFillColorPicker",
          "textFillR",
@@ -405,7 +408,24 @@ objectPropertiesBtn.addEventListener("click", () => {
       ]);
    } else if (objectType === "rect") {
       rectObjectProperties(canvas, selectedObject);
-      // TODO: create colorpicker function for rgba
+      document.getElementById("rectFillColorPicker").innerHTML = "";
+      colorPickerRGBA(canvas, iro, selectedObject, "fill", [
+         "rectFillColorPicker",
+         "rectFillR",
+         "rectFillG",
+         "rectFillB",
+         "rectFillA",
+         "rectFillChangeBtn",
+      ]);
+      document.getElementById("rectStrokeColorPicker").innerHTML = "";
+      colorPickerRGBA(canvas, iro, selectedObject, "stroke", [
+         "rectStrokeColorPicker",
+         "rectStrokeR",
+         "rectStrokeG",
+         "rectStrokeB",
+         "rectStrokeA",
+         "rectStrokeChangeBtn",
+      ]);
    }
 });
 
@@ -418,6 +438,8 @@ objectPropertiesHeaderCloseBtn.addEventListener("click", () => {
 
    // NOTE: deletes iro color picker instance to prevent stacking up
    document.getElementById("textFillColorPicker").innerHTML = "";
+   document.getElementById("rectFillColorPicker").innerHTML = "";
+   document.getElementById("rectStrokeColorPicker").innerHTML = "";
 });
 
 const objectPropertiesCloseBtn = document.getElementById("objectPropertiesCloseBtn");
@@ -426,4 +448,6 @@ objectPropertiesCloseBtn.addEventListener("click", () => {
 
    // NOTE: deletes iro color picker instance to prevent stacking up
    document.getElementById("textFillColorPicker").innerHTML = "";
+   document.getElementById("rectFillColorPicker").innerHTML = "";
+   document.getElementById("rectStrokeColorPicker").innerHTML = "";
 });

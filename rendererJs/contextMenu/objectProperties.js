@@ -88,6 +88,8 @@ function rectObjectProperties(canvas, object) {
 
    // initialize the rectangle fill RGBA inputs
    var objectFillRGBA = object.fill.match(/\d+/g);
+   console.log(object.fill);
+   console.log(objectFillRGBA);
    fillR.value = objectFillRGBA[0];
    fillG.value = objectFillRGBA[1];
    fillB.value = objectFillRGBA[2];
@@ -95,6 +97,8 @@ function rectObjectProperties(canvas, object) {
 
    // initialize the rectangle stroke RGBA inputs
    var objectStrokeRGBA = object.stroke.match(/\d+/g);
+   console.log(object.stroke);
+   console.log(objectStrokeRGBA);
    strokeR.value = objectStrokeRGBA[0];
    strokeG.value = objectStrokeRGBA[1];
    strokeB.value = objectStrokeRGBA[2];
@@ -229,6 +233,112 @@ function colorPickerRGB(canvas, iro, object, colorPickerAndRGBFieldsIDs) {
    });
 }
 
+let changeFillRGBAColorBtnListener;
+let changeStrokeRGBAColorBtnListener;
+/**
+ * Sets up a color picker and RGBA input fields for updating the fill or stroke color of
+ * a Fabric.js object. The selected color can be applied to either the "stroke" or "fill"
+ * property, depending on the `strokeOrFill` parameter.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance on which the object exists.
+ * @param {iro.ColorPicker} iro - The iro.js color picker instance for selecting colors.
+ * @param {fabric.Object} object - The Fabric.js object whose fill or stroke color is updated.
+ * @param {String} strokeOrFill - Specifies whether the "stroke" or "fill" property is updated.
+ * @param {Array<String>} colorPickerAndRGBAFieldsIDs - An array of element IDs for the color
+ * picker and the RGBA input fields. The array must follow this index order:
+ *
+ *  - Index 0: ID of the HTML element where the iro color picker will be generated.
+ *  - Index 1: ID of the input element for the red (R) value.
+ *  - Index 2: ID of the input element for the green (G) value.
+ *  - Index 3: ID of the input element for the blue (B) value.
+ *  - Index 4: ID of the input element for the alpha (A) value.
+ *  - Index 5: ID of the button that, when clicked, will update the object's color on the
+ *    canvas.
+ */
+function colorPickerRGBA(canvas, iro, object, strokeOrFill, colorPickerAndRGBAFieldsIDs) {
+   console.log(`colorPickerRGBA(${canvas}, ${iro}, ${object}, ${strokeOrFill}, ${colorPickerAndRGBAFieldsIDs})`)
+   const colorPickerElementId = colorPickerAndRGBAFieldsIDs[0];
+   const inputRed = document.getElementById(colorPickerAndRGBAFieldsIDs[1]);
+   const inputGreen = document.getElementById(colorPickerAndRGBAFieldsIDs[2]);
+   const inputBlue = document.getElementById(colorPickerAndRGBAFieldsIDs[3]);
+   const inputAlpha = document.getElementById(colorPickerAndRGBAFieldsIDs[4]);
+   const changeColorBtn = document.getElementById(colorPickerAndRGBAFieldsIDs[5]);
+
+   const colorPicker = new iro.ColorPicker(`#${colorPickerElementId}`, {
+      width: 150,
+      color: object[strokeOrFill],
+      layoutDirection: "horizontal",
+      borderWidth: 1,
+      borderColor: "#000000",
+      layout: [
+         { component: iro.ui.Wheel, options: {} },
+         { component: iro.ui.Slider, options: { sliderType: "value" } },
+         { component: iro.ui.Slider, options: { sliderType: "alpha" } },
+      ]
+   });
+
+   let red = inputRed.value;
+   let green = inputGreen.value;
+   let blue = inputBlue.value;
+   let alpha = inputAlpha.value;
+
+   colorPicker.on("color:change", (color) => {
+      red = color.rgba.r;
+      green = color.rgba.g;
+      blue = color.rgba.b;
+      alpha = color.rgba.a;
+      inputRed.value = red;
+      inputGreen.value = green;
+      inputBlue.value = blue;
+      inputAlpha.value = alpha;
+   });
+
+   function updateColorPicker() {
+      var newColor = `rgba(${red}, ${green}, ${blue}, ${alpha})`
+      colorPicker.color.set(newColor);
+   }
+
+   inputRed.addEventListener("input", function() {
+      red = this.value;
+      updateColorPicker();
+   });
+   inputGreen.addEventListener("input", function() {
+      green = this.value;
+      updateColorPicker();
+   });
+   inputBlue.addEventListener("input", function() {
+      blue = this.value;
+      updateColorPicker();
+   });
+   inputAlpha.addEventListener("input", function() {
+      alpha = this.value;
+      updateColorPicker();
+   });
+
+   function updateObjectColor(property) {
+      return () => {
+         object.set({ [property]: `rgba(${red}, ${green}, ${blue}, ${alpha})` });
+         canvas.renderAll();
+      };
+   }
+
+   // NOTE: Removing previous event listeners prevents multiple listeners from stacking up
+   // on the button, which could cause bugs by executing the listener multiple times.
+   if (strokeOrFill === "fill") {
+      if (changeFillRGBAColorBtnListener)
+         changeColorBtn.removeEventListener("click", changeFillRGBAColorBtnListener);
+
+      changeFillRGBAColorBtnListener = updateObjectColor("fill");
+      changeColorBtn.addEventListener("click", changeFillRGBAColorBtnListener);
+   } else if (strokeOrFill === "stroke") {
+      if (changeStrokeRGBAColorBtnListener)
+         changeColorBtn.removeEventListener("click", changeStrokeRGBAColorBtnListener);
+
+      changeStrokeRGBAColorBtnListener = updateObjectColor("stroke");
+      changeColorBtn.addEventListener("click", changeStrokeRGBAColorBtnListener);
+   }
+}
+
 /**
  * Enables drag functionality for the object properties window (`objPropWindow`).
  *
@@ -283,5 +393,6 @@ module.exports = {
    openObjectPropertiesWindow,
    rectObjectProperties,
    textObjectProperties,
-   colorPickerRGB
+   colorPickerRGB,
+   colorPickerRGBA
 }
