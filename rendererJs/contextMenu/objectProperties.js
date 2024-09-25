@@ -1,3 +1,10 @@
+let changeRectRadiusListener;
+let changeRectStrokeWidthListener;
+let changeFontListener;
+let changeFontSizeListener;
+let changeFillRGBAColorBtnListener;
+let changeStrokeRGBAColorBtnListener;
+
 /**
  * Closes the object properties window if it is currently visible by setting
  * its display style to "none".
@@ -34,8 +41,6 @@ function openObjectPropertiesWindow(selectedObject, pointerX, pointerY) {
    document.getElementById("objectPropertiesText").style.display = "none";
 }
 
-let changeRectRadiusListener;
-let changeRectStrokeWidthListener;
 /**
  * Displays and initializes the rectangle object properties in the UI based on the
  * selected Fabric.js rectangle object. Sets up listeners for updating the rectangle's
@@ -101,8 +106,6 @@ function rectObjectProperties(canvas, object) {
    strokeA.value = objectStrokeRGBA[3];
 }
 
-let changeFontListener;
-let changeFontSizeListener;
 /**
  * Displays and handles text object properties for the selected text object on the
  * canvas. This function updates the UI elements related to font family, font size,
@@ -229,8 +232,6 @@ function colorPickerRGB(canvas, iro, object, colorPickerAndRGBFieldsIDs) {
    });
 }
 
-let changeFillRGBAColorBtnListener;
-let changeStrokeRGBAColorBtnListener;
 /**
  * Sets up a color picker and RGBA input fields for updating the fill or stroke color of
  * a Fabric.js object. The selected color can be applied to either the "stroke" or "fill"
