@@ -12,6 +12,8 @@ let rangeStep;
 let canvasWidth;
 let canvasHeight;
 
+let zoomKeydownListener;
+
 /**
  * Initializes zoom buttons and keyboard shortcuts for scaling the Fabric.js canvas.
  *
@@ -41,7 +43,10 @@ function initializeZoomButtons(canvas) {
    rangeMin = parseFloat(scaleRangeInput.min);
    rangeStep = parseFloat(scaleRangeInput.step);
 
-   document.addEventListener("keydown", (event) => {
+   if (zoomKeydownListener)
+      document.removeEventListener("keydown", zoomKeydownListener);
+
+   zoomKeydownListener = (event) => {
       if (event.ctrlKey) {
          // Zoom in with Ctrl + "+"
          if (event.key === "+" || event.key === "=") {
@@ -55,7 +60,9 @@ function initializeZoomButtons(canvas) {
             zoomOut(canvas);
          }
       }
-   });
+   }
+
+   document.addEventListener("keydown", zoomKeydownListener);
 }
 
 /**
