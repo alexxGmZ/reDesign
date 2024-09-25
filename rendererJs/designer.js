@@ -28,15 +28,13 @@ const {
    displayPointerCoordinates
 } = require(__dirname + "/rendererJs/statusbar/displayPointerCoordinates");
 const {
-   updateCanvasResolution,
-} = require(__dirname + "/rendererJs/statusbar/canvasResolution");
-const {
    initializeZoomButtons,
    zoomIn,
    zoomOut,
    zoomRange,
    resetCanvasZoom,
-   getCanvasResolution
+   getCanvasResolution,
+   updateCanvasResolution,
 } = require(__dirname + "/rendererJs/statusbar/canvasScaler");
 const {
    generateRectangle,
