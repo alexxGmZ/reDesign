@@ -2,6 +2,7 @@ let changeRectRadiusListener;
 let changeRectStrokeWidthListener;
 let changeFontListener;
 let changeFontSizeListener;
+let changeFillRGBColorBtnListener;
 let changeFillRGBAColorBtnListener;
 let changeStrokeRGBAColorBtnListener;
 
@@ -226,10 +227,15 @@ function colorPickerRGB(canvas, iro, object, colorPickerAndRGBFieldsIDs) {
       updateColorPicker();
    });
 
-   changeColorBtn.addEventListener("click", () => {
+   if (changeFillRGBColorBtnListener)
+      changeColorBtn.removeEventListener("click", changeFillRGBColorBtnListener);
+
+   changeFillRGBColorBtnListener = () => {
       object.set({ fill: `rgb(${red}, ${green}, ${blue})` });
       canvas.renderAll();
-   });
+   }
+
+   changeColorBtn.addEventListener("click", changeFillRGBColorBtnListener);
 }
 
 /**
