@@ -305,6 +305,7 @@ closeChangeCanvasResDlgBtn.addEventListener("click", () => {
 const changeCanvasResBtn = document.getElementById("changeCanvasResolution");
 changeCanvasResBtn.addEventListener("click", () => {
    updateCanvasResolution(canvas);
+   initializeZoomButtons(canvas);
    dialogClose("changeCanvasResDialog");
 });
 

@@ -13,6 +13,7 @@ function updateCanvasResolution(canvas) {
 
    canvas.setWidth(newCanvasWidth);
    canvas.setHeight(newCanvasHeight);
+   canvas.setZoom(1);
    canvasResElement.textContent = `${newCanvasWidth}x${newCanvasHeight}`;
 }
 
