@@ -1,10 +1,8 @@
 /**
  * Generates the canvas settings based on the current input values.
  *
- * @returns {Object} An object containing the canvas height, width, and background color.
- * @returns {number} return.canvasHeight - The height of the canvas.
- * @returns {number} return.canvasWidth - The width of the canvas.
- * @returns {string} return.canvasBgColor - The background color of the canvas in RGB format.
+ * @returns {{canvasHeight: number, canvasWidth: number, canvasBgColor: string}}
+ * An object containing the canvas height, width, and background color.
  */
 function generateCanvas() {
    console.log(`generateCanvas()`);
