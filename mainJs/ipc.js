@@ -5,6 +5,9 @@ const fs = require("fs");
  * Handles the "save-canvas-data" IPC event, which triggers a save dialog and writes
  * canvas data to a JSON file. The file path is chosen by the user, and a response is sent
  * back to the renderer process with the status of the save operation.
+ *
+ * @returns {Object} The canvas' parsed JSON data or an object stating an error and error
+ * message.
  */
 function openCanvasFile() {
    console.log("openCanvasFile()");
