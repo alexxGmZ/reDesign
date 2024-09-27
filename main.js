@@ -1,5 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog, Menu } = require("electron");
-const fs = require("fs");
+const { app, BrowserWindow, Menu } = require("electron");
 const { menuTemplate } = require("./mainJs/menuTemplate.js");
 const ipc = require("./mainJs/ipc.js");
 
