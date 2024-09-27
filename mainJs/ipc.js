@@ -1,3 +1,7 @@
+/**
+ * This file contains functions for handling ipcMain requests
+ */
+
 const { ipcMain, dialog } = require("electron");
 const fs = require("fs");
 
@@ -83,7 +87,97 @@ function saveCanvas() {
    });
 }
 
+/**
+ * Handles the "export-canvas-to-png" IPC event, which triggers a save dialog and exports
+ * canvas data to a PNG file. The canvas data is provided as a Data URL and is converted
+ * to binary format before saving.
+ *
+ * @returns {Object} The ipcMain message status of exporting a canvas to PNG or an error.
+ */
+function exportCanvasToPng() {
+   console.log("exportCanvasToPng()");
+   const replyChannel = "export-canvas-to-png-reply";
+
+   ipcMain.on("export-canvas-to-png", async (event, canvasDataURL) => {
+      try {
+         const { filePath } = await dialog.showSaveDialog({
+            title: "Export canvas to PNG",
+            defaultPath: "untitled.png",
+            filters: [{ name: "PNG", extensions: ["png"] }]
+         });
+
+         if (!filePath) {
+            console.log("Export canvas to PNG canceled");
+            return event.reply(replyChannel, {
+               message: "Export canvas to PNG canceled",
+            });
+         }
+
+         const base64Data = canvasDataURL.replace(/^data:image\/png;base64,/, "");
+         const binaryData = Buffer.from(base64Data, "base64");
+         await fs.promises.writeFile(filePath, binaryData);
+
+         console.log("Canvas exported to PNG successfully");
+         return event.reply(replyChannel, {
+            message: "Canvas exported to PNG successfully",
+         });
+      } catch (error) {
+         console.log("Export canvas to PNG failed", error);
+         return event.reply(replyChannel, {
+            message: "Export canvas to PNG failed",
+            error: error
+         });
+      }
+   });
+}
+
+/**
+ * Handles the "export-canvas-to-jpeg" IPC event, which triggers a save dialog and exports
+ * canvas data to a JPEG file. The canvas data is provided as a Data URL and is converted
+ * to binary format before saving.
+ *
+ * @returns {Object} The ipcMain message status of exporting a canvas to JPEG or an error.
+ */
+function exportCanvasToJpeg() {
+   console.log("exportCanvasToJpeg()");
+   const replyChannel = "export-canvas-to-jpeg-reply";
+
+   ipcMain.on("export-canvas-to-jpeg", async (event, canvasDataURL) => {
+      try {
+         const { filePath } = await dialog.showSaveDialog({
+            title: "Export canvas to JPEG",
+            defaultPath: "untitled.jpeg",
+            filters: [{ name: "JPEG", extensions: ["jpeg"] }]
+         });
+
+         if (!filePath) {
+            console.log("Export canvas to JPEG canceled");
+            return event.reply(replyChannel, {
+               message: "Export canvas to JPEG canceled",
+            });
+         }
+
+         const base64Data = canvasDataURL.replace(/^data:image\/jpeg;base64,/, "");
+         const binaryData = Buffer.from(base64Data, "base64");
+         await fs.promises.writeFile(filePath, binaryData);
+
+         console.log("Canvas exported to JPEG successfully");
+         return event.reply(replyChannel, {
+            message: "Canvas exported to JPEG successfully",
+         });
+      } catch (error) {
+         console.log("Export canvas to JPEG failed", error);
+         return event.reply(replyChannel, {
+            message: "Export canvas to JPEG failed",
+            error: error
+         });
+      }
+   });
+}
+
 module.exports = {
    openCanvasFile,
-   saveCanvas
+   saveCanvas,
+   exportCanvasToPng,
+   exportCanvasToJpeg
 }
