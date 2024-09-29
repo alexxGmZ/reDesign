@@ -65,6 +65,7 @@ const {
    rectObjectProperties,
    circObjectProperties,
    textObjectProperties,
+   lineObjectProperties,
    colorPickerRGB,
    colorPickerRGBA
 } = require(__dirname + "/rendererJs/contextMenu/objectProperties");
@@ -445,6 +446,17 @@ objectPropertiesBtn.addEventListener("click", () => {
          "circStrokeA",
          "circStrokeChangeBtn",
       ]);
+   } else if (objectType === "line") {
+      lineObjectProperties(canvas, selectedObject);
+      document.getElementById("lineStrokeColorPicker").innerHTML = "";
+      colorPickerRGBA(canvas, iro, selectedObject, "stroke", [
+         "lineStrokeColorPicker",
+         "lineStrokeR",
+         "lineStrokeG",
+         "lineStrokeB",
+         "lineStrokeA",
+         "lineStrokeChangeBtn",
+      ]);
    }
 });
 
@@ -461,6 +473,7 @@ objectPropertiesHeaderCloseBtn.addEventListener("click", () => {
    document.getElementById("rectStrokeColorPicker").innerHTML = "";
    document.getElementById("circFillColorPicker").innerHTML = "";
    document.getElementById("circStrokeColorPicker").innerHTML = "";
+   document.getElementById("lineStrokeColorPicker").innerHTML = "";
 });
 
 const objectPropertiesCloseBtn = document.getElementById("objectPropertiesCloseBtn");
@@ -473,4 +486,5 @@ objectPropertiesCloseBtn.addEventListener("click", () => {
    document.getElementById("rectStrokeColorPicker").innerHTML = "";
    document.getElementById("circFillColorPicker").innerHTML = "";
    document.getElementById("circStrokeColorPicker").innerHTML = "";
+   document.getElementById("lineStrokeColorPicker").innerHTML = "";
 });

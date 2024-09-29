@@ -42,6 +42,7 @@ function openObjectPropertiesWindow(selectedObject, pointerX, pointerY) {
    document.getElementById("objectPropertiesRect").style.display = "none";
    document.getElementById("objectPropertiesCirc").style.display = "none";
    document.getElementById("objectPropertiesText").style.display = "none";
+   document.getElementById("objectPropertiesLine").style.display = "none";
 }
 
 /**
@@ -213,6 +214,25 @@ function textObjectProperties(canvas, object) {
    textFillR.value = objectFillRGB[0];
    textFillG.value = objectFillRGB[1];
    textFillB.value = objectFillRGB[2];
+}
+
+function lineObjectProperties(canvas, object) {
+   console.log(`lineObjectProperties(${canvas}, ${object})`);
+
+   // display line object properties
+   document.getElementById("objectPropertiesLine").style.display = "initial";
+
+   const strokeR = document.getElementById("lineStrokeR");
+   const strokeG = document.getElementById("lineStrokeG");
+   const strokeB = document.getElementById("lineStrokeB");
+   const strokeA = document.getElementById("lineStrokeA");
+
+   // initialize the line stroke RGBA inputs
+   var objectStrokeRGBA = object.stroke.match(/\d+/g);
+   strokeR.value = objectStrokeRGBA[0];
+   strokeG.value = objectStrokeRGBA[1];
+   strokeB.value = objectStrokeRGBA[2];
+   strokeA.value = objectStrokeRGBA[3];
 }
 
 /**
@@ -453,6 +473,7 @@ module.exports = {
    rectObjectProperties,
    circObjectProperties,
    textObjectProperties,
+   lineObjectProperties,
    colorPickerRGB,
    colorPickerRGBA
 }
