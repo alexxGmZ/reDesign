@@ -109,6 +109,16 @@ function rectObjectProperties(canvas, object) {
    strokeA.value = objectStrokeRGBA[3];
 }
 
+/**
+ * Updates and displays the circle object properties for the specified Fabric.js canvas
+ * object. The function binds event listeners to update the stroke width and fill/stroke
+ * RGBA values dynamically.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance containing the circle
+ * object.
+ * @param {fabric.Circle} object - The circle object whose properties will be displayed
+ * and updated.
+ */
 function circObjectProperties(canvas, object) {
    console.log(`circObjectProperties(${canvas}, ${object})`);
 
