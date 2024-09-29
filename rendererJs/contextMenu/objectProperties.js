@@ -1,5 +1,6 @@
 let changeRectRadiusListener;
 let changeRectStrokeWidthListener;
+let changeCircStrokeWidthListener;
 let changeFontListener;
 let changeFontSizeListener;
 let changeFillRGBColorBtnListener;
@@ -39,6 +40,7 @@ function openObjectPropertiesWindow(selectedObject, pointerX, pointerY) {
 
    document.getElementById("objectPropertiesObjectType").innerHTML = objectType;
    document.getElementById("objectPropertiesRect").style.display = "none";
+   document.getElementById("objectPropertiesCirc").style.display = "none";
    document.getElementById("objectPropertiesText").style.display = "none";
 }
 
@@ -100,6 +102,50 @@ function rectObjectProperties(canvas, object) {
    fillA.value = objectFillRGBA[3];
 
    // initialize the rectangle stroke RGBA inputs
+   var objectStrokeRGBA = object.stroke.match(/\d+/g);
+   strokeR.value = objectStrokeRGBA[0];
+   strokeG.value = objectStrokeRGBA[1];
+   strokeB.value = objectStrokeRGBA[2];
+   strokeA.value = objectStrokeRGBA[3];
+}
+
+function circObjectProperties(canvas, object) {
+   console.log(`circObjectProperties(${canvas}, ${object})`);
+
+   // display circle object properties
+   document.getElementById("objectPropertiesCirc").style.display = "initial";
+
+   const fillR = document.getElementById("circFillR");
+   const fillG = document.getElementById("circFillG");
+   const fillB = document.getElementById("circFillB");
+   const fillA = document.getElementById("circFillA");
+   const strokeWidthElement = document.getElementById("circStrokeWidth");
+   const strokeR = document.getElementById("circStrokeR");
+   const strokeG = document.getElementById("circStrokeG");
+   const strokeB = document.getElementById("circStrokeB");
+   const strokeA = document.getElementById("circStrokeA");
+
+   strokeWidthElement.value = object.strokeWidth;
+
+   if (changeCircStrokeWidthListener)
+      strokeWidthElement.removeEventListener("input", changeCircStrokeWidthListener);
+
+   changeCircStrokeWidthListener = function() {
+      console.log("changeCircStrokeWidthListener()");
+      object.set({ strokeWidth: parseFloat(this.value) });
+      canvas.renderAll();
+   }
+
+   strokeWidthElement.addEventListener("input", changeCircStrokeWidthListener);
+
+   // initialize the circle fill RGBA inputs
+   var objectFillRGBA = object.fill.match(/\d+/g);
+   fillR.value = objectFillRGBA[0];
+   fillG.value = objectFillRGBA[1];
+   fillB.value = objectFillRGBA[2];
+   fillA.value = objectFillRGBA[3];
+
+   // initialize the circle stroke RGBA inputs
    var objectStrokeRGBA = object.stroke.match(/\d+/g);
    strokeR.value = objectStrokeRGBA[0];
    strokeG.value = objectStrokeRGBA[1];
@@ -395,6 +441,7 @@ module.exports = {
    closeObjectPropertiesWindow,
    openObjectPropertiesWindow,
    rectObjectProperties,
+   circObjectProperties,
    textObjectProperties,
    colorPickerRGB,
    colorPickerRGBA

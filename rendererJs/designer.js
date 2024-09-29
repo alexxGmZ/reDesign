@@ -63,6 +63,7 @@ const {
    closeObjectPropertiesWindow,
    openObjectPropertiesWindow,
    rectObjectProperties,
+   circObjectProperties,
    textObjectProperties,
    colorPickerRGB,
    colorPickerRGBA
@@ -423,6 +424,26 @@ objectPropertiesBtn.addEventListener("click", () => {
          "rectStrokeB",
          "rectStrokeA",
          "rectStrokeChangeBtn",
+      ]);
+   } else if (objectType === "circle") {
+      circObjectProperties(canvas, selectedObject);
+      document.getElementById("circFillColorPicker").innerHTML = "";
+      document.getElementById("circStrokeColorPicker").innerHTML = "";
+      colorPickerRGBA(canvas, iro, selectedObject, "fill", [
+         "circFillColorPicker",
+         "circFillR",
+         "circFillG",
+         "circFillB",
+         "circFillA",
+         "circFillChangeBtn",
+      ]);
+      colorPickerRGBA(canvas, iro, selectedObject, "stroke", [
+         "circStrokeColorPicker",
+         "circStrokeR",
+         "circStrokeG",
+         "circStrokeB",
+         "circStrokeA",
+         "circStrokeChangeBtn",
       ]);
    }
 });
