@@ -408,6 +408,7 @@ objectPropertiesBtn.addEventListener("click", () => {
    } else if (objectType === "rect") {
       rectObjectProperties(canvas, selectedObject);
       document.getElementById("rectFillColorPicker").innerHTML = "";
+      document.getElementById("rectStrokeColorPicker").innerHTML = "";
       colorPickerRGBA(canvas, iro, selectedObject, "fill", [
          "rectFillColorPicker",
          "rectFillR",
@@ -416,7 +417,6 @@ objectPropertiesBtn.addEventListener("click", () => {
          "rectFillA",
          "rectFillChangeBtn",
       ]);
-      document.getElementById("rectStrokeColorPicker").innerHTML = "";
       colorPickerRGBA(canvas, iro, selectedObject, "stroke", [
          "rectStrokeColorPicker",
          "rectStrokeR",
@@ -459,6 +459,8 @@ objectPropertiesHeaderCloseBtn.addEventListener("click", () => {
    document.getElementById("textFillColorPicker").innerHTML = "";
    document.getElementById("rectFillColorPicker").innerHTML = "";
    document.getElementById("rectStrokeColorPicker").innerHTML = "";
+   document.getElementById("circFillColorPicker").innerHTML = "";
+   document.getElementById("circStrokeColorPicker").innerHTML = "";
 });
 
 const objectPropertiesCloseBtn = document.getElementById("objectPropertiesCloseBtn");
@@ -469,4 +471,6 @@ objectPropertiesCloseBtn.addEventListener("click", () => {
    document.getElementById("textFillColorPicker").innerHTML = "";
    document.getElementById("rectFillColorPicker").innerHTML = "";
    document.getElementById("rectStrokeColorPicker").innerHTML = "";
+   document.getElementById("circFillColorPicker").innerHTML = "";
+   document.getElementById("circStrokeColorPicker").innerHTML = "";
 });
