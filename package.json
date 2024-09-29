@@ -7,11 +7,11 @@
     "appId": "com.alexxGmZ.reDesign",
     "linux": {
       "target": "AppImage",
-      "icon": "./assets/icon/256/circle/256x256.png"
+      "icon": "./assets/icon/256/reDesign-circle/256x256.png"
     },
     "win": {
       "target": "portable",
-      "icon": "./assets/icon/256/circle/256x256.png"
+      "icon": "./assets/icon/256/reDesign-circle/256x256.png"
     }
   },
   "scripts": {
