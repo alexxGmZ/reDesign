@@ -216,6 +216,16 @@ function textObjectProperties(canvas, object) {
    textFillB.value = objectFillRGB[2];
 }
 
+/**
+ * Updates and displays the line object properties for the specified Fabric.js canvas
+ * object. The function initializes the stroke RGBA input fields to reflect the current
+ * properties of the line.
+ *
+ * @param {fabric.Canvas} canvas - The Fabric.js canvas instance containing the line
+ * object.
+ * @param {fabric.Line} object - The line object whose properties will be displayed
+ * and updated.
+ */
 function lineObjectProperties(canvas, object) {
    console.log(`lineObjectProperties(${canvas}, ${object})`);
 
