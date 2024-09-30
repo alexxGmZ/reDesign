@@ -124,40 +124,44 @@
 
    <!-- context menu -->
    <div id="contextMenu" style="display: none"
-      class="position-absolute border border-1 bg-white p-1 rounded-2 text-xs drop-shadow-lg z-3">
-      <ul class="m-0 p-0">
+      class="position-absolute border bg-white p-1 rounded-3 text-xs shadow z-3">
+      <ul class="m-0 px-2">
          <li id="contextMenuCopy" class="d-flex">
-            <img src="assets/svg/copy-svgrepo-com.svg" width="12px" class="me-2">
+            <img src="assets/svg/copy-svgrepo-com.svg" width="15px" class="me-2">
             <button id="contextMenuCopyBtn" class="border border-0 bg-white">Copy</button>
          </li>
          <li id="contextMenuCut" class="d-flex">
-            <img src="assets/svg/cut-svgrepo-com.svg" width="12px" class="me-2">
+            <img src="assets/svg/cut-svgrepo-com.svg" width="15px" class="me-2">
             <button id="contextMenuCutBtn" class="border border-0 bg-white">Cut</button>
          </li>
          <li id="contextMenuPaste" class="d-flex">
-            <img src="assets/svg/paste-svgrepo-com.svg" width="12px" class="me-2">
+            <img src="assets/svg/paste-svgrepo-com.svg" width="15px" class="me-2">
             <button id="contextMenuPasteBtn" class="border border-0 bg-white">Paste</button>
          </li>
-         <li id="layerBringToFront" style="display: flex">
-            <img src="assets/svg/align-top-arrow-01-svgrepo-com.svg" width="12px" class="me-2">
+         <li id="contextMenuDelete" class="mt-2" style="display: flex">
+            <img src="assets/svg/trash-alt-svgrepo-com.svg" width="15px" class="me-2">
+            <button id="contextMenuPasteBtn" class="border border-0 bg-white">Delete</button>
+         </li>
+         <li id="layerBringToFront" class="mt-2" style="display: flex">
+            <img src="assets/svg/align-top-arrow-01-svgrepo-com.svg" width="15px" class="me-2">
             <button id="layerBringToFrontBtn" class="border border-0 bg-white">Bring to
                front</button>
          </li>
          <li id="layerBringForward" style="display: flex">
-            <img src="assets/svg/arrow-up-svgrepo-com.svg" width="12px" class="me-2">
+            <img src="assets/svg/arrow-up-svgrepo-com.svg" width="15px" class="me-2">
             <button id="layerBringForwardBtn" class="border border-0 bg-white">Bring forward</button>
          </li>
          <li id="layerSendBackward" style="display: flex">
-            <img src="assets/svg/arrow-up-svgrepo-com.svg" width="12px" class="me-2" style="transform: scaleY(-1)">
+            <img src="assets/svg/arrow-up-svgrepo-com.svg" width="15px" class="me-2" style="transform: scaleY(-1)">
             <button id="layerSendBackwardBtn" class="border border-0 bg-white">Send
                backward</button>
          </li>
          <li id="layerSendToBack" style="display: flex">
-            <img src="assets/svg/align-top-arrow-01-svgrepo-com.svg" width="12px" class="me-2"
+            <img src="assets/svg/align-top-arrow-01-svgrepo-com.svg" width="15px" class="me-2"
                style="transform: scaleY(-1)">
             <button id="layerSendToBackBtn" class="border border-0 bg-white">Send to back</button>
          </li>
-         <li id="objectPropertiesBtn" style="display: flex">
+         <li id="objectPropertiesBtn" class="mt-2" style="display: flex">
             <button class="border border-0 bg-white">Properties</button>
          </li>
       </ul>
