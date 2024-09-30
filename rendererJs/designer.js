@@ -41,7 +41,7 @@ const {
    generateCircle,
    generateText,
    generateLine,
-} = require(__dirname + "/rendererJs/sidebar/object");
+} = require(__dirname + "/rendererJs/sidebar/generateObject");
 const {
    saveCanvasToJSON,
    exportCanvasToJPEG,
