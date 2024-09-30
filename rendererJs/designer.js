@@ -196,6 +196,13 @@ document.addEventListener("keydown", function(event) {
          saveCanvasToJSON(ipcRenderer, canvas);
       }
    }
+
+   // DELETE
+   if (event.key === "Delete") {
+      event.preventDefault();
+      hideContextMenu();
+      deleteObject(canvas);
+   }
 });
 
 //
