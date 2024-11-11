@@ -1,4 +1,4 @@
-// This is the designer.js file. Most buttons or DOM elements needing event listeners
+// This is the renderer.js file. Most buttons or DOM elements needing event listeners
 // should be placed here.
 
 // WARN: All CommonJS "require" statements should be placed here, not in other JavaScript
