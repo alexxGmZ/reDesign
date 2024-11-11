@@ -67,12 +67,14 @@ function showContextMenu(canvas) {
    contextMenu.style.left = ((pointerX * canvasZoom) + 60) + "px";
    contextMenu.style.top = ((pointerY * canvasZoom) + 70) + "px";
 
+   const deleteObject = document.getElementById("contextMenuDelete");
    const layerBringToFront = document.getElementById("layerBringToFront");
    const layerBringForward = document.getElementById("layerBringForward");
    const layerSendBackward = document.getElementById("layerSendBackward");
    const layerSendToBack = document.getElementById("layerSendToBack");
    const objectProperties = document.getElementById("objectPropertiesBtn");
 
+   deleteObject.style.display = "none";
    layerBringToFront.style.display = "none";
    layerBringForward.style.display = "none";
    layerSendBackward.style.display = "none";
@@ -82,6 +84,7 @@ function showContextMenu(canvas) {
    const selectedObjects = canvas.getActiveObjects();
 
    if (selectedObjects.length > 0) {
+      deleteObject.style.display = "flex";
       layerBringToFront.style.display = "flex";
       layerBringForward.style.display = "flex";
       layerSendBackward.style.display = "flex";

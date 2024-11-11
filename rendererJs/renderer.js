@@ -1,4 +1,4 @@
-// This is the designer.js file. Most buttons or DOM elements needing event listeners
+// This is the renderer.js file. Most buttons or DOM elements needing event listeners
 // should be placed here.
 
 // WARN: All CommonJS "require" statements should be placed here, not in other JavaScript
@@ -41,7 +41,7 @@ const {
    generateCircle,
    generateText,
    generateLine,
-} = require(__dirname + "/rendererJs/sidebar/object");
+} = require(__dirname + "/rendererJs/sidebar/generateObject");
 const {
    saveCanvasToJSON,
    exportCanvasToJPEG,
@@ -69,6 +69,7 @@ const {
    colorPickerRGB,
    colorPickerRGBA
 } = require(__dirname + "/rendererJs/contextMenu/objectProperties");
+const { deleteObject } = require(__dirname + "/rendererJs/contextMenu/deleteObject")
 
 document.addEventListener("DOMContentLoaded", () => {
    initializeZoomButtons(canvas);
@@ -194,6 +195,13 @@ document.addEventListener("keydown", function(event) {
          hideContextMenu();
          saveCanvasToJSON(ipcRenderer, canvas);
       }
+   }
+
+   // DELETE
+   if (event.key === "Delete") {
+      event.preventDefault();
+      hideContextMenu();
+      deleteObject(canvas);
    }
 });
 
@@ -367,6 +375,11 @@ const contextMenuPasteBtn = document.getElementById("contextMenuPasteBtn");
 contextMenuPasteBtn.addEventListener("click", () => {
    const { pointerX, pointerY } = getPointerCoordinates();
    pasteObjects(canvas, pointerX, pointerY);
+});
+
+const contextMenuDeleteBtn = document.getElementById("contextMenuDelete");
+contextMenuDeleteBtn.addEventListener("click", () => {
+   deleteObject(canvas);
 });
 
 const layerBringToFrontBtn = document.getElementById("layerBringToFrontBtn");
