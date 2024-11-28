@@ -156,6 +156,18 @@ document.addEventListener("DOMContentLoaded", () => {
       if (reply.error) return alert(reply);
       console.log(reply.message);
    });
+
+   //
+   // Import image from disk to the canvas.
+   //
+   // Receives and logs the reply status of the import image to canvas operation from the
+   // main process
+   ipcRenderer.on("import-image-to-canvas-reply", (_, imageURL) => {
+      console.log("ipcRenderer.on('import-image-to-canvas-reply')");
+      if (imageURL.error) return alert(imageURL);
+      if (imageURL.message) return console.log(imageURL.message);
+      importImage(fabric, canvas, imageURL);
+   })
 });
 
 // hide context menu on click event buttons
@@ -261,7 +273,8 @@ saveCanvasToPNGBtn.addEventListener("click", () => {
 //
 const importImageBtn = document.getElementById("importImage");
 importImageBtn.addEventListener("click", () => {
-   importImage(fabric, canvas);
+   if (!canvas) return;
+   ipcRenderer.send("import-image-to-canvas");
 });
 
 //

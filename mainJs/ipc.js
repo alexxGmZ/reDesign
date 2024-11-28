@@ -4,6 +4,7 @@
 
 const { ipcMain, dialog } = require("electron");
 const fs = require("fs");
+const { resolve } = require("path");
 
 /**
  * Handles the "save-canvas-data" IPC event, which triggers a save dialog and writes
@@ -175,9 +176,53 @@ function exportCanvasToJpeg() {
    });
 }
 
+/**
+ * Handles the IPC event to import an image into the canvas. Opens a file dialog
+ * for the user to select an image, converts the selected image to a Base64 data URL,
+ * and replies with the data URL or an error message through the specified reply channel.
+ *
+ * @returns {Object} The ipcMain message status of importing image to a canvas or an error.
+ */
+function importImageToCanvas() {
+   console.log("importImageToCanvas()");
+   const replyChannel = "import-image-to-canvas-reply";
+
+   ipcMain.on("import-image-to-canvas", async (event) => {
+      try {
+         const { canceled, filePaths } = await dialog.showOpenDialog({
+            title: "Select Image",
+            properties: ["openFile"],
+            filters: [{ name: "Image", extensions: ["jpeg", "png"] }]
+         });
+
+         if (canceled && filePaths.length == 0) {
+            console.log("Image selection canceled");
+            return event.reply(replyChannel, {
+               message: "Image selection canceled",
+            });
+         }
+
+         const filePath = filePaths[0];
+         const fileBuffer = fs.readFileSync(filePath);
+         const fileExtension = filePath.split(".").pop();
+         const base64Data = fileBuffer.toString("base64");
+         const dataURL = `data:image/${fileExtension};base64,${base64Data}`;
+
+         return event.reply(replyChannel, dataURL);
+      } catch (error) {
+         console.log("Import image to canvas failed", error);
+         return event.reply(replyChannel, {
+            message: "Import image to canvas failed",
+            error: error
+         });
+      }
+   })
+}
+
 module.exports = {
    openCanvasFile,
    saveCanvas,
    exportCanvasToPng,
-   exportCanvasToJpeg
+   exportCanvasToJpeg,
+   importImageToCanvas
 }

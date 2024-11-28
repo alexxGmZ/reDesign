@@ -25,3 +25,4 @@ ipc.openCanvasFile();
 ipc.saveCanvas();
 ipc.exportCanvasToPng();
 ipc.exportCanvasToJpeg();
+ipc.importImageToCanvas();
