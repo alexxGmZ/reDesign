@@ -104,13 +104,13 @@ rendererJs/
 ├── sidebar/
 ├── statusbar/
 ├── topbar/
-└── designer.js
+└── renderer.js
 ```
 
 > [!NOTE]
 > tree -a -L 1 -F --dirsfirst rendererJs
 
-The **designer.js** file is the main JavaScript file where all of the application's event
+The **renderer.js** file is the main JavaScript file where all of the application's event
 listeners and IPC for renderer process are placed. The **modules/** directory is for
 JavaScript files that cannot be grouped by UI components. The remaining directories
 contain JavaScript modules grouped by their respective UI components.
