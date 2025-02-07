@@ -4,7 +4,8 @@
 
 <h1 align="center">reDesign</h1>
 
-A rewrite of the HTML Canvas Graphics creator called **Designer** from the [MenuMaApp Manage](https://github.com/alexxGmZ/MenuMaApp/tree/main/Manage)
+A rewrite of the HTML Canvas Graphics creator called **Designer** from the
+[MenuMaApp Manage](https://github.com/alexxGmZ/MenuMaApp/tree/main/Manage)
 application. The goal is to make the feature a standalone Electron application.
 
 The application was inspired by the simplicity of [Inkscape](https://inkscape.org/).
