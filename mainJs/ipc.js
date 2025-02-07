@@ -4,7 +4,6 @@
 
 const { ipcMain, dialog } = require("electron");
 const fs = require("fs");
-const { resolve } = require("path");
 
 /**
  * Handles the "save-canvas-data" IPC event, which triggers a save dialog and writes
